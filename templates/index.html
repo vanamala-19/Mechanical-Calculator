@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Mechanical Calculator</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/img/favicon.png" rel="icon">
+  <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: OnePage - v4.5.0
+  * Template URL: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="/"> <img src="/static/img/logo.png" alt=""> Mechanical Calculator</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="static/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Home Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+      <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-9 text-center">
+          <h1>Mechanical Calculator</h1>
+          <h2>Chose the domain:</h2>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="row icon-boxes">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-3 mb-lg-0" data-aos="zoom-in"
+            data-aos-delay="200">
+            <div class="icon-box">
+              <h4 class="title"><a href="">I C Engines</a></h4>
+              <p class="description">Press the select button to calculate the Internal Combustion Engine Parameters</p>
+              <button onclick="Ic()" type="button" class="btn btn-primary btn-lg">select</button>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
+            data-aos-delay="300">
+            <div class="icon-box">
+              <h4 class="title"><a href="">Rocket Engines</a></h4>
+              <p class="description">Press the select button to calculate the Rocket Engine Parameters</p>
+              <button onclick="RE()" type="button" class="btn btn-primary btn-lg">select</button>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
+            data-aos-delay="400">
+            <div class="icon-box">
+              <h4 class="title"><a href="">Turbines</a></h4>
+              <p class="description">Press the select button to calculate the Turbines Parameters</p>
+              <button onclick="TE()" type="button" class="btn btn-primary btn-lg">select</button>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
+            data-aos-delay="500">
+            <div class="icon-box">
+              <h4 class="title"><a href="">Compressors</a></h4>
+              <p class="description">Press the select button to calculate the Compressors Parameters</p>
+              <button onclick="CE()" type="button" class="btn btn-primary btn-lg">select</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </section><!-- End Hero -->
+
+
+  <!-- ======= Calculation Section ======= -->
+  <section id="Calculation" class="calculation calculation-bg">
+    <div class="container" data-aos="fade-up">
+      <div id="ICEngine">
+        <div class="section-title">
+          <h2 >IC Engine Calculation</h2> <!--  title  changes with option -->
+          <h3> Enter the values to calculate the Paramaters </h3>
+        </div>
+        <!-- if choice is IC Engine -->
+        <div class="  row g-3">
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Piston Diameter" name="D" id="D">
+          </div>
+          <div class="col-md-2">
+            <select id="dunit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">cm</option>
+              <option value="2">mm</option>
+              <option value="3">m</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Stroke Length" name="L" id="L">
+          </div>
+          <div class="col-md-2">
+            <select id="Lunit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">cm</option>
+              <option value="2">mm</option>
+              <option value="3">m</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Speed in RPM" name="N" id="N">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="No Of Cylinders" name="K" id="K">
+          </div>
+          <div class="col-md-2">
+            <select id="Strokes" class="form-select" aria-label="Default select example">
+              <option selected>Strokes</option>
+              <option value="2">2 Strokes</option>
+              <option value="4">4 Strokes</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Mean Pressure" name="p" id="P">
+          </div>
+          <div class="col-md-2">
+            <select id="punit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Calorific Value" name="CV" id="CV">
+          </div>
+          <div class="col-md-1">
+            <input type="text" class="form-control" placeholder="Air/Fuel Ratio" name="a/f" id="a/f">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Mass Of Air/Fuel" name="M" id="M">
+          </div>
+          <div class="col-md-1">
+            <select id="munit" class="form-select" aria-label="Default select example">
+              <option selected></option>
+              <option value="1">Mass of Air</option>
+              <option value="2">Mass of Fuel</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Force (N)" name="F" id="F">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Brake Wheel Diameter" name="BWD" id="BWD">
+          </div>
+          <div class="col-md-2">
+            <select id="bwdunit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">cm</option>
+              <option value="2">mm</option>
+              <option value="3">m</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Actual volume" name="Va" id="Va">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Swept Volume" name="Vs" id="Vs">
+          </div>
+          <div class="col-12">
+            <button onclick="calculate()"  class="btn btn-primary">Calculate</button>
+          </div>
+      </div>
+      </div>
+      <!-- IC Engine Code End -->
+  </section><!-- End Calculation Section -->
+
+
+  <!-- ======= Results Section ======= -->
+  <section id="Results" class="Results Results-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2 class="my-3">Results</h2>
+      </div>
+
+      <!-- if choice is IC Engine -->
+
+      <table id="ICResults" class="  table table-bordered border-dark mx-5 table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Parameter</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Indicated Power</td>
+            <td><span id="IP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Brake power</td>
+            <td><span id="BP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Frictional Power</td>
+            <td><span id="FP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Specific Fuel Consumption (SFC/BSFC)</td>
+            <td><span id="BSFC">Kg/KWh</span></td>
+          </tr>
+            <th scope="row">5</th>
+            <td> Indicated Specific Fuel Consumption</td>
+            <td><span id="ISFC">Kg/KWh</span></td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>Mechanical Efficiency</td>
+            <td><span id="Me"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>Volumetric Efficiency</td>
+            <td><span id="Ve"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>Indicated Thermal Efficiency</td>
+            <td><span id="ITe"></span></td>
+          </tr>
+            <th scope="row">8</th>
+            <td>Brake Thermal Efficiency</td>
+            <td><span id="BTe"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section><!-- End Results Section -->
+
+
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>About Us</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. </p>
+      </div>
+
+      <div class="row content">
+        <div class="col-lg-6">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua.
+          </p>
+          <ul>
+            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+            <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
+            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+          </ul>
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0">
+          <p>
+            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <a href="#" class="btn-learn-more">Learn More</a>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Section -->
+
+  <!-- ======= Team Section ======= -->
+  <section id="team" class="team section-team-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Team</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+          consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+          in iste officiis commodi quidem hic quas.</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="member">
+            <div class="member-img">
+              <img src="static/img/team/team-1.jpg" class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>Walter White</h4>
+              <span>Chief Executive Officer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+          <div class="member">
+            <div class="member-img">
+              <img src="static/img/team/team-2.jpg" class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>Sarah Jhonson</h4>
+              <span>Product Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+          <div class="member">
+            <div class="member-img">
+              <img src="static/img/team/team-3.jpg" class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>William Anderson</h4>
+              <span>CTO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+          <div class="member">
+            <div class="member-img">
+              <img src="static/img/team/team-4.jpg" class="img-fluid" alt="">
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4>Amanda Jepson</h4>
+              <span>Accountant</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Team Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+          consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
+          in iste officiis commodi quidem hic quas.</p>
+      </div>
+
+      <div>
+        <iframe style="border:0; width: 100%; height: 270px;"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+          frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div class="row mt-5">
+
+        <div class="col-lg-4">
+          <div class="info">
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>A108 Adam Street, New York, NY 535022</p>
+            </div>
+
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p>info@example.com</p>
+            </div>
+
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>+1 5589 55488 55s</p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-8 mt-5 mt-lg-0">
+
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-3">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/vendor/aos/aos.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/vendor/php-email-form/validate.js"></script>
+  <script src="static/vendor/purecounter/purecounter.js"></script>
+  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/index.js"></script>
+
+</body>
+
+</html>
