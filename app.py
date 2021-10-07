@@ -2,13 +2,8 @@ from flask import Flask,render_template, request, redirect
 # from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_mail import Mail
-import json
-
-with open( 'config.json', 'r' ) as c:
-    params = json.load(c) ["params"]
 
 app = Flask(__name__)
-app.secret_key = 'SECRET KEY'
 app.config.update(
     MAIL_SERVER = 'smtp.gmail.com',
     MAIL_PORT = '465',
