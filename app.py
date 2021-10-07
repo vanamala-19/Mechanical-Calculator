@@ -13,8 +13,8 @@ app.config.update(
     MAIL_SERVER = 'smtp.gmail.com',
     MAIL_PORT = '465',
     MAIL_USE_SSL = 'True',
-    MAIL_USERNAME = params['gmail-user'],
-    MAIL_PASSWORD = params['gmail-password']
+    MAIL_USERNAME = '187r1a0354@gmail.com',
+    MAIL_PASSWORD = 'yeshudarling'
 )
 
 
@@ -39,9 +39,9 @@ def  contact():
         email = request.form.get('email')
         message = request.form.get('message')
 
-        mail.send_message('New message from ' + name, sender=email, recipients= [params['gmail-user']], body=message )
+        mail.send_message('New message from ' + name, sender=email, recipients= ['187r1a0354@gmail.com'], body=message )
     return  render_template('index.html')
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
