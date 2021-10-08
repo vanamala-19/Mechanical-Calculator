@@ -32,6 +32,8 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+
 </head>
 
 <body>
@@ -112,7 +114,7 @@
     <div class="container" data-aos="fade-up">
       <div id="ICEngine">
         <div class="section-title">
-          <h2 >IC Engine Calculation</h2> <!--  title  changes with option -->
+          <h2>IC Engine Calculation</h2> <!--  title  changes with option -->
           <h3> Enter the values to calculate the Paramaters </h3>
         </div>
         <!-- if choice is IC Engine -->
@@ -200,9 +202,9 @@
             <input type="text" class="form-control" placeholder="Swept Volume" name="Vs" id="Vs">
           </div>
           <div class="col-12">
-            <button onclick="calculate()"  class="btn btn-primary">Calculate</button>
+            <button onclick="calculate()" class="btn btn-primary">Calculate</button>
           </div>
-      </div>
+        </div>
       </div>
       <!-- IC Engine Code End -->
   </section><!-- End Calculation Section -->
@@ -247,9 +249,9 @@
             <td>Specific Fuel Consumption (SFC/BSFC)</td>
             <td><span id="BSFC">Kg/KWh</span></td>
           </tr>
-            <th scope="row">5</th>
-            <td> Indicated Specific Fuel Consumption</td>
-            <td><span id="ISFC">Kg/KWh</span></td>
+          <th scope="row">5</th>
+          <td> Indicated Specific Fuel Consumption</td>
+          <td><span id="ISFC">Kg/KWh</span></td>
           </tr>
           <tr>
             <th scope="row">6</th>
@@ -266,9 +268,9 @@
             <td>Indicated Thermal Efficiency</td>
             <td><span id="ITe"></span></td>
           </tr>
-            <th scope="row">9</th>
-            <td>Brake Thermal Efficiency</td>
-            <td><span id="BTe"></span></td>
+          <th scope="row">9</th>
+          <td>Brake Thermal Efficiency</td>
+          <td><span id="BTe"></span></td>
           </tr>
         </tbody>
       </table>
@@ -282,14 +284,14 @@
       <div class="section-title">
         <h2>About </h2>
       </div>
-      <p class="text-center">  This website is build to calculate the Mechanical Parameters of Engines. </p>
-        <div class="text-center">
-          <p>We can use this calculator in Manufacturing Industries .</p>
-            <p>We can use this calculator for Education System for better calculations.</p>
-            <p> We also have  Physical Mechanical Calculator. </p>
-            <p>For More Information you can contact us. </p>
-          <a href="#contact" <button type="button" class="btn btn-primary">Learn More</button></a>
-        </div>
+      <p class="text-center"> This website is build to calculate the Mechanical Parameters of Engines. </p>
+      <div class="text-center">
+        <p>We can use this calculator in Manufacturing Industries .</p>
+        <p>We can use this calculator for Education System for better calculations.</p>
+        <p> We also have Physical Mechanical Calculator. </p>
+        <p>For More Information you can contact us. </p>
+        <a href="#contact" <button type="button" class="btn btn-primary">Learn More</button></a>
+      </div>
     </div>
   </section><!-- End About Section -->
 
@@ -303,29 +305,23 @@
         <h2>Contact</h2>
         <p>You can contact us through sending mail from this Messagebox.</p>
       </div>
-        <div class="col-lg-12 mt-5 mt-lg-0">
-
-          <form  action="/contact" method="POST" data-sb-form-api-token="API_TOKEN">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-              </div>
-              <div class="col-md-6 form-group mt-3 mt-md-3">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-              </div>
+      <div class="col-lg-12 mt-5 mt-lg-0">
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="user-name form-control" id="name" placeholder="Your Name" required>
             </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            <div class="col-md-6 form-group">
+              <input type="email" class="user-email form-control" name="email" id="email" placeholder="Your Email"
+                required>
             </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-            </div>
-            <button class="btn btn-primary text-uppercase text-center " id="submitButton" type="submit">Send</button>
-          </form>
-
-        </div>
-
+          </div>
+          <div class="form-group mt-3">
+            <textarea class="user-msg form-control" name="message" rows="5" placeholder="Message" required></textarea>
+          </div>
+          <button onclick="validate()" class="user-submit btn btn-primary text-uppercase " id="submitButton" type="submit">Send</button>
       </div>
+
+    </div>
 
     </div>
   </section><!-- End Contact Section -->
@@ -348,6 +344,74 @@
   <!-- Template Main JS File -->
   <script src="/static/js/main.js"></script>
   <script src="/static/js/index.js"></script>
+  <!-- for email contact using emailjs -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("user_3yOIBuLymX5GB0CBO9kpN");
+    })();
+  </script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    /*
+        User ID: user_3yOIBuLymX5GB0CBO9kpN
+        Access Token: 1c343151f7b6cc049c64068e9f64d160
+       */
+
+    function validate() {
+      let username = document.querySelector(".user-name");
+      let useremail = document.querySelector(".user-email");
+      let usermsg = document.querySelector(".user-msg");
+      let submit = document.querySelector(".user-submit");
+
+      submit.addEventListener("click", (e) => {
+        e.preventDefault()
+
+        if(username.value == "" || useremail.value == "" || usermsg.value == "" ){
+          inputempty();
+        }else{
+          sendemail(username.value, useremail.value, usermsg.value);
+          sucess();
+        }
+         })
+    }
+
+    function sendemail(name, email, msg){
+      emailjs.send("service_94vid38", "template_dkqcavp", {
+        from_name: name,
+        to_name: email,
+        message: msg,
+      });
+    }
+
+    function sucess() {
+      swal({
+        title: "Sucess",
+        text: "Sucessfully sent Message",
+        icon: "success",
+        button: "Ok",
+      });
+    }
+
+    function error() {
+      swal({
+        title: "Sorry",
+        text: "Something Went Wrong, Message could not be sent",
+        icon: "error",
+        button: "Ok",
+      });
+    }
+
+    function inputempty() {
+      swal({
+        title: "Opps!!",
+        text: "Inputs Field are required",
+        icon: "error",
+        button: "Ok",
+      });
+    }
+
+  </script>
 
 </body>
 
