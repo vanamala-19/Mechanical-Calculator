@@ -213,7 +213,7 @@
           <div class="section-title">
             <h2>Compressor Engine Calculation</h2> <!--  title  changes with option -->
           </div>
-          <div class="col-md-12 text-center" onchange="">
+          <div class="col-md-12 text-center">
             <select id="ct" onchange="ct()" class="form-select text-center" aria-label="Default select example">
               <option selected>Select the type of Compressor:</option>
               <option value="res">Reciprocating-Compressor</option>
@@ -309,8 +309,8 @@
             <div class="col-md-2">
               <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
             </div>
-            <div class="col-md-2">
-              <input type="text" class="form-control" placeholder="Tempurature T1" name="T" id="T">
+            <div class="col-md-3">
+              <input type="text" class="form-control" placeholder="Tempurature T1(K)" name="T" id="T">
             </div>
             <div class="col-md-2">
               <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
@@ -370,8 +370,8 @@
           <div class="col-md-2">
             <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
           </div>
-          <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Tempurature T1" name="T" id="T">
+          <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Tempurature T1(K)" name="T" id="T">
           </div>
           <div class="col-md-2">
             <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
@@ -431,8 +431,8 @@
           <div class="col-md-2">
             <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
           </div>
-          <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Tempurature T1" name="T" id="T">
+          <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Tempurature T1(K)" name="T" id="T">
           </div>
           <div class="col-md-2">
             <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
@@ -485,11 +485,11 @@
               <option value="3">Pascls</option>
             </select>
           </div>
-          <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Tempurature T1" name="T1" id="T1">
+          <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Tempurature T1(K)" name="T1" id="T1">
           </div>
-          <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Tempurature T2" name="T2" id="T2">
+          <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Tempurature T2(K)" name="T2" id="T2">
           </div>
           <div class="col-12">
             <button onclick="CFCcalculate()" class="btn btn-primary">Calculate</button>
@@ -589,7 +589,55 @@
         </div>
       </div>
       <!-- End of Rocket Engine  -->
-
+      <!-- Begin of Turbine Engines -->
+      <div class="container" data-aos="fade-up">
+        <div id="TEngine">
+          <div class="section-title">
+            <h2>Turbine Engine Calculation</h2> <!--  title  changes with option -->
+          </div>
+          <div class="col-md-12 text-center">
+            <select id="tyt" onchange="tyt()" class="form-select text-center" aria-label="Default select example">
+              <option selected>Select the type of Turbine:</option>
+              <option value="steam">Steam turbine</option>
+              <option value="gas">Gas Turbine</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Begin of  Steam Turbine -->
+      <div id="STE" class="text-center">
+        <div class="row g-3 my-2">
+          <h1> Steam Turbine</h1>
+          <h2>-----Work is Under Progress-----</h2>
+        </div>
+      </div>
+      <!-- End of  Steam Turbine -->
+      <!-- Begin of  Gas Turbine -->
+      <div id="GTE" class="text-center">
+        <div class="row g-3 my-2">
+          <h1>Gas Turbine</h1>
+          <div class="col-md-3 text-center">
+            <input type="text" class="form-control" required placeholder="Tempurature T1(K)" name="T1" id="t1">
+          </div>
+          <div class="col-md-3 text-center">
+            <input type="text" class="form-control" required placeholder="Tempurature T2(K)" name="T2" id="t2">
+          </div>
+          <div class="col-md-3 text-center">
+            <input type="text" class="form-control" required placeholder="Tempurature T3(k)" name="T3" id="t3">
+          </div>
+          <div class="col-md-3 text-center">
+            <input type="text" class="form-control" required placeholder="Tempurature T4(K)" name="T4" id="t4">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure Ratio" name="Rp" id="Rp">
+          </div>
+          <div class="col-12">
+            <button onclick="GTcalculate()" class="btn btn-primary">Calculate</button>
+          </div>
+        </div>
+      </div>
+      <!-- End of  Gas Turbine -->
+      <!-- End of Turbine Engines -->
   </section><!-- End Calculation Section -->
 
 
@@ -884,6 +932,56 @@
         </tbody>
       </table>
       <!-- End Of Rocket Engine -->
+      <!-- Begin of Turbine Engine -->
+      <!-- Begin of Gas Turbine Engine -->
+      <table id="GTResults" class="  table table-bordered border-dark mx-auto table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Parameter</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Work Done by Turbine</td>
+            <td><span id="WT"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Work Done by Compressor</td>
+            <td><span id="WC"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Total Net Work</td>
+            <td><span id="Wnet"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Thermal Efficiency</td>
+            <td><span id="THe"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Turbine Efficiency</td>
+            <td><span id="Te"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>Compressor Efficiency</td>
+            <td><span id="Ce"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>Back Work Ratio</td>
+            <td><span id="bwr"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- End of Gas Turbine Engine -->
+      <!-- End of Turbine Engine -->
     </div>
   </section><!-- End Results Section -->
 
