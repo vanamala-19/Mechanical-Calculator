@@ -231,6 +231,10 @@ function ICcalculate() {
     document.getElementById('ITe').innerHTML = ITe + " / " + ITe * 100 + " %";
     document.getElementById('BTe').innerHTML = BTe + " / " + BTe * 100 + " %";
     document.getElementById("ICResults").style.display = "block";
+    document.getElementById("RESCResults").style.display = "none";
+    document.getElementById("RBCResults").style.display = "none";
+    document.getElementById("VTCResults").style.display = "none";
+    document.getElementById("CFCResults").style.display = "none";
     window.location.href = "#Results";
 }
 
@@ -336,6 +340,10 @@ function RESCcalculate() {
     document.getElementById('Me').innerHTML = Me + " / " + Me * 100 + " %";
     document.getElementById('Mpow').innerHTML = Mpow + " KW";
     document.getElementById("RESCResults").style.display = "block";
+    document.getElementById("ICResults").style.display = "none";
+    document.getElementById("RBCResults").style.display = "none";
+    document.getElementById("VTCResults").style.display = "none";
+    document.getElementById("CFCResults").style.display = "none";
     window.location.href = "#Results";
 }
 
@@ -388,6 +396,10 @@ function RBCcalculate(){
     document.getElementById('Roote').innerHTML = Roote + " / " + Roote * 100 + " %";
     document.getElementById('Me').innerHTML = Me + " / " + Me * 100 + " %";
     document.getElementById("RBCResults").style.display = "block";
+    document.getElementById("ICResults").style.display = "none";
+    document.getElementById("RESCResults").style.display = "none";
+    document.getElementById("VTCResults").style.display = "none";
+    document.getElementById("CFCResults").style.display = "none";
     window.location.href = "#Results";
 }
 
@@ -452,6 +464,10 @@ function VTCcalculate(){
     document.getElementById('Vanee').innerHTML = Vanee + " / " + Vanee * 100 + " %";
     document.getElementById('Me').innerHTML = Me + " / " + Me * 100 + " %";
     document.getElementById("VTCResults").style.display = "block";
+    document.getElementById("ICResults").style.display = "none";
+    document.getElementById("RESCResults").style.display = "none";
+    document.getElementById("RBCResults").style.display = "none";
+    document.getElementById("CFCResults").style.display = "none";
     window.location.href = "#Results";
 }
 //  This for centifugal compressor
@@ -494,6 +510,10 @@ function CFCcalculate(){
     document.getElementById('isene').innerHTML = isene + " / " + isene * 100 + " %";
     document.getElementById('ds').innerHTML = Ds + " KW";
     document.getElementById("CFCResults").style.display = "block";
+    document.getElementById("ICResults").style.display = "none";
+    document.getElementById("RESCResults").style.display = "none";
+    document.getElementById("RBCResults").style.display = "none";
+    document.getElementById("VTCResults").style.display = "none";
     window.location.href = "#Results";
 }
 
