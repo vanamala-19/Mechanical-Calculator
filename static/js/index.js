@@ -41,6 +41,8 @@ let W1,W2,Wvane,IP1,IP2,Vanee;
 let T1,T2;
 const CP = 1.00;
 const CV = 0.716;
+//  for Rocket engine
+let S,Va,Fpr=0,take;
 
 
 // function to assign choice values
@@ -49,6 +51,7 @@ function Ic() {
     // console.log(choice)\
     window.location.href = "#Calculation";
     document.getElementById("ICEngine").style.display = "block";
+    document.getElementById("REngine").style.display = "block";
     document.getElementById("CE-Engine").style.display = "none";
     document.getElementById("RECE").style.display = "none";
     document.getElementById("ROCE").style.display = "none";
@@ -68,11 +71,16 @@ function CE() {
     window.location.href = "#Calculation";
     document.getElementById("CE-Engine").style.display = "block";
     document.getElementById("ICEngine").style.display = "none";
+    document.getElementById("REngine").style.display = "none";
 
 }
 function RE() {
     choice = 'RE';
     // console.log(choice)
+    window.location.href = "#Calculation";
+    document.getElementById("REngine").style.display = "block";
+    document.getElementById("CE-Engine").style.display = "none";
+    document.getElementById("ICEngine").style.display = "none";
 }
 
 
@@ -235,6 +243,7 @@ function ICcalculate() {
     document.getElementById("RBCResults").style.display = "none";
     document.getElementById("VTCResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
+    document.getElementById("REResults").style.display = "none";
     window.location.href = "#Results";
 }
 
@@ -344,6 +353,7 @@ function RESCcalculate() {
     document.getElementById("RBCResults").style.display = "none";
     document.getElementById("VTCResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
+    document.getElementById("REResults").style.display = "none";
     window.location.href = "#Results";
 }
 
@@ -400,6 +410,7 @@ function RBCcalculate(){
     document.getElementById("RESCResults").style.display = "none";
     document.getElementById("VTCResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
+    document.getElementById("REResults").style.display = "none";
     window.location.href = "#Results";
 }
 
@@ -468,6 +479,7 @@ function VTCcalculate(){
     document.getElementById("RESCResults").style.display = "none";
     document.getElementById("RBCResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
+    document.getElementById("REResults").style.display = "none";
     window.location.href = "#Results";
 }
 //  This for centifugal compressor
@@ -510,6 +522,7 @@ function CFCcalculate(){
     document.getElementById('isene').innerHTML = isene + " / " + isene * 100 + " %";
     document.getElementById('ds').innerHTML = Ds + " KW";
     document.getElementById("CFCResults").style.display = "block";
+    document.getElementById("REResults").style.display = "none";
     document.getElementById("ICResults").style.display = "none";
     document.getElementById("RESCResults").style.display = "none";
     document.getElementById("RBCResults").style.display = "none";
@@ -517,7 +530,113 @@ function CFCcalculate(){
     window.location.href = "#Results";
 }
 
+// For ambient velocity and velocity ratio
+function rva(){
+    take = document.getElementById("vr").value;
+    if(take == 1){
+        document.getElementById("rva").style.display="none";
+    }else if(take == 2){
+        document.getElementById("rva").style.display="block";
+    }
+}
+
 // This Function Calculates The Rocket Engine Parameters
-function Rcalculate() {
+function REcalculate() {
     // console.log("Rocket Engine Claculation is On Working Process")
+    p1 = document.getElementById('pe').value;
+    let p1unit = document.getElementById('p1unit').value;
+    if (p1unit == 1) {
+        p1 = p1 * 100;
+    } else if (p1unit == 2) {
+        p1 = p1;
+    } else if (p1unit == 3) {
+        p1 = p1 / 1000;
+    }
+    p2 = document.getElementById('pa').value;
+    let p2unit = document.getElementById('p2unit').value;
+    if (p2unit == 1) {
+        p2 = p2 * 100;
+    } else if (p2unit == 2) {
+        p2 = p2;
+    } else if (p2unit == 3) {
+        p2 = p2 / 1000;
+    }
+    ma = document.getElementById("ma").value;
+    let maunit = document.getElementById("maunit").value;
+    if (maunit == 1) {
+        ma = ma;
+    } else if (maunit == 2) {
+        ma = ma / 60;
+    }
+    let Vjet = document.getElementById("Vjet").value;
+    let vunit = document.getElementById("vunit").value;
+    if (vunit == 1) {
+        Vjet = Vjet;
+    } else if (vunit == 2) {
+        Vjet = Vjet*(5/18);
+    } else if (vunit == 3) {
+        Vjet = Vjet/2.237;
+    }
+    if(take == 1){
+        S = document.getElementById("va").value;
+        document.getElementById("rva").style.display="none";
+        Va = S*Vjet;
+        console.log(S);
+    }else if(take == 2){
+        Va = document.getElementById("va").value;
+        document.getElementById("rva").style.display="block";
+        let vaunit = document.getElementById("vaunit").value;
+        if (vaunit == 1) {
+            Va = Va;
+        } else if (vaunit == 2) {
+            Va = Va*(5/18);
+        } else if (vaunit == 3) {
+            Va = Va/2.237;
+        }
+        S = Va/Vjet;
+    }
+    D = document.getElementById('D').value;
+    let dunit = document.getElementById('dunit').value;
+    if (dunit == 1) {
+        D = D / 100;
+    } else if (dunit == 2) {
+        D = D / 1000;
+    } else if (dunit == 3) {
+        D = D;
+    }
+    let Ae = pi/4*D*D;
+    let Fmom = ma*Vjet;
+    Fpr = Ae*(p1-p2);
+    // F = Fmom;
+    if(p1 =! 0 && p2!=0){
+        F = Fmom + Fpr
+    }else{
+        F = Fmom;
+    }
+    let Sthrust = F/ma;
+    let Isp = (F/(ma*9.81)).toFixed(2);
+    let Pthrust = F*Va;
+    let Ploss = 0.5*ma*(Vjet-Va)*(Vjet-Va);
+    PPropulsion = Pthrust + Ploss;
+    let Prope = (2*S/(1+(S*S))).toFixed(2);
+    let Te = PPropulsion/(ma*CV);
+    let SPC = 1/Isp;
+    let Overalle = (Prope*Te).toFixed(2);
+    document.getElementById('TP').innerHTML = F/1000 + " KN";
+    document.getElementById('Sthrust').innerHTML = Sthrust + "  M/S";
+    document.getElementById('Isp').innerHTML = Isp + "  S";
+    document.getElementById('SPC').innerHTML = SPC + " per Sec";
+    document.getElementById('Pthrust').innerHTML = Pthrust/1000 + "  KW";
+    document.getElementById('Ploss').innerHTML = Ploss/1000 + "  KW";
+    document.getElementById('PProp').innerHTML = PPropulsion/1000 + "  KW";
+    document.getElementById('Prope').innerHTML = Prope + " / " + Prope * 100 + " %";
+    document.getElementById('Te').innerHTML = Te + " / " + Te * 100 + " %";
+    document.getElementById('Oe').innerHTML = Overalle + " / " + Overalle * 100 + " %";
+    document.getElementById("REResults").style.display = "block";
+    document.getElementById("CFCResults").style.display = "none";
+    document.getElementById("ICResults").style.display = "none";
+    document.getElementById("RESCResults").style.display = "none";
+    document.getElementById("RBCResults").style.display = "none";
+    document.getElementById("VTCResults").style.display = "none";
+    window.location.href = "#Results";
 }
