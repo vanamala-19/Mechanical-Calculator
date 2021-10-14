@@ -118,7 +118,7 @@
           <h3> Enter the values to calculate the Paramaters </h3>
         </div>
         <!-- if choice is IC Engine -->
-        <div class="  row g-3">
+        <div class="row g-3">
           <div class="col-md-2">
             <input type="text" class="form-control" required placeholder="Piston Diameter" name="D" id="D">
           </div>
@@ -202,11 +202,309 @@
             <input type="text" class="form-control" placeholder="Swept Volume" name="Vs" id="Vs">
           </div>
           <div class="col-12">
-            <button onclick="calculate()" class="btn btn-primary">Calculate</button>
+            <button onclick="ICcalculate()" class="btn btn-primary">Calculate</button>
           </div>
         </div>
       </div>
       <!-- IC Engine Code End -->
+      <!-- Compressor Engines Start -->
+      <div class="container" data-aos="fade-up">
+        <div id="CE-Engine">
+          <div class="section-title">
+            <h2>Compressor Engine Calculation</h2> <!--  title  changes with option -->
+          </div>
+          <div class="col-md-12 text-center" onchange="">
+            <select id="ct" onchange="ct()" class="form-select text-center" aria-label="Default select example">
+              <option selected>Select the type of Compressor:</option>
+              <option value="res">Reciprocating-Compressor</option>
+              <option value="rot">Rotary-Compressor</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- If selected Reciprocating Compressor -->
+      <div class="container" data-aos="fade-up">
+        <div id="RECE">
+          <div class="row g-3 my-2">
+            <div class="col-md-3">
+              <select id="tyop" class="form-select text-center" aria-label="Default select example">
+                <option selected>Type of Process</option>
+                <option value="0">Isothermal Process</option>
+                <option value="1.4">Isentropic Process</option>
+                <option value="1.3">Polytrocpic Process</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select id="tyoc" class="form-select text-center" aria-label="Default select example">
+                <option selected>Type of Compressor</option>
+                <option value="1">Single-Acting-Compressor</option>
+                <option value="2">Double-Acting-Compressor</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select id="tyos" onchange="stage()" class="form-select text-center" aria-label="Default select example">
+                <option selected>Type of Stage</option>
+                <option value="1">Single Stage Compressor</option>
+                <option value="2">Two Stage Compressor</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" required placeholder="Speed in RPM" name="N" id="N">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Piston Diameter" name="D" id="D">
+            </div>
+            <div class="col-md-2">
+              <select id="dunit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">cm</option>
+                <option value="2">mm</option>
+                <option value="3">m</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Stroke Length" name="L" id="L">
+            </div>
+            <div class="col-md-2">
+              <select id="Lunit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">cm</option>
+                <option value="2">mm</option>
+                <option value="3">m</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="P1">
+            </div>
+            <div class="col-md-2">
+              <select id="p1unit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">bars</option>
+                <option value="2">KN/m^2</option>
+                <option value="3">Pascls</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="P2">
+            </div>
+            <div class="col-md-2">
+              <select id="p2unit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">bars</option>
+                <option value="2">KN/m^2</option>
+                <option value="3">Pascls</option>
+              </select>
+            </div>
+            <div id="msp" class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Pressure p3" name="p3" id="P3">
+            </div>
+            <div id="mspu" class="col-md-2">
+              <select id="p3unit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">bars</option>
+                <option value="2">KN/m^2</option>
+                <option value="3">Pascls</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Tempurature T1" name="T" id="T">
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
+            </div>
+            <div class="col-md-2">
+              <select id="maunit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">Kg/S</option>
+                <option value="2">Kg/Min</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <button onclick="RESCcalculate()" class="btn btn-primary">Calculate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Reciprocating Calculation Ended -->
+
+      <!-- If selected Rotary Compressor -->
+      <div id="ROCE" class="text-center my-3">
+        <div class="col-md-12">
+          <select id="rct" onchange="rct()" class="form-select text-center" aria-label="Default select example">
+            <option selected>Select the type of Rotary-Compressor Compressor: </option>
+            <option value="rbc">Roots Blower-Compressor</option>
+            <option value="vtc">Vane-Type-Compressor</option>
+            <option value="cenc">Centrifugal-Compressor</option>
+            <option value="axialc">Axial -Compressor</option>
+          </select>
+        </div>
+      </div>
+      <!-- If Root Blower Compressor -->
+      <div id="RBCE" class="text-center">
+        <div class="row g-3 my-2">
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="P1">
+          </div>
+          <div class="col-md-2">
+            <select id="p1unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="P2">
+          </div>
+          <div class="col-md-2">
+            <select id="p2unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Tempurature T1" name="T" id="T">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
+          </div>
+          <div class="col-md-2">
+            <select id="maunit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Kg/S</option>
+              <option value="2">Kg/Min</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <button onclick="RBCcalculate()" class="btn btn-primary">Calculate</button>
+          </div>
+        </div>
+      </div>
+      <!-- Root blower Calculation Ended -->
+      <!-- Begin  Root Vane Type Compressor -->
+      <div id="VTCE" class="text-center">
+        <div class="row g-3 my-2">
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="No Of Vanes" name="N" id="N">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="P1">
+          </div>
+          <div class="col-md-2">
+            <select id="p1unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="P2">
+          </div>
+          <div class="col-md-2">
+            <select id="p2unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure p3" name="p3" id="P3">
+          </div>
+          <div class="col-md-2">
+            <select id="p3unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Tempurature T1" name="T" id="T">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
+          </div>
+          <div class="col-md-2">
+            <select id="maunit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Kg/S</option>
+              <option value="2">Kg/Min</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <button onclick="VTCcalculate()" class="btn btn-primary">Calculate</button>
+          </div>
+        </div>
+      </div>
+      <!-- Vane Type Calculation Ended -->
+      <!-- If Centrifugal Compressor -->
+      <div id="CFCE" class="text-center">
+        <div class="row g-3 my-2">
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
+          </div>
+          <div class="col-md-2">
+            <select id="maunit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Kg/S</option>
+              <option value="2">Kg/Min</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="P1">
+          </div>
+          <div class="col-md-2">
+            <select id="p1unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="P2">
+          </div>
+          <div class="col-md-2">
+            <select id="p2unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Tempurature T1" name="T1" id="T1">
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Tempurature T2" name="T2" id="T2">
+          </div>
+          <div class="col-12">
+            <button onclick="CFCcalculate()" class="btn btn-primary">Calculate</button>
+          </div>
+        </div>
+      </div>
+      <!-- Centrifugal Calculation Ended -->
+      <!-- If Axial Compressor -->
+      <div id="ACE" class="text-center">
+        <!-- this is tempororily closed because presently it is closly mathing with centrifugal compressor -->
+      </div>
+      <!-- Axial Calculation Ended -->
+      <!-- Rotary Calculation Ended -->
+      <!-- Compressor Engines End-->
+
   </section><!-- End Calculation Section -->
 
 
@@ -219,7 +517,6 @@
       </div>
 
       <!-- if choice is IC Engine -->
-
       <table id="ICResults" class="  table table-bordered border-dark mx-auto table-responsive-sm">
         <thead>
           <tr>
@@ -274,6 +571,170 @@
           </tr>
         </tbody>
       </table>
+      <!-- End of Ic Engine -->
+      <!-- Compressors Engine -->
+      <!-- Reciprocating Compressor engine -->
+      <table id="RESCResults" class="  table table-bordered border-dark mx-auto table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Parameter</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Indicated Power</td>
+            <td><span id="IP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Brake power</td>
+            <td><span id="BP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Frictional Power</td>
+            <td><span id="FP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Mechanical Efficiency</td>
+            <td><span id="Me"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Motor Power</td>
+            <td><span id="Mpow"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- End of Reciprocating Compressor Engine  -->
+      <!-- Begin of Root Blower Compressor -->
+      <table id="RBCResults" class="  table table-bordered border-dark mx-auto table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Parameter</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Actual Work Done</td>
+            <td><span id="Wact">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Indicated Power</td>
+            <td><span id="IP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Brake power</td>
+            <td><span id="BP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Frictional Power</td>
+            <td><span id="FP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Root Blower Efficiency</td>
+            <td><span id="Roote"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>Mechanical Efficiency</td>
+            <td><span id="Me"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- End of Root Blower Compressor -->
+      <!-- Begin Vane Type Compressor -->
+      <table id="VTCResults" class="  table table-bordered border-dark mx-auto table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Parameter</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Work Done by Vane Compressor</td>
+            <td><span id="Wvane">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Indicated Power</td>
+            <td><span id="IP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Brake power</td>
+            <td><span id="BP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Frictional Power</td>
+            <td><span id="FP">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>Vane Type Compressor Efficiency</td>
+            <td><span id="Vanee"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>Mechanical Efficiency</td>
+            <td><span id="Me"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- End Vane Type Compressor -->
+      <!-- Begin of centrifugal Compressor -->
+      <table id="CFCResults" class="  table table-bordered border-dark mx-auto table-responsive-sm">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Parameter</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Work Input</td>
+            <td><span id="win">KW</span></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Power Required</td>
+            <td><span id="pin">KW</span></td>
+          </tr>
+          <tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Isentropic  Efficiency</td>
+            <td><span id="isene"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Change In Entropy</td>
+            <td><span id="ds"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- End of centrifugal Compressor -->
+      <!-- Begin Of Axial Compressor -->
+
+      <!-- End Of Axial Compressor -->
+      <!-- End of Compressor Engine  -->
     </div>
   </section><!-- End Results Section -->
 
@@ -306,19 +767,20 @@
         <p>You can contact us through sending mail from this Messagebox.</p>
       </div>
       <div class="col-lg-12 mt-5 mt-lg-0">
-          <div class="row">
-            <div class="col-md-6 form-group">
-              <input type="text" name="name" class="user-name form-control" id="name" placeholder="Your Name" required>
-            </div>
-            <div class="col-md-6 form-group">
-              <input type="email" class="user-email form-control" name="email" id="email" placeholder="Your Email"
-                required>
-            </div>
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <input type="text" name="name" class="user-name form-control" id="name" placeholder="Your Name" required>
           </div>
-          <div class="form-group mt-3">
-            <textarea class="user-msg form-control" name="message" rows="5" placeholder="Message" required></textarea>
+          <div class="col-md-6 form-group">
+            <input type="email" class="user-email form-control" name="email" id="email" placeholder="Your Email"
+              required>
           </div>
-          <button onclick="validate()" class="user-submit btn btn-primary text-uppercase " id="submitButton" type="submit">Send</button>
+        </div>
+        <div class="form-group mt-3">
+          <textarea class="user-msg form-control" name="message" rows="5" placeholder="Message" required></textarea>
+        </div>
+        <button onclick="validate()" class="user-submit btn btn-primary text-uppercase " id="submitButton"
+          type="submit">Send</button>
       </div>
 
     </div>
@@ -344,19 +806,10 @@
   <!-- Template Main JS File -->
   <script src="/static/js/main.js"></script>
   <script src="/static/js/index.js"></script>
-  <!-- for email contact using emailjs -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function () {
-      emailjs.init("user_3yOIBuLymX5GB0CBO9kpN");
-    })();
-  </script>
+  <script src="/static/js/smtp.js"></script>
+  <!-- for sweetalert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
-    /*
-        User ID: user_3yOIBuLymX5GB0CBO9kpN
-        Access Token: 1c343151f7b6cc049c64068e9f64d160
-       */
 
     function validate() {
       let username = document.querySelector(".user-name");
@@ -367,20 +820,28 @@
       submit.addEventListener("click", (e) => {
         e.preventDefault()
 
-        if(username.value == "" || useremail.value == "" || usermsg.value == "" ){
+        if (username.value == "" || useremail.value == "" || usermsg.value == "") {
           inputempty();
-        }else{
+        } else {
           sendemail(username.value, useremail.value, usermsg.value);
-          sucess();
+          sucess()
+          setTimeout(() => {
+            location.reload()
+          }, 1000);
         }
-         })
+      })
     }
 
-    function sendemail(name, email, msg){
-      emailjs.send("service_94vid38", "template_dkqcavp", {
-        from_name: name,
-        to_name: email,
-        message: msg,
+
+    function sendemail(name, email, msg) {
+      Email.send({
+        Host: "smtp.gmail.com",
+        Username: "mechanicalcalculator32@gmail.com",
+        Password: "mechcalculator",
+        To: 'mechanicalcalculator32@gmail.com',
+        From: email,
+        Subject: "This is the  mail form : " + name,
+        Body: "Name : " + name + "<br>" + " email : " + email + "<br>" + "Message : " + msg
       });
     }
 
