@@ -814,7 +814,7 @@ table{
 /*--------------------------------------------------------------
 # display content for engine
 --------------------------------------------------------------*/
-#ICEngine, #ICResults,#CE-Engine,#RECE,#RESCResults,#RBCResults,#VTCResults,#CFCResults,#ROCE,#msp,#mspu,#RBTE,#VTCE,#ACE,#CFCE,#RBCE{
+#ICEngine, #ICResults,#CE-Engine,#REngine,#rva,#REResults,#RECE,#RESCResults,#RBCResults,#VTCResults,#CFCResults,#ROCE,#msp,#mspu,#RBTE,#VTCE,#ACE,#CFCE,#RBCE{
   display: none;
 }
 
