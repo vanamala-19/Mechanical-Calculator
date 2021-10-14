@@ -36,13 +36,15 @@ let Win, Mpow;
 // root blower compressor
 let Wact;
 // Vane Type Compressor
-let W1,W2,Wvane,IP1,IP2,Vanee;
+let W1, W2, Wvane, IP1, IP2, Vanee;
 //  Centrifugal Compressor
-let T1,T2;
-const CP = 1.00;
+let T1, T2;
+const CP = 1.005;
 const CV = 0.716;
 //  for Rocket engine
-let S,Va,Fpr=0,take;
+let S, Va, Fpr = 0, take;
+// Gas Turbine
+let T2x,T4x,T3,T4;
 
 
 // function to assign choice values
@@ -51,6 +53,9 @@ function Ic() {
     // console.log(choice)\
     window.location.href = "#Calculation";
     document.getElementById("ICEngine").style.display = "block";
+    document.getElementById("TEngine").style.display = "none";
+    document.getElementById("STE").style.display = "none";
+    document.getElementById("GTE").style.display = "none";
     document.getElementById("REngine").style.display = "none";
     document.getElementById("CE-Engine").style.display = "none";
     document.getElementById("RECE").style.display = "none";
@@ -64,6 +69,13 @@ function Ic() {
 function TE() {
     choice = 'TE';
     // console.log(choice)
+    window.location.href = "#Calculation";
+    document.getElementById("TEngine").style.display = "block";
+    document.getElementById("CE-Engine").style.display = "none";
+    document.getElementById("ICEngine").style.display = "none";
+    document.getElementById("REngine").style.display = "none";
+    document.getElementById("STE").style.display = "none";
+    document.getElementById("GTE").style.display = "none";
 }
 function CE() {
     choice = 'CE';
@@ -72,6 +84,9 @@ function CE() {
     document.getElementById("CE-Engine").style.display = "block";
     document.getElementById("ICEngine").style.display = "none";
     document.getElementById("REngine").style.display = "none";
+    document.getElementById("TEngine").style.display = "none";
+    document.getElementById("STE").style.display = "none";
+    document.getElementById("GTE").style.display = "none";
 
 }
 function RE() {
@@ -81,6 +96,9 @@ function RE() {
     document.getElementById("REngine").style.display = "block";
     document.getElementById("CE-Engine").style.display = "none";
     document.getElementById("ICEngine").style.display = "none";
+    document.getElementById("TEngine").style.display = "none";
+    document.getElementById("STE").style.display = "none";
+    document.getElementById("GTE").style.display = "none";
 }
 
 
@@ -244,12 +262,8 @@ function ICcalculate() {
     document.getElementById("VTCResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
     document.getElementById("REResults").style.display = "none";
+    document.getElementById("GTResults").style.display = "none";
     window.location.href = "#Results";
-}
-
-// This Function Calculates The Turbine Parameters
-function Tcalculate() {
-    // console.log("Turbine Claculation is On Working Process")
 }
 
 // this is for two stage compressor
@@ -336,11 +350,11 @@ function RESCcalculate() {
     if (n = 0) {
         Win = p1 * v * (Math.log(p2 / p1));
     } else {
-        Win = (n / (n - 1) * (p1 * v) * (Math.pow((p2 / p1), (n - 1) / n)-1)).toFixed(3);
+        Win = (n / (n - 1) * (p1 * v) * (Math.pow((p2 / p1), (n - 1) / n) - 1)).toFixed(3);
     }
     IP = (Win * N * K / 60).toFixed(3);
     BP = // We need to find
-    FP = (IP - BP).toFixed(3);
+        FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
     Mpow = (BP / Me).toFixed(3);
     document.getElementById('IP').innerHTML = IP + " KW";
@@ -354,11 +368,12 @@ function RESCcalculate() {
     document.getElementById("VTCResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
     document.getElementById("REResults").style.display = "none";
+    document.getElementById("GTResults").style.display = "none";
     window.location.href = "#Results";
 }
 
 // This is for Rootblower
-function RBCcalculate(){
+function RBCcalculate() {
     p1 = document.getElementById('P1').value;
     let p1unit = document.getElementById('p1unit').value;
     if (p1unit == 1) {
@@ -386,17 +401,17 @@ function RBCcalculate(){
     } else if (maunit == 2) {
         ma = ma / 60;
     }
-    if(v == 0){
+    if (v == 0) {
         if (ma != 0 && T != 0) {
             v = (ma * R * T) / p1
         }
     }
     n = 1.4;
-    Wact = (v*(p2-p1)).toFixed(3);
-    IP =(n / (n - 1) * (p1 * v) * (Math.pow((p2 / p1), (n - 1) / n)-1)).toFixed(3);
-    let Roote = (IP/Wact).toFixed(2);
+    Wact = (v * (p2 - p1)).toFixed(3);
+    IP = (n / (n - 1) * (p1 * v) * (Math.pow((p2 / p1), (n - 1) / n) - 1)).toFixed(3);
+    let Roote = (IP / Wact).toFixed(2);
     BP = // We need to find
-    FP = (IP - BP).toFixed(3);
+        FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
 
     document.getElementById('Wact').innerHTML = Wact + " KW";
@@ -411,11 +426,12 @@ function RBCcalculate(){
     document.getElementById("VTCResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
     document.getElementById("REResults").style.display = "none";
+    document.getElementById("GTResults").style.display = "none";
     window.location.href = "#Results";
 }
 
 //  This is for Vane Type Compressor
-function VTCcalculate(){
+function VTCcalculate() {
     N = document.getElementById("N").value;
     p1 = document.getElementById('P1').value;
     let p1unit = document.getElementById('p1unit').value;
@@ -453,20 +469,20 @@ function VTCcalculate(){
     } else if (maunit == 2) {
         ma = ma / 60;
     }
-    if(v == 0){
+    if (v == 0) {
         if (ma != 0 && T != 0) {
             v = (ma * R * T) / p1
         }
     }
     n = 1.4;
-    W1 = (n / (n - 1) * (p1 * v) * (Math.pow((p2 / p1), (n - 1) / n)-1)).toFixed(3);
-    let v2 = v*Math.pow((p1/p2),(1/n))
-    W2 = (v2*(p3-p2)).toFixed(3);
-    Wvane = (N*(W1 + W2)).toFixed(3);
-    IP = (W1+W2);
-    Vanee = ((W2)/IP).toFixed(3);
+    W1 = (n / (n - 1) * (p1 * v) * (Math.pow((p2 / p1), (n - 1) / n) - 1)).toFixed(3);
+    let v2 = v * Math.pow((p1 / p2), (1 / n))
+    W2 = (v2 * (p3 - p2)).toFixed(3);
+    Wvane = (N * (W1 + W2)).toFixed(3);
+    IP = (W1 + W2);
+    Vanee = ((W2) / IP).toFixed(3);
     BP = // We need to find
-    FP = (IP - BP).toFixed(3);
+        FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
     document.getElementById('Wvane').innerHTML = Wvane + " KW";
     document.getElementById('IP').innerHTML = IP + " KW";
@@ -480,10 +496,11 @@ function VTCcalculate(){
     document.getElementById("RBCResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
     document.getElementById("REResults").style.display = "none";
+    document.getElementById("GTResults").style.display = "none";
     window.location.href = "#Results";
 }
 //  This for centifugal compressor
-function CFCcalculate(){
+function CFCcalculate() {
     ma = document.getElementById("Ma").value;
     let maunit = document.getElementById("maunit").value;
     if (maunit == 1) {
@@ -509,14 +526,14 @@ function CFCcalculate(){
     } else if (p2unit == 3) {
         p2 = p2 / 1000;
     }
-    n=1.4;
-    T1= document.getElementById("T1").value;
+    n = 1.4;
+    T1 = document.getElementById("T1").value;
     T2 = document.getElementById("T2").value;
-    let T2x = (T1*Math.pow((p2/p1),(n-1)/n)).toFixed(1);
-    let isene = ((T2x-T1)/(T2-T1)).toFixed(2);
-    let Pin = (ma*CP*(T2-T1)).toFixed(3);
-    Win = (CP*(T2-T1)).toFixed(3);
-    let Ds = (ma*(CP*Math.log(T2/T1)-R*Math.log(p2/p1))).toFixed(3); // change in entropy
+    T2x = (T1 * Math.pow((p2 / p1), (n - 1) / n)).toFixed(1);
+    let isene = ((T2x - T1) / (T2 - T1)).toFixed(2);
+    let Pin = (ma * CP * (T2 - T1)).toFixed(3);
+    Win = (CP * (T2 - T1)).toFixed(3);
+    let Ds = (ma * (CP * Math.log(T2 / T1) - R * Math.log(p2 / p1))).toFixed(3); // change in entropy
     document.getElementById('win').innerHTML = Win + " KW";
     document.getElementById('pin').innerHTML = Pin + " KW";
     document.getElementById('isene').innerHTML = isene + " / " + isene * 100 + " %";
@@ -527,16 +544,17 @@ function CFCcalculate(){
     document.getElementById("RESCResults").style.display = "none";
     document.getElementById("RBCResults").style.display = "none";
     document.getElementById("VTCResults").style.display = "none";
+    document.getElementById("GTResults").style.display = "none";
     window.location.href = "#Results";
 }
 
 // For ambient velocity and velocity ratio
-function rva(){
+function rva() {
     take = document.getElementById("vr").value;
-    if(take == 1){
-        document.getElementById("rva").style.display="none";
-    }else if(take == 2){
-        document.getElementById("rva").style.display="block";
+    if (take == 1) {
+        document.getElementById("rva").style.display = "none";
+    } else if (take == 2) {
+        document.getElementById("rva").style.display = "block";
     }
 }
 
@@ -573,27 +591,27 @@ function REcalculate() {
     if (vunit == 1) {
         Vjet = Vjet;
     } else if (vunit == 2) {
-        Vjet = Vjet*(5/18);
+        Vjet = Vjet * (5 / 18);
     } else if (vunit == 3) {
-        Vjet = Vjet/2.237;
+        Vjet = Vjet / 2.237;
     }
-    if(take == 1){
+    if (take == 1) {
         S = document.getElementById("va").value;
-        document.getElementById("rva").style.display="none";
-        Va = S*Vjet;
+        document.getElementById("rva").style.display = "none";
+        Va = S * Vjet;
         console.log(S);
-    }else if(take == 2){
+    } else if (take == 2) {
         Va = document.getElementById("va").value;
-        document.getElementById("rva").style.display="block";
+        document.getElementById("rva").style.display = "block";
         let vaunit = document.getElementById("vaunit").value;
         if (vaunit == 1) {
             Va = Va;
         } else if (vaunit == 2) {
-            Va = Va*(5/18);
+            Va = Va * (5 / 18);
         } else if (vaunit == 3) {
-            Va = Va/2.237;
+            Va = Va / 2.237;
         }
-        S = Va/Vjet;
+        S = Va / Vjet;
     }
     D = document.getElementById('D').value;
     let dunit = document.getElementById('dunit').value;
@@ -604,35 +622,100 @@ function REcalculate() {
     } else if (dunit == 3) {
         D = D;
     }
-    let Ae = pi/4*D*D;
-    let Fmom = ma*Vjet;
-    Fpr = Ae*(p1-p2);
+    let Ae = pi / 4 * D * D;
+    let Fmom = ma * Vjet;
+    Fpr = Ae * (p1 - p2);
     // F = Fmom;
-    if(p1 =! 0 && p2!=0){
+    if (p1 = !0 && p2 != 0) {
         F = Fmom + Fpr
-    }else{
+    } else {
         F = Fmom;
     }
-    let Sthrust = F/ma;
-    let Isp = (F/(ma*9.81)).toFixed(2);
-    let Pthrust = F*Va;
-    let Ploss = 0.5*ma*(Vjet-Va)*(Vjet-Va);
+    let Sthrust = F / ma;
+    let Isp = (F / (ma * 9.81)).toFixed(2);
+    let Pthrust = F * Va;
+    let Ploss = 0.5 * ma * (Vjet - Va) * (Vjet - Va);
     PPropulsion = Pthrust + Ploss;
-    let Prope = (2*S/(1+(S*S))).toFixed(2);
-    let Te = PPropulsion/(ma*CV);
-    let SPC = 1/Isp;
-    let Overalle = (Prope*Te).toFixed(2);
-    document.getElementById('TP').innerHTML = F/1000 + " KN";
+    let Prope = (2 * S / (1 + (S * S))).toFixed(2);
+    let Te = PPropulsion / (ma * CV);
+    let SPC = 1 / Isp;
+    let Overalle = (Prope * Te).toFixed(2);
+    document.getElementById('TP').innerHTML = F / 1000 + " KN";
     document.getElementById('Sthrust').innerHTML = Sthrust + "  M/S";
     document.getElementById('Isp').innerHTML = Isp + "  S";
     document.getElementById('SPC').innerHTML = SPC + " per Sec";
-    document.getElementById('Pthrust').innerHTML = Pthrust/1000 + "  KW";
-    document.getElementById('Ploss').innerHTML = Ploss/1000 + "  KW";
-    document.getElementById('PProp').innerHTML = PPropulsion/1000 + "  KW";
+    document.getElementById('Pthrust').innerHTML = Pthrust / 1000 + "  KW";
+    document.getElementById('Ploss').innerHTML = Ploss / 1000 + "  KW";
+    document.getElementById('PProp').innerHTML = PPropulsion / 1000 + "  KW";
     document.getElementById('Prope').innerHTML = Prope + " / " + Prope * 100 + " %";
     document.getElementById('Te').innerHTML = Te + " / " + Te * 100 + " %";
     document.getElementById('Oe').innerHTML = Overalle + " / " + Overalle * 100 + " %";
     document.getElementById("REResults").style.display = "block";
+    document.getElementById("CFCResults").style.display = "none";
+    document.getElementById("ICResults").style.display = "none";
+    document.getElementById("RESCResults").style.display = "none";
+    document.getElementById("RBCResults").style.display = "none";
+    document.getElementById("VTCResults").style.display = "none";
+    document.getElementById("GTResults").style.display = "none";
+    window.location.href = "#Results";
+}
+
+//  This is for Types of turbines
+function tyt() {
+    let tyt = document.getElementById("tyt").value
+    if (tyt == 'steam') {
+        SteamTurbine();
+    } else if (tyt == 'gas') {
+        GasTurbine();
+    }
+}
+
+// For Steam turbine
+function SteamTurbine(){
+    document.getElementById("STE").style.display = "block";
+    document.getElementById("GTE").style.display = "none";
+}
+
+//  For Gas Turbine
+function GasTurbine(){
+    document.getElementById("STE").style.display = "none";
+    document.getElementById("GTE").style.display = "block";
+}
+
+// This Function Calculates The Steam Turbine Parameters
+function STcalculate() {
+    // console.log("Turbine Claculation is On Working Process")
+}
+
+// This Function Calculates The Gas Turbine Parameters
+function GTcalculate() {
+    // console.log("Turbine Claculation is On Working Process")
+    T1 =document.getElementById("t1").value;
+    T2 =document.getElementById("t2").value;
+    T3 =document.getElementById("t3").value;
+    T4 =document.getElementById("t4").value;
+    r = document.getElementById("Rp").value;
+    n = 1.4;
+    let WT = (CP*(T3-T4)).toFixed(3);
+    let WC= (CP*(T2-T1)).toFixed(3);
+    let Wnet = (WT-WC).toFixed(3);
+    let qin = CP*(T3-T2);
+    let qout = CP*(T4-T1);
+    let THe = (Wnet/qin).toFixed(2);
+    T2x = T1*Math.pow(r,(n-1)/n);
+    T4x = T3*Math.pow(r,(n-1)/n);
+    let Te = ((T3-T4)/(T3-T4x)).toFixed(2);
+    let Ce = ((T2x-T1)/(T2-T1)).toFixed(2);
+    let bwr = (WC/WT).toFixed(2);
+    document.getElementById('WT').innerHTML = WT + " KJ/Kg";
+    document.getElementById('WC').innerHTML = WC + " KJ/Kg";
+    document.getElementById('Wnet').innerHTML = Wnet + " KJ/Kg";
+    document.getElementById('THe').innerHTML = THe + " / " + THe * 100 + " %";
+    document.getElementById('Te').innerHTML = Te + " / " + Te * 100 + " %";
+    document.getElementById('Ce').innerHTML = Ce + " / " + Ce * 100 + " %";
+    document.getElementById('bwr').innerHTML = bwr + " / " + bwr * 100 + " %";
+    document.getElementById("GTResults").style.display = "block";
+    document.getElementById("REResults").style.display = "none";
     document.getElementById("CFCResults").style.display = "none";
     document.getElementById("ICResults").style.display = "none";
     document.getElementById("RESCResults").style.display = "none";
