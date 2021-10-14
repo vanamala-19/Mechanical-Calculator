@@ -51,7 +51,7 @@ function Ic() {
     // console.log(choice)\
     window.location.href = "#Calculation";
     document.getElementById("ICEngine").style.display = "block";
-    document.getElementById("REngine").style.display = "block";
+    document.getElementById("REngine").style.display = "none";
     document.getElementById("CE-Engine").style.display = "none";
     document.getElementById("RECE").style.display = "none";
     document.getElementById("ROCE").style.display = "none";
