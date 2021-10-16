@@ -25,15 +25,6 @@
 
   <!-- Template Main CSS File -->
   <link href="static/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: OnePage - v4.5.0
-  * Template URL: https://bootstrapmade.com/onepage-multipurpose-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
-
 </head>
 
 <body>
@@ -120,10 +111,10 @@
         <!-- if choice is IC Engine -->
         <div class="row g-3">
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Piston Diameter" name="D" id="D">
+            <input type="text" class="form-control" required placeholder="Piston Diameter" name="D" id="IC-D">
           </div>
           <div class="col-md-2">
-            <select id="dunit" class="form-select" aria-label="Default select example">
+            <select id="ic-dunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">cm</option>
               <option value="2">mm</option>
@@ -131,10 +122,10 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Stroke Length" name="L" id="L">
+            <input type="text" class="form-control" required placeholder="Stroke Length" name="L" id="IC-L">
           </div>
           <div class="col-md-2">
-            <select id="Lunit" class="form-select" aria-label="Default select example">
+            <select id="ic-Lunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">cm</option>
               <option value="2">mm</option>
@@ -142,23 +133,23 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Speed in RPM" name="N" id="N">
+            <input type="text" class="form-control" required placeholder="Speed in RPM" name="N" id="IC-N">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="No Of Cylinders" name="K" id="K">
+            <input type="text" class="form-control" required placeholder="No Of Cylinders" name="K" id="IC-K">
           </div>
           <div class="col-md-2">
-            <select id="Strokes" class="form-select" aria-label="Default select example">
+            <select id="ic-Strokes" class="form-select" aria-label="Default select example">
               <option selected>Strokes</option>
               <option value="2">2 Strokes</option>
               <option value="4">4 Strokes</option>
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Mean Pressure" name="p" id="P">
+            <input type="text" class="form-control" required placeholder="Mean Pressure" name="p" id="IC-P">
           </div>
           <div class="col-md-2">
-            <select id="punit" class="form-select" aria-label="Default select example">
+            <select id="ic-punit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -166,29 +157,32 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Calorific Value" name="CV" id="CV">
+            <input type="text" class="form-control" placeholder="Calorific Value" name="CV" id="IC-CV">
           </div>
           <div class="col-md-1">
-            <input type="text" class="form-control" placeholder="Air/Fuel Ratio" name="a/f" id="a/f">
+            <input type="text" class="form-control" placeholder="Air/Fuel Ratio" name="a/f" id="ic-a/f">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Mass Of Air/Fuel" name="M" id="M">
+            <input type="text" class="form-control" placeholder="Mass Of Air/Fuel" name="M" id="IC-M">
           </div>
           <div class="col-md-1">
-            <select id="munit" class="form-select" aria-label="Default select example">
+            <select id="ic-munit" class="form-select" aria-label="Default select example">
               <option selected></option>
               <option value="1">Mass of Air</option>
               <option value="2">Mass of Fuel</option>
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Brake Force (N)" name="F" id="F">
+            <input type="text" class="form-control" placeholder="Brake Force (N)" name="F" id="IC-F">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Brake Wheel Diameter" name="BWD" id="BWD">
+            <input type="text" class="form-control" required placeholder="Torque" name="BWD" id="IC-T">
           </div>
           <div class="col-md-2">
-            <select id="bwdunit" class="form-select" aria-label="Default select example">
+            <input type="text" class="form-control" required placeholder="Brake Wheel Diameter" name="BWD" id="IC-BWD">
+          </div>
+          <div class="col-md-2">
+            <select id="ic-bwdunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">cm</option>
               <option value="2">mm</option>
@@ -196,10 +190,10 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Actual volume" name="Va" id="Va">
+            <input type="text" class="form-control" placeholder="Actual volume" name="Va" id="IC-Va">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Swept Volume" name="Vs" id="Vs">
+            <input type="text" class="form-control" placeholder="Swept Volume" name="Vs" id="IC-Vs">
           </div>
           <div class="col-12">
             <button onclick="ICcalculate()" class="btn btn-primary">Calculate</button>
@@ -227,7 +221,7 @@
         <div id="RECE">
           <div class="row g-3 my-2">
             <div class="col-md-3">
-              <select id="tyop" class="form-select text-center" aria-label="Default select example">
+              <select id="res-tyop" class="form-select text-center" aria-label="Default select example">
                 <option selected>Type of Process</option>
                 <option value="0">Isothermal Process</option>
                 <option value="1.4">Isentropic Process</option>
@@ -235,27 +229,27 @@
               </select>
             </div>
             <div class="col-md-3">
-              <select id="tyoc" class="form-select text-center" aria-label="Default select example">
+              <select id="res-tyoc" class="form-select text-center" aria-label="Default select example">
                 <option selected>Type of Compressor</option>
                 <option value="1">Single-Acting-Compressor</option>
                 <option value="2">Double-Acting-Compressor</option>
               </select>
             </div>
             <div class="col-md-3">
-              <select id="tyos" onchange="stage()" class="form-select text-center" aria-label="Default select example">
+              <select id="res-tyos" onchange="stage()" class="form-select text-center" aria-label="Default select example">
                 <option selected>Type of Stage</option>
                 <option value="1">Single Stage Compressor</option>
                 <option value="2">Two Stage Compressor</option>
               </select>
             </div>
             <div class="col-md-3">
-              <input type="text" class="form-control" required placeholder="Speed in RPM" name="N" id="N">
+              <input type="text" class="form-control" required placeholder="Speed in RPM" name="N" id="res-N">
             </div>
             <div class="col-md-2">
-              <input type="text" class="form-control" required placeholder="Piston Diameter" name="D" id="D">
+              <input type="text" class="form-control" required placeholder="Piston Diameter" name="D" id="res-D">
             </div>
             <div class="col-md-2">
-              <select id="dunit" class="form-select" aria-label="Default select example">
+              <select id="res-dunit" class="form-select" aria-label="Default select example">
                 <option selected>units</option>
                 <option value="1">cm</option>
                 <option value="2">mm</option>
@@ -263,10 +257,10 @@
               </select>
             </div>
             <div class="col-md-2">
-              <input type="text" class="form-control" required placeholder="Stroke Length" name="L" id="L">
+              <input type="text" class="form-control" required placeholder="Stroke Length" name="L" id="res-L">
             </div>
             <div class="col-md-2">
-              <select id="Lunit" class="form-select" aria-label="Default select example">
+              <select id="res-Lunit" class="form-select" aria-label="Default select example">
                 <option selected>units</option>
                 <option value="1">cm</option>
                 <option value="2">mm</option>
@@ -274,10 +268,10 @@
               </select>
             </div>
             <div class="col-md-2">
-              <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="P1">
+              <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="res-P1">
             </div>
             <div class="col-md-2">
-              <select id="p1unit" class="form-select" aria-label="Default select example">
+              <select id="res-p1unit" class="form-select" aria-label="Default select example">
                 <option selected>units</option>
                 <option value="1">bars</option>
                 <option value="2">KN/m^2</option>
@@ -285,21 +279,32 @@
               </select>
             </div>
             <div class="col-md-2">
-              <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="P2">
+              <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="res-P2">
             </div>
             <div class="col-md-2">
-              <select id="p2unit" class="form-select" aria-label="Default select example">
+              <select id="res-p2unit" class="form-select" aria-label="Default select example">
                 <option selected>units</option>
                 <option value="1">bars</option>
                 <option value="2">KN/m^2</option>
                 <option value="3">Pascls</option>
               </select>
             </div>
-            <div id="msp" class="col-md-2">
-              <input type="text" class="form-control" required placeholder="Pressure p3" name="p3" id="P3">
+            <div id="res-msp" class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Pressure p3" name="p3" id="res-P3">
             </div>
-            <div id="mspu" class="col-md-2">
-              <select id="p3unit" class="form-select" aria-label="Default select example">
+            <div id="res-mspu" class="col-md-2">
+              <select id="res-p3unit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">bars</option>
+                <option value="2">KN/m^2</option>
+                <option value="3">Pascls</option>
+              </select>
+            </div>
+            <div id="res-msp1" class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Pressure p4" name="p4" id="res-P4">
+            </div>
+            <div id="res-mspu1" class="col-md-2">
+              <select id="res-p4unit" class="form-select" aria-label="Default select example">
                 <option selected>units</option>
                 <option value="1">bars</option>
                 <option value="2">KN/m^2</option>
@@ -307,16 +312,35 @@
               </select>
             </div>
             <div class="col-md-2">
-              <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
+              <input type="text" class="form-control" placeholder="Volume" name="V" id="res-V">
             </div>
             <div class="col-md-3">
-              <input type="text" class="form-control" placeholder="Tempurature T1(K)" name="T" id="T">
+              <input type="text" class="form-control" placeholder="Tempurature T1" name="T1" id="res-T1">
             </div>
             <div class="col-md-2">
-              <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
+              <select id="res-T1unit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">Celsius</option>
+                <option value="2">Kelvin</option>
+                <option value="3">Fahrenheit</option>
+              </select>
+            </div>
+            <div id="res-msp2" class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Tempurature T3" name="T3" id="res-T3">
+            </div>
+            <div id="res-mspu2" class="col-md-2">
+              <select id="res-T3unit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">Celsius</option>
+                <option value="2">Kelvin</option>
+                <option value="3">Fahrenheit</option>
+              </select>
             </div>
             <div class="col-md-2">
-              <select id="maunit" class="form-select" aria-label="Default select example">
+              <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="res-Ma">
+            </div>
+            <div class="col-md-2">
+              <select id="res-maunit" class="form-select" aria-label="Default select example">
                 <option selected>units</option>
                 <option value="1">Kg/S</option>
                 <option value="2">Kg/Min</option>
@@ -346,10 +370,10 @@
       <div id="RBCE" class="text-center">
         <div class="row g-3 my-2">
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="P1">
+            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="rb-P1">
           </div>
           <div class="col-md-2">
-            <select id="p1unit" class="form-select" aria-label="Default select example">
+            <select id="rb-p1unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -357,10 +381,10 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="P2">
+            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="rb-P2">
           </div>
           <div class="col-md-2">
-            <select id="p2unit" class="form-select" aria-label="Default select example">
+            <select id="rb-p2unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -368,16 +392,24 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
+            <input type="text" class="form-control" placeholder="Volume" name="V" id="rb-V">
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="Tempurature T1(K)" name="T" id="T">
+            <input type="text" class="form-control" placeholder="Tempurature T1" name="T" id="rb-T">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
+            <select id="rb-Tunit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Celsius</option>
+              <option value="2">Kelvin</option>
+              <option value="3">Fahrenheit</option>
+            </select>
           </div>
           <div class="col-md-2">
-            <select id="maunit" class="form-select" aria-label="Default select example">
+            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="rb-Ma">
+          </div>
+          <div class="col-md-2">
+            <select id="rb-maunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">Kg/S</option>
               <option value="2">Kg/Min</option>
@@ -393,13 +425,13 @@
       <div id="VTCE" class="text-center">
         <div class="row g-3 my-2">
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="No Of Vanes" name="N" id="N">
+            <input type="text" class="form-control" placeholder="No Of Vanes" name="N" id="vt-N">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="P1">
+            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="vt-P1">
           </div>
           <div class="col-md-2">
-            <select id="p1unit" class="form-select" aria-label="Default select example">
+            <select id="vt-p1unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -407,10 +439,10 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="P2">
+            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="vt-P2">
           </div>
           <div class="col-md-2">
-            <select id="p2unit" class="form-select" aria-label="Default select example">
+            <select id="vt-p2unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -418,10 +450,10 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Pressure p3" name="p3" id="P3">
+            <input type="text" class="form-control" required placeholder="Pressure p3" name="p3" id="vt-P3">
           </div>
           <div class="col-md-2">
-            <select id="p3unit" class="form-select" aria-label="Default select example">
+            <select id="vt-p3unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -429,16 +461,24 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Volume" name="V" id="V">
+            <input type="text" class="form-control" placeholder="Volume" name="V" id="vt-V">
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="Tempurature T1(K)" name="T" id="T">
+            <input type="text" class="form-control" placeholder="Tempurature T1" name="T" id="vt-T">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
+            <select id="vt-Tunit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Celsius</option>
+              <option value="2">Kelvin</option>
+              <option value="3">Fahrenheit</option>
+            </select>
           </div>
           <div class="col-md-2">
-            <select id="maunit" class="form-select" aria-label="Default select example">
+            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="vt-Ma">
+          </div>
+          <div class="col-md-2">
+            <select id="vt-maunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">Kg/S</option>
               <option value="2">Kg/Min</option>
@@ -454,20 +494,20 @@
       <div id="CFCE" class="text-center">
         <div class="row g-3 my-2">
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="Ma">
+            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="cf-Ma">
           </div>
           <div class="col-md-2">
-            <select id="maunit" class="form-select" aria-label="Default select example">
+            <select id="cf-maunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">Kg/S</option>
               <option value="2">Kg/Min</option>
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="P1">
+            <input type="text" class="form-control" required placeholder="Pressure p1" name="p1" id="cf-P1">
           </div>
           <div class="col-md-2">
-            <select id="p1unit" class="form-select" aria-label="Default select example">
+            <select id="cf-p1unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -475,10 +515,10 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="P2">
+            <input type="text" class="form-control" required placeholder="Pressure p2" name="p2" id="cf-P2">
           </div>
           <div class="col-md-2">
-            <select id="p2unit" class="form-select" aria-label="Default select example">
+            <select id="cf-p2unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -486,10 +526,26 @@
             </select>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="Tempurature T1(K)" name="T1" id="T1">
+            <input type="text" class="form-control" placeholder="Tempurature T1" name="T1" id="cf-T1">
+          </div>
+          <div class="col-md-2">
+            <select id="cf-T1unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Celsius</option>
+              <option value="2">Kelvin</option>
+              <option value="3">Fahrenheit</option>
+            </select>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="Tempurature T2(K)" name="T2" id="T2">
+            <input type="text" class="form-control" placeholder="Tempurature T2" name="T2" id="cf-T2">
+          </div>
+          <div class="col-md-2">
+            <select id="cf-T2unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Celsius</option>
+              <option value="2">Kelvin</option>
+              <option value="3">Fahrenheit</option>
+            </select>
           </div>
           <div class="col-12">
             <button onclick="CFCcalculate()" class="btn btn-primary">Calculate</button>
@@ -512,10 +568,10 @@
             <h3> Enter the values to calculate the Paramaters </h3>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" required placeholder="Exit Pressure (Pe)" name="pe" id="pe">
+            <input type="text" class="form-control" required placeholder="Exit Pressure (Pe)" name="pe" id="r-pe">
           </div>
           <div class="col-md-2">
-            <select id="p1unit" class="form-select" aria-label="Default select example">
+            <select id="r-p1unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -523,10 +579,10 @@
             </select>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" required placeholder="Ambient Pressure (Pa)" name="pa" id="pa">
+            <input type="text" class="form-control" required placeholder="Ambient Pressure (Pa)" name="pa" id="r-pa">
           </div>
           <div class="col-md-2">
-            <select id="p2unit" class="form-select" aria-label="Default select example">
+            <select id="r-p2unit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">bars</option>
               <option value="2">KN/m^2</option>
@@ -534,20 +590,20 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="ma">
+            <input type="text" class="form-control" placeholder="Mass Flow Rate" name="Ma" id="r-ma">
           </div>
           <div class="col-md-2">
-            <select id="maunit" class="form-select" aria-label="Default select example">
+            <select id="r-maunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">Kg/S</option>
               <option value="2">Kg/Min</option>
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Jet Velocity" name="Vjet" id="Vjet">
+            <input type="text" class="form-control" required placeholder="Jet Velocity" name="Vjet" id="r-Vjet">
           </div>
           <div class="col-md-2">
-            <select id="vunit" class="form-select" aria-label="Default select example">
+            <select id="r-vunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">m/s</option>
               <option value="2">KM/Hr</option>
@@ -555,17 +611,17 @@
             </select>
           </div>
           <div class="col-md-2">
-            <select onchange="rva()" id="vr" class="form-select" aria-label="Default select example">
+            <select onchange="rva()" id="r-vr" class="form-select" aria-label="Default select example">
               <option selected>Select</option>
               <option value="1">Velocity Ratio(s)</option>
               <option value="2">Aircraft velocity / forward Velocity(Va)</option>
             </select>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" required placeholder="Enter the selected value" name="va" id="va">
+            <input type="text" class="form-control" required placeholder="Enter the selected value" name="va" id="r-va">
           </div>
           <div id="rva" class="col-md-2">
-            <select id="vaunit" class="form-select" aria-label="Default select example">
+            <select id="r-vaunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">m/s</option>
               <option value="2">KM/Hr</option>
@@ -573,10 +629,10 @@
             </select>
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Nozzle Diameter" name="D" id="D">
+            <input type="text" class="form-control" required placeholder="Nozzle Diameter" name="D" id="r-D">
           </div>
           <div class="col-md-2">
-            <select id="dunit" class="form-select" aria-label="Default select example">
+            <select id="r-dunit" class="form-select" aria-label="Default select example">
               <option selected>units</option>
               <option value="1">cm</option>
               <option value="2">mm</option>
@@ -596,7 +652,7 @@
             <h2>Turbine Engine Calculation</h2> <!--  title  changes with option -->
           </div>
           <div class="col-md-12 text-center">
-            <select id="tyt" onchange="tyt()" class="form-select text-center" aria-label="Default select example">
+            <select id="T-tyt" onchange="tyt()" class="form-select text-center" aria-label="Default select example">
               <option selected>Select the type of Turbine:</option>
               <option value="steam">Steam turbine</option>
               <option value="gas">Gas Turbine</option>
@@ -616,20 +672,66 @@
       <div id="GTE" class="text-center">
         <div class="row g-3 my-2">
           <h1>Gas Turbine</h1>
-          <div class="col-md-3 text-center">
-            <input type="text" class="form-control" required placeholder="Tempurature T1(K)" name="T1" id="t1">
-          </div>
-          <div class="col-md-3 text-center">
-            <input type="text" class="form-control" required placeholder="Tempurature T2(K)" name="T2" id="t2">
-          </div>
-          <div class="col-md-3 text-center">
-            <input type="text" class="form-control" required placeholder="Tempurature T3(k)" name="T3" id="t3">
-          </div>
-          <div class="col-md-3 text-center">
-            <input type="text" class="form-control" required placeholder="Tempurature T4(K)" name="T4" id="t4">
+          <div class="col-md-3">
+            <input type="text" class="form-control" required placeholder="Pressure (P1)" name="p1" id="gt-P">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" required placeholder="Pressure Ratio" name="Rp" id="Rp">
+            <select id="gt-punit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">bars</option>
+              <option value="2">KN/m^2</option>
+              <option value="3">Pascls</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control" required placeholder="Volume (V)" name="V" id="gt-V">
+          </div>
+          <div class="col-md-3 text-center">
+            <input type="text" class="form-control" required placeholder="Tempurature T1" name="T1" id="gt-T1">
+          </div>
+          <div class="col-md-2">
+            <select id="gt-T1unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Celsius</option>
+              <option value="2">Kelvin</option>
+              <option value="3">Fahrenheit</option>
+            </select>
+          </div>
+          <div class="col-md-3 text-center">
+            <input type="text" class="form-control" required placeholder="Tempurature T2" name="T2" id="gt-T2">
+          </div>
+          <div class="col-md-2">
+            <select id="gt-T2unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Celsius</option>
+              <option value="2">Kelvin</option>
+              <option value="3">Fahrenheit</option>
+            </select>
+          </div>
+          <div class="col-md-3 text-center">
+            <input type="text" class="form-control" required placeholder="Tempurature T3" name="T3" id="gt-T3">
+          </div>
+          <div class="col-md-2">
+            <select id="gt-T3unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Celsius</option>
+              <option value="2">Kelvin</option>
+              <option value="3">Fahrenheit</option>
+            </select>
+          </div>
+          <div class="col-md-3 text-center">
+            <input type="text" class="form-control" required placeholder="Tempurature T4" name="T4" id="gt-T4">
+          </div>
+          <div class="col-md-2">
+            <select id="gt-T4unit" class="form-select" aria-label="Default select example">
+              <option selected>units</option>
+              <option value="1">Celsius</option>
+              <option value="2">Kelvin</option>
+              <option value="3">Fahrenheit</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" required placeholder="Pressure Ratio" name="Rp" id="gt-Rp">
           </div>
           <div class="col-12">
             <button onclick="GTcalculate()" class="btn btn-primary">Calculate</button>
@@ -662,45 +764,45 @@
           <tr>
             <th scope="row">1</th>
             <td>Indicated Power</td>
-            <td><span id="IP">KW</span></td>
+            <td><span id="IC-IP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Brake power</td>
-            <td><span id="BP">KW</span></td>
+            <td><span id="IC-BP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>Frictional Power</td>
-            <td><span id="FP">KW</span></td>
+            <td><span id="IC-FP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Specific Fuel Consumption (SFC/BSFC)</td>
-            <td><span id="BSFC">Kg/KWh</span></td>
+            <td><span id="IC-BSFC">Kg/KWh</span></td>
           </tr>
           <th scope="row">5</th>
           <td> Indicated Specific Fuel Consumption</td>
-          <td><span id="ISFC">Kg/KWh</span></td>
+          <td><span id="IC-ISFC">Kg/KWh</span></td>
           </tr>
           <tr>
             <th scope="row">6</th>
             <td>Mechanical Efficiency</td>
-            <td><span id="Me"></span></td>
+            <td><span id="IC-Me"></span></td>
           </tr>
           <tr>
             <th scope="row">7</th>
             <td>Volumetric Efficiency</td>
-            <td><span id="Ve"></span></td>
+            <td><span id="IC-Ve"></span></td>
           </tr>
           <tr>
             <th scope="row">8</th>
             <td>Indicated Thermal Efficiency</td>
-            <td><span id="ITe"></span></td>
+            <td><span id="IC-ITe"></span></td>
           </tr>
           <th scope="row">9</th>
           <td>Brake Thermal Efficiency</td>
-          <td><span id="BTe"></span></td>
+          <td><span id="IC-BTe"></span></td>
           </tr>
         </tbody>
       </table>
@@ -719,27 +821,27 @@
           <tr>
             <th scope="row">1</th>
             <td>Indicated Power</td>
-            <td><span id="IP">KW</span></td>
+            <td><span id="res-IP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Brake power</td>
-            <td><span id="BP">KW</span></td>
+            <td><span id="res-BP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>Frictional Power</td>
-            <td><span id="FP">KW</span></td>
+            <td><span id="res-FP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Mechanical Efficiency</td>
-            <td><span id="Me"></span></td>
+            <td><span id="res-Me"></span></td>
           </tr>
           <tr>
             <th scope="row">5</th>
             <td>Motor Power</td>
-            <td><span id="Mpow"></span></td>
+            <td><span id="res-Mpow"></span></td>
           </tr>
         </tbody>
       </table>
@@ -757,32 +859,32 @@
           <tr>
             <th scope="row">1</th>
             <td>Actual Work Done</td>
-            <td><span id="Wact">KW</span></td>
+            <td><span id="rb-Wact">KW</span></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Indicated Power</td>
-            <td><span id="IP">KW</span></td>
+            <td><span id="rb-IP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>Brake power</td>
-            <td><span id="BP">KW</span></td>
+            <td><span id="rb-BP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Frictional Power</td>
-            <td><span id="FP">KW</span></td>
+            <td><span id="rb-FP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">5</th>
             <td>Root Blower Efficiency</td>
-            <td><span id="Roote"></span></td>
+            <td><span id="rb-Roote"></span></td>
           </tr>
           <tr>
             <th scope="row">6</th>
             <td>Mechanical Efficiency</td>
-            <td><span id="Me"></span></td>
+            <td><span id="rb-Me"></span></td>
           </tr>
         </tbody>
       </table>
@@ -800,32 +902,32 @@
           <tr>
             <th scope="row">1</th>
             <td>Work Done by Vane Compressor</td>
-            <td><span id="Wvane">KW</span></td>
+            <td><span id="vt-Wvane">KW</span></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Indicated Power</td>
-            <td><span id="IP">KW</span></td>
+            <td><span id="vt-IP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>Brake power</td>
-            <td><span id="BP">KW</span></td>
+            <td><span id="vt-BP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Frictional Power</td>
-            <td><span id="FP">KW</span></td>
+            <td><span id="vt-FP">KW</span></td>
           </tr>
           <tr>
             <th scope="row">5</th>
             <td>Vane Type Compressor Efficiency</td>
-            <td><span id="Vanee"></span></td>
+            <td><span id="vt-Vanee"></span></td>
           </tr>
           <tr>
             <th scope="row">6</th>
             <td>Mechanical Efficiency</td>
-            <td><span id="Me"></span></td>
+            <td><span id="vt-Me"></span></td>
           </tr>
         </tbody>
       </table>
@@ -843,23 +945,23 @@
           <tr>
             <th scope="row">1</th>
             <td>Work Input</td>
-            <td><span id="win">KW</span></td>
+            <td><span id="cf-win">KW</span></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Power Required</td>
-            <td><span id="pin">KW</span></td>
+            <td><span id="cf-pin">KW</span></td>
           </tr>
           <tr>
           <tr>
             <th scope="row">3</th>
             <td>Isentropic Efficiency</td>
-            <td><span id="isene"></span></td>
+            <td><span id="cf-isene"></span></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Change In Entropy</td>
-            <td><span id="ds"></span></td>
+            <td><span id="cf-ds"></span></td>
           </tr>
         </tbody>
       </table>
@@ -881,53 +983,53 @@
           <tr>
             <th scope="row">1</th>
             <td>Thrust Produced</td>
-            <td><span id="TP"></span></td>
+            <td><span id="r-TP"></span></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Specific Thrust</td>
-            <td><span id="Sthrust">KW</span></td>
+            <td><span id="r-Sthrust">KW</span></td>
           </tr>
           <tr>
           <tr>
             <th scope="row">3</th>
             <td>Specific Impulse</td>
-            <td><span id="Isp"></span></td>
+            <td><span id="r-Isp"></span></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Specific Propullent Consumption</td>
-            <td><span id="SPC"></span></td>
+            <td><span id="r-SPC"></span></td>
           </tr>
           <tr>
             <th scope="row">5</th>
             <td>Thrust Power</td>
-            <td><span id="Pthrust"></span></td>
+            <td><span id="r-Pthrust"></span></td>
           </tr>
           <tr>
             <th scope="row">6</th>
             <td>Power Loss</td>
-            <td><span id="Ploss"></span></td>
+            <td><span id="r-Ploss"></span></td>
           </tr>
           <tr>
             <th scope="row">7</th>
             <td>Propulsive Power</td>
-            <td><span id="PProp"></span></td>
+            <td><span id="r-PProp"></span></td>
           </tr>
           <tr>
             <th scope="row">8</th>
             <td>Propulsive Efficiency</td>
-            <td><span id="Prope"></span></td>
+            <td><span id="r-Prope"></span></td>
           </tr>
           <tr>
             <th scope="row">9</th>
             <td>Thermal Efficiency</td>
-            <td><span id="Te"></span></td>
+            <td><span id="r-Te"></span></td>
           </tr>
           <tr>
             <th scope="row">10</th>
             <td>Overall Efficiency</td>
-            <td><span id="Oe"></span></td>
+            <td><span id="r-Oe"></span></td>
           </tr>
         </tbody>
       </table>
@@ -946,37 +1048,42 @@
           <tr>
             <th scope="row">1</th>
             <td>Work Done by Turbine</td>
-            <td><span id="WT"></span></td>
+            <td><span id="gt-WT"></span></td>
           </tr>
           <tr>
             <th scope="row">2</th>
             <td>Work Done by Compressor</td>
-            <td><span id="WC"></span></td>
+            <td><span id="gt-WC"></span></td>
           </tr>
           <tr>
             <th scope="row">3</th>
             <td>Total Net Work</td>
-            <td><span id="Wnet"></span></td>
+            <td><span id="gt-Wnet"></span></td>
           </tr>
           <tr>
             <th scope="row">4</th>
             <td>Thermal Efficiency</td>
-            <td><span id="THe"></span></td>
+            <td><span id="gt-THe"></span></td>
           </tr>
           <tr>
             <th scope="row">5</th>
             <td>Turbine Efficiency</td>
-            <td><span id="Te"></span></td>
+            <td><span id="gt-Te"></span></td>
           </tr>
           <tr>
             <th scope="row">6</th>
             <td>Compressor Efficiency</td>
-            <td><span id="Ce"></span></td>
+            <td><span id="gt-Ce"></span></td>
           </tr>
           <tr>
             <th scope="row">7</th>
             <td>Back Work Ratio</td>
-            <td><span id="bwr"></span></td>
+            <td><span id="gt-bwr"></span></td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>Power Output</td>
+            <td><span id="gt-pow"></span></td>
           </tr>
         </tbody>
       </table>
