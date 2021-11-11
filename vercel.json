@@ -1,5 +1,5 @@
 {
-    "name": "Subs API",
+    "name": "mechanical calculator",
     "version": 2,
     "builds": [{
         "src": "*py",
