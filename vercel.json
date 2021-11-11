@@ -3,7 +3,7 @@
     "version": 2,
     "builds": [{
         "src": "*py",
-        "use": "@vercel/flask"
+        "use": "@flask"
     }],
     "routes": [
         { "src": "(.*)", "dest": "app.py" }
