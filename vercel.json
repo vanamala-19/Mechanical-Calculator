@@ -1,9 +1,9 @@
 {
-    "name": "mechanical calculator",
+    "name": "Subs API",
     "version": 2,
     "builds": [{
         "src": "*py",
-        "use": "flask"
+        "use": "@liudonghua123/now-flask"
     }],
     "routes": [
         { "src": "(.*)", "dest": "app.py" }
