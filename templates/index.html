@@ -159,18 +159,18 @@
           <div class="col-md-2">
             <input type="text" class="form-control" placeholder="Calorific Value" name="CV" id="IC-CV">
           </div>
-          <div class="col-md-1">
+          <div class="col-md-2">
             <input type="text" class="form-control" placeholder="Air/Fuel Ratio" name="a/f" id="ic-a/f">
           </div>
           <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Mass Of Air/Fuel" name="M" id="IC-M">
-          </div>
-          <div class="col-md-1">
             <select id="ic-munit" class="form-select" aria-label="Default select example">
-              <option selected></option>
+              <option selected>select</option>
               <option value="1">Mass of Air</option>
               <option value="2">Mass of Fuel</option>
             </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Mass Of Air/Fuel" name="M" id="IC-M">
           </div>
           <div class="col-md-2">
             <input type="text" class="form-control" placeholder="Brake Force (N)" name="F" id="IC-F">
@@ -653,24 +653,8 @@
             <h2>Turbine Engine Calculation</h2> <!--  title  changes with option -->
           </div>
           <div class="col-md-12 text-center">
-            <select id="T-tyt" onchange="tyt()" class="form-select text-center" aria-label="Default select example">
-              <option selected>Select the type of Turbine:</option>
-              <option value="steam">Steam turbine</option>
-              <option value="gas">Gas Turbine</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <!-- Begin of  Steam Turbine -->
-      <div id="STE" class="text-center">
-        <div class="row g-3 my-2">
-          <h1> Steam Turbine</h1>
-          <h2>-----Work is Under Progress-----</h2>
-        </div>
-      </div>
-      <!-- End of  Steam Turbine -->
       <!-- Begin of  Gas Turbine -->
-      <div id="GTE" class="text-center">
+      <div id="TE" class="text-center">
         <div class="row g-3 my-2">
           <h1>Gas Turbine</h1>
           <div class="col-md-3">
@@ -1192,7 +1176,9 @@ Access Token: 1c343151f7b6cc049c64068e9f64d160*/
           sendemail(username.value, useremail.value, usermsg.value);
           sucess()
           setTimeout(() => {
-            location.reload()
+            window.location.href = "#hero";
+            location.reload();
+
           }, 2000);
         }
       })
