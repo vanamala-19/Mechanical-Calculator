@@ -457,6 +457,8 @@ section {
 
 .section-bg {
   background:url(/assets/img/calc-bg.jpg);
+  background-size: cover;
+  
 }
 
 .section-title {
