@@ -50,7 +50,6 @@ let T2x,T4x,T3,T4,Kelvin=273.15;
 function Ic() {
     choice = 'IC';
     // console.log(choice)
-    window.location.href = "#Calculation";
     document.getElementById("ICEngine").style.display = "block";
     document.getElementById("TEngine").style.display = "none";
     document.getElementById("STE").style.display = "none";
@@ -63,12 +62,12 @@ function Ic() {
     document.getElementById("VTCE").style.display = "none";
     document.getElementById("CFCE").style.display = "none";
     document.getElementById("ACE").style.display = "none";
+    window.location.href = "#Calculation";
 }
 
 function TE() {
     choice = 'TE';
     // console.log(choice)
-    window.location.href = "#Calculation";
     document.getElementById("TEngine").style.display = "block";
     document.getElementById("CE-Engine").style.display = "none";
     document.getElementById("ICEngine").style.display = "none";
@@ -81,11 +80,11 @@ function TE() {
     document.getElementById("VTCE").style.display = "none";
     document.getElementById("CFCE").style.display = "none";
     document.getElementById("ACE").style.display = "none";
+    window.location.href = "#Calculation";
 }
 function CE() {
     choice = 'CE';
     // console.log(choice)
-    window.location.href = "#Calculation";
     document.getElementById("CE-Engine").style.display = "block";
     document.getElementById("ICEngine").style.display = "none";
     document.getElementById("REngine").style.display = "none";
@@ -98,12 +97,12 @@ function CE() {
     document.getElementById("VTCE").style.display = "none";
     document.getElementById("CFCE").style.display = "none";
     document.getElementById("ACE").style.display = "none";
+    window.location.href = "#Calculation";
 
 }
 function RE() {
     choice = 'RE';
     // console.log(choice)
-    window.location.href = "#Calculation";
     document.getElementById("REngine").style.display = "block";
     document.getElementById("CE-Engine").style.display = "none";
     document.getElementById("ICEngine").style.display = "none";
@@ -116,6 +115,7 @@ function RE() {
     document.getElementById("VTCE").style.display = "none";
     document.getElementById("CFCE").style.display = "none";
     document.getElementById("ACE").style.display = "none";
+    window.location.href = "#Calculation";
 }
 
 
