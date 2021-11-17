@@ -49,14 +49,12 @@ let T2x,T4x,T3,T4,Kelvin=273.15;
 // function to assign choice values
 function Ic() {
     choice = 'ICEngine';
-    // console.log(choice)
     window.location.href = "#Calculation";
     display();
 }
 
 function TE() {
     choice = 'TEngine';
-    // console.log(choice)
     window.location.href = "#Calculation";
     display();
 }
@@ -64,16 +62,12 @@ function CE() {
     choice = 'CE-Engine';
     window.location.href = "#Calculation";
     comdisplay();
-
 }
-
-
 function RE() {
     choice = 'REngine';
     window.location.href = "#Calculation";
     display();
 }
-
 
 // this for types of compressors
 function ct() {
@@ -109,7 +103,6 @@ function rct() {
     }
 }
 
-
 // This is for different types of rotary engine
 function rootblowercom() {
     choice = 'RBCE';
@@ -119,7 +112,6 @@ function vanetypecom() {
     choice = 'VTCE';
     comdisplay();
 }
-
 function centrifugalcom() {
     choice = "CFCE";
     comdisplay();
@@ -128,7 +120,6 @@ function axialcom() {
     choice = 'ACE';
     comdisplay();
 }
-
 
 // this is the list of  section :
 const list = ["REngine", "CE-Engine", "ICEngine","TEngine", "RECE", "ROCE","RBCE","VTCE","CFCE","ACE"];
@@ -142,7 +133,6 @@ function display(){
         }
     }
 }
-
 function comdisplay(){
     document.getElementById("CE-Engine").style.display = "block";
     for(let i = 0;i<list.length;i++){
@@ -156,9 +146,7 @@ function comdisplay(){
 
 // This Function Calculates The IC Engine Parameters
 function ICcalculate() {
-    // console.log("IC Engine Claculation is On Working Process");
     D = parseFloat(document.getElementById('IC-D').value);
-    // console.log(D)
     let dunit = parseInt(document.getElementById('ic-dunit').value);
     if (dunit == 1) {
         D = D / 100;
@@ -167,7 +155,6 @@ function ICcalculate() {
     } else if (dunit == 3) {
         D = D;
     }
-    // console.log(D)
     L = parseFloat(document.getElementById('IC-L').value);
     let lunit = parseInt(document.getElementById('ic-Lunit').value);
     if (lunit == 1) {
@@ -216,18 +203,14 @@ function ICcalculate() {
     } else if (bwdunit == 3) {
         BWD = BWD;
     }
-    // console.log(BWD)
     v = parseFloat(document.getElementById("IC-Va").value);
     vs = parseFloat(document.getElementById("IC-Vs").value);
     A = pi * (D * D) / 4;
     IP = ((p * L * A * n * K) / 60).toFixed(3);
     if(T == ""){
-        // console.log("called1")
         if (BWD == "") {
-        // console.log("called2")
         T = (F * (D / 2));
     } else {
-            // console.log("called3")
             T = (F * (BWD / 2));
         }
     }
@@ -235,13 +218,12 @@ function ICcalculate() {
     BP = ((2 * pi * N * T) / 60000).toFixed(3);
     FP = (IP - BP).toFixed(3);
     BSFC = (mf*3600 / BP).toFixed(4);
-    // console.log(BSFC)
     ISFC = (mf*3600/ IP).toFixed(4);
-    // console.log(ISFC)
     BTe = (BP / (mf * cv)).toFixed(2);
     ITe = (IP / (mf * cv)).toFixed(2);
     Me = (BP / IP).toFixed(2);
     Ve = (v / vs).toFixed(2);
+
     choice = "ICResults";
     resultdisplay();
     window.location.href = "#Results";
@@ -262,11 +244,11 @@ const reslist = ["res-msp","res-msp1","res-msp2","res-mspu","res-mspu1","res-msp
 function stage() {
     let stage = document.getElementById("res-tyos").value
     if (stage == 2) {
-        for(let i = 0; i < list.length; i++){
+        for(let i = 0; i < reslist.length; i++){
         document.getElementById(reslist[i]).style.display = "block";
         }
     } else if (stage == 1) {
-        for(let i = 0; i < list.length; i++){
+        for(let i = 0; i < reslist.length; i++){
         document.getElementById(reslist[i]).style.display = "none";
         }
     }
@@ -274,7 +256,6 @@ function stage() {
 
 // This Function Calculates The Compresor Parameters
 function RESCcalculate() {
-    // console.log("Compressor Claculation is On Working Process")
     // this is for Reciprocating compressor
     n = parseFloat(document.getElementById("res-tyop").value);
     K = parseFloat(document.getElementById("res-tyoc").value);
@@ -325,7 +306,6 @@ function RESCcalculate() {
         p3 = p3 / 1000;
     }
     if(isNaN(p3)){
-        console.log("is it working")
         p3 = parseFloat(p2);
     }
     p4 = parseFloat(document.getElementById('res-P4').value);
@@ -367,51 +347,28 @@ function RESCcalculate() {
         ma = ma / 60;
     }
     
-
-    // console.log(v)
-// console.log(ma);
 if(isNaN(ma)){
-    // console.log("called-1");
         ma = ((p1*v)/(R*T1)).toFixed(2);
 }
-console.log("p3 is" + p3 )
 
-
-// console.log(ma);
 mf = 1.4;
 T2 = T1*Math.pow((p2/p1),((mf-1)/mf))
 if (n == 0){
-        console.log("n is" + n )
         Win = p1 * v * (Math.log(p2 / p1));
     } else{
-        console.log("n is" + n )
         Win = (n / (n - 1) * (p1 * v) * (Math.pow((p2 / p1), (n - 1) / n) - 1)).toFixed(3);
     }
     T4 = T3*Math.pow((p4/p3),(n-1)/n)
     if(isNaN(p3) && isNaN(p4) && isNaN(T3)){
         IP = (Win * N * K / 60).toFixed(3);
-        console.log("called single one")
     }else{
         if(isNaN(ma)){
-        console.log("called non ma one")
             IP1 = (Win * N * K / 60).toFixed(3);
         }else{
-        console.log("called with  ma one")
             IP1 = parseFloat(((mf/(mf-1))*ma*R*(T2-T1)).toFixed(3));
         }
             IP2 = parseFloat((n / (n - 1 )*ma*R*(T4-T3)).toFixed(3)) ;
             IP = IP1+IP2;
-        console.log(n / (n - 1))
-        console.log(ma)
-        console.log(R)
-        console.log(T4)
-        console.log(T3)
-        console.log(T2)
-        console.log(T1)
-        console.log(T2-T1)
-        console.log(IP1)
-        console.log(IP2)
-        console.log(IP)
     }
     BP = // We need to find
         FP = (IP - BP).toFixed(3);
@@ -631,7 +588,6 @@ function rva() {
 
 // This Function Calculates The Rocket Engine Parameters
 function REcalculate() {
-    // console.log("Rocket Engine Claculation is On Working Process")
     p1 = parseFloat(document.getElementById('r-pe').value);
     let p1unit = parseInt(document.getElementById('r-p1unit').value);
     if (p1unit == 1) {
@@ -650,8 +606,6 @@ function REcalculate() {
     } else if (p2unit == 3) {
         p2 = p2 / 1000;
     }
-    // console.log(p1)
-    // console.log(p2)
     ma = parseFloat(document.getElementById("r-ma").value);
     let maunit = parseInt(document.getElementById("r-maunit").value);
     if (maunit == 1) {
@@ -672,7 +626,6 @@ function REcalculate() {
         S = parseFloat(document.getElementById("r-va").value);
         document.getElementById("rva").style.display = "none";
         Va = S * Vjet;
-        // console.log(S);
     } else if (take == 2) {
         Va = parseFloat(document.getElementById("r-va").value);
         document.getElementById("rva").style.display = "block";
@@ -700,10 +653,8 @@ function REcalculate() {
     Fpr = Ae * (p1 - p2);
     // F = Fmom;
     if (p1 = !"NaN" && p2 != "NaN") {
-        // console.log("called 1")
         F = Fmom + Fpr
     } else {
-        // console.log("called 2")
         F = Fmom;
     }
     let Sthrust = F / ma;
@@ -712,7 +663,6 @@ function REcalculate() {
     let Ploss = 0.5 * ma * (Vjet - Va) * (Vjet - Va);
     PPropulsion = Pthrust + Ploss;
     let Prope = (2 * S / (1 + (S * S))).toFixed(2);
-    // console.log(Prope)
     let Te = PPropulsion / (ma * CV);
     let SPC = 1 / Isp;
     let Overalle = (Prope * Te).toFixed(2);
@@ -733,7 +683,6 @@ function REcalculate() {
 
 // This Function Calculates The Gas Turbine Parameters
 function GTcalculate() {
-    // console.log("Turbine Claculation is On Working Process")
     p = parseFloat(document.getElementById('gt-P').value);
     let p2unit = parseInt(document.getElementById('gt-punit').value);
     if (p2unit == 1) {
@@ -745,7 +694,6 @@ function GTcalculate() {
     }
     v = parseFloat(document.getElementById('gt-V').value);
     T1 =parseFloat(document.getElementById("gt-T1").value);
-    // console.log(T1)
     let T1unit =  parseInt(document.getElementById("gt-T1unit").value);
     if(T1unit == 1){
         T1= (parseInt(T1)+Kelvin);
@@ -754,7 +702,6 @@ function GTcalculate() {
     }else if(T1unit == 3){
         T1 = (T1-32)*(5/9)+Kelvin;
     }
-    // console.log(T1)
     T2 =parseFloat(document.getElementById("gt-T2").value);
     let T2unit =  parseInt(document.getElementById("gt-T2unit").value);
     if(T2unit == 1){
