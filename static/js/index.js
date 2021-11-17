@@ -48,76 +48,30 @@ let T2x,T4x,T3,T4,Kelvin=273.15;
 
 // function to assign choice values
 function Ic() {
-    choice = 'IC';
+    choice = 'ICEngine';
     // console.log(choice)
     window.location.href = "#Calculation";
-    document.getElementById("ICEngine").style.display = "block";
-    document.getElementById("TEngine").style.display = "none";
-    document.getElementById("STE").style.display = "none";
-    document.getElementById("GTE").style.display = "none";
-    document.getElementById("REngine").style.display = "none";
-    document.getElementById("CE-Engine").style.display = "none";
-    document.getElementById("RECE").style.display = "none";
-    document.getElementById("ROCE").style.display = "none";
-    document.getElementById("RBCE").style.display = "none";
-    document.getElementById("VTCE").style.display = "none";
-    document.getElementById("CFCE").style.display = "none";
-    document.getElementById("ACE").style.display = "none";
-    
+    display();
 }
 
 function TE() {
-    choice = 'TE';
+    choice = 'TEngine';
     // console.log(choice)
     window.location.href = "#Calculation";
-    document.getElementById("TEngine").style.display = "block";
-    document.getElementById("CE-Engine").style.display = "none";
-    document.getElementById("ICEngine").style.display = "none";
-    document.getElementById("REngine").style.display = "none";
-    document.getElementById("STE").style.display = "none";
-    document.getElementById("GTE").style.display = "none";
-    document.getElementById("RECE").style.display = "none";
-    document.getElementById("ROCE").style.display = "none";
-    document.getElementById("RBCE").style.display = "none";
-    document.getElementById("VTCE").style.display = "none";
-    document.getElementById("CFCE").style.display = "none";
-    document.getElementById("ACE").style.display = "none";
+    display();
 }
 function CE() {
-    choice = 'CE';
-    // console.log(choice)
+    choice = 'CE-Engine';
     window.location.href = "#Calculation";
-    document.getElementById("CE-Engine").style.display = "block";
-    document.getElementById("ICEngine").style.display = "none";
-    document.getElementById("REngine").style.display = "none";
-    document.getElementById("TEngine").style.display = "none";
-    document.getElementById("STE").style.display = "none";
-    document.getElementById("GTE").style.display = "none";
-    document.getElementById("RECE").style.display = "none";
-    document.getElementById("ROCE").style.display = "none";
-    document.getElementById("RBCE").style.display = "none";
-    document.getElementById("VTCE").style.display = "none";
-    document.getElementById("CFCE").style.display = "none";
-    document.getElementById("ACE").style.display = "none";
-   
+    comdisplay();
 
 }
+
+
 function RE() {
-    choice = 'RE';
-    // console.log(choice)
+    choice = 'REngine';
     window.location.href = "#Calculation";
-    document.getElementById("REngine").style.display = "block";
-    document.getElementById("CE-Engine").style.display = "none";
-    document.getElementById("ICEngine").style.display = "none";
-    document.getElementById("TEngine").style.display = "none";
-    document.getElementById("STE").style.display = "none";
-    document.getElementById("GTE").style.display = "none";
-    document.getElementById("RECE").style.display = "none";
-    document.getElementById("ROCE").style.display = "none";
-    document.getElementById("RBCE").style.display = "none";
-    document.getElementById("VTCE").style.display = "none";
-    document.getElementById("CFCE").style.display = "none";
-    document.getElementById("ACE").style.display = "none";
+    display();
 }
 
 
@@ -132,16 +86,12 @@ function ct() {
 }
 
 function rescom() {
-    document.getElementById("RECE").style.display = "block";
-    document.getElementById("ROCE").style.display = "none";
-    document.getElementById("RBCE").style.display = "none";
-    document.getElementById("VTCE").style.display = "none";
-    document.getElementById("CFCE").style.display = "none";
-    document.getElementById("ACE").style.display = "none";
+    choice = 'RECE';
+    comdisplay();
 }
 function rotcom() {
-    document.getElementById("RECE").style.display = "none";
-    document.getElementById("ROCE").style.display = "block";
+    choice = 'ROCE';
+    comdisplay();
 }
 
 // this for types of  rotary compressors
@@ -162,32 +112,47 @@ function rct() {
 
 // This is for different types of rotary engine
 function rootblowercom() {
-    document.getElementById("RBCE").style.display = "block";
-    document.getElementById("VTCE").style.display = "none";
-    document.getElementById("CFCE").style.display = "none";
-    document.getElementById("ACE").style.display = "none";
+    choice = 'RBCE';
+    comdisplay();
 }
 function vanetypecom() {
-    document.getElementById("RBCE").style.display = "none";
-    document.getElementById("VTCE").style.display = "block";
-    document.getElementById("CFCE").style.display = "none";
-    document.getElementById("ACE").style.display = "none";
+    choice = 'VTCE';
+    comdisplay();
 }
 
 function centrifugalcom() {
-    document.getElementById("RBCE").style.display = "none";
-    document.getElementById("VTCE").style.display = "none";
-    document.getElementById("CFCE").style.display = "block";
-    document.getElementById("ACE").style.display = "none";
+    choice = "CFCE";
+    comdisplay();
 }
 function axialcom() {
-    document.getElementById("RBCE").style.display = "none";
-    document.getElementById("VTCE").style.display = "none";
-    document.getElementById("CFCE").style.display = "none";
-    document.getElementById("ACE").style.display = "block";
+    choice = 'ACE';
+    comdisplay();
 }
 
 
+// this is the list of  section :
+const list = ["REngine", "CE-Engine", "ICEngine","TEngine", "RECE", "ROCE","RBCE","VTCE","CFCE","ACE"];
+// function to display and hide the calculation function:
+function display(){
+    for (let i = 0; i < list.length; i++) {
+        if(list[i] == choice){
+            document.getElementById(choice).style.display = "block";
+        }else{
+            document.getElementById(list[i]).style.display = "none";
+        }
+    }
+}
+
+function comdisplay(){
+    document.getElementById("CE-Engine").style.display = "block";
+    for(let i = 0;i<list.length;i++){
+        if(list[i] == choice || list[i] == "CE-Engine"){
+            document.getElementById(choice).style.display = "block";
+        }else{
+        document.getElementById(list[i]).style.display = "none";
+        }
+    }
+}
 
 // This Function Calculates The IC Engine Parameters
 function ICcalculate() {
@@ -277,6 +242,9 @@ function ICcalculate() {
     ITe = (IP / (mf * cv)).toFixed(2);
     Me = (BP / IP).toFixed(2);
     Ve = (v / vs).toFixed(2);
+    choice = "ICResults";
+    resultdisplay();
+    window.location.href = "#Results";
     document.getElementById('IC-IP').innerHTML = IP + " KW";
     document.getElementById('IC-BP').innerHTML = BP + " KW";
     document.getElementById('IC-FP').innerHTML = FP + " KW";
@@ -286,34 +254,21 @@ function ICcalculate() {
     document.getElementById('IC-Ve').innerHTML = Ve + " / " + Ve * 100 + " %";
     document.getElementById('IC-ITe').innerHTML = ITe + " / " + ITe * 100 + " %";
     document.getElementById('IC-BTe').innerHTML = BTe + " / " + BTe * 100 + " %";
-    document.getElementById("ICResults").style.display = "block";
-    document.getElementById("RESCResults").style.display = "none";
-    document.getElementById("RBCResults").style.display = "none";
-    document.getElementById("VTCResults").style.display = "none";
-    document.getElementById("CFCResults").style.display = "none";
-    document.getElementById("REResults").style.display = "none";
-    document.getElementById("GTResults").style.display = "none";
-    window.location.href = "#Results";
 }
 
+
 // this is for two stage compressor
+const reslist = ["res-msp","res-msp1","res-msp2","res-mspu","res-mspu1","res-mspu2"]
 function stage() {
     let stage = document.getElementById("res-tyos").value
     if (stage == 2) {
-        document.getElementById("res-msp").style.display = "block";
-        document.getElementById("res-msp1").style.display = "block";
-        document.getElementById("res-msp2").style.display = "block";
-        document.getElementById("res-mspu").style.display = "block";
-        document.getElementById("res-mspu1").style.display = "block";
-        document.getElementById("res-mspu2").style.display = "block";
+        for(let i = 0; i < list.length; i++){
+        document.getElementById(reslist[i]).style.display = "block";
+        }
     } else if (stage == 1) {
-        document.getElementById("res-msp").style.display = "none";
-        document.getElementById("res-msp1").style.display = "none";
-        document.getElementById("res-msp2").style.display = "none";
-        document.getElementById("res-mspu").style.display = "none";
-        document.getElementById("res-mspu1").style.display = "none";
-        document.getElementById("res-mspu2").style.display = "none";
-
+        for(let i = 0; i < list.length; i++){
+        document.getElementById(reslist[i]).style.display = "none";
+        }
     }
 }
 
@@ -462,19 +417,14 @@ if (n == 0){
         FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
     Mpow = (BP / Me).toFixed(3);
+    choice = "RESCResults";
+    resultdisplay();
+    window.location.href = "#Results";
     document.getElementById('res-IP').innerHTML = IP + " KW";
     document.getElementById('res-BP').innerHTML = BP + " KW";
     document.getElementById('res-FP').innerHTML = FP + " KW";
     document.getElementById('res-Me').innerHTML = Me + " / " + Me * 100 + " %";
     document.getElementById('res-Mpow').innerHTML = Mpow + " KW";
-    document.getElementById("RESCResults").style.display = "block";
-    document.getElementById("ICResults").style.display = "none";
-    document.getElementById("RBCResults").style.display = "none";
-    document.getElementById("VTCResults").style.display = "none";
-    document.getElementById("CFCResults").style.display = "none";
-    document.getElementById("REResults").style.display = "none";
-    document.getElementById("GTResults").style.display = "none";
-    window.location.href = "#Results";
 }
 
 // This is for Rootblower
@@ -526,21 +476,15 @@ function RBCcalculate() {
     BP = // We need to find
         FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
-
+    choice = "RBCResults";
+    resultdisplay();
+    window.location.href = "#Results";
     document.getElementById('rb-Wact').innerHTML = Wact + " KW";
     document.getElementById('rb-IP').innerHTML = IP + " KW";
     document.getElementById('rb-BP').innerHTML = BP + " KW";
     document.getElementById('rb-FP').innerHTML = FP + " KW";
     document.getElementById('rb-Roote').innerHTML = Roote + " / " + Roote * 100 + " %";
     document.getElementById('rb-Me').innerHTML = Me + " / " + Me * 100 + " %";
-    document.getElementById("RBCResults").style.display = "block";
-    document.getElementById("ICResults").style.display = "none";
-    document.getElementById("RESCResults").style.display = "none";
-    document.getElementById("VTCResults").style.display = "none";
-    document.getElementById("CFCResults").style.display = "none";
-    document.getElementById("REResults").style.display = "none";
-    document.getElementById("GTResults").style.display = "none";
-    window.location.href = "#Results";
 }
 
 //  This is for Vane Type Compressor
@@ -603,22 +547,17 @@ function VTCcalculate() {
     IP = (W1 + W2);
     Vanee = ((W2) / IP).toFixed(3);
     BP = // We need to find
-        FP = (IP - BP).toFixed(3);
+    FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
+    choice = "VTCResults";
+    resultdisplay();
+    window.location.href = "#Results";
     document.getElementById('vt-Wvane').innerHTML = Wvane + " KW";
     document.getElementById('vt-IP').innerHTML = IP + " KW";
     document.getElementById('vt-BP').innerHTML = BP + " KW";
     document.getElementById('vt-FP').innerHTML = FP + " KW";
     document.getElementById('vt-Vanee').innerHTML = Vanee + " / " + Vanee * 100 + " %";
     document.getElementById('vt-Me').innerHTML = Me + " / " + Me * 100 + " %";
-    document.getElementById("VTCResults").style.display = "block";
-    document.getElementById("ICResults").style.display = "none";
-    document.getElementById("RESCResults").style.display = "none";
-    document.getElementById("RBCResults").style.display = "none";
-    document.getElementById("CFCResults").style.display = "none";
-    document.getElementById("REResults").style.display = "none";
-    document.getElementById("GTResults").style.display = "none";
-    window.location.href = "#Results";
 }
 //  This for centifugal compressor
 function CFCcalculate() {
@@ -671,18 +610,13 @@ function CFCcalculate() {
     let Pin = (ma * CP * (T2 - T1)).toFixed(3);
     Win = (CP * (T2 - T1)).toFixed(3);
     let Ds = (ma * (CP * Math.log(T2 / T1) - R * Math.log(p2 / p1))).toFixed(3); // change in entropy
+    choice = "CFCResults";
+    resultdisplay();
+    window.location.href = "#Results";
     document.getElementById('cf-win').innerHTML = Win + " KW";
     document.getElementById('cf-pin').innerHTML = Pin + " KW";
     document.getElementById('cf-isene').innerHTML = isene + " / " + isene * 100 + " %";
     document.getElementById('cf-ds').innerHTML = Ds + " KW";
-    document.getElementById("CFCResults").style.display = "block";
-    document.getElementById("REResults").style.display = "none";
-    document.getElementById("ICResults").style.display = "none";
-    document.getElementById("RESCResults").style.display = "none";
-    document.getElementById("RBCResults").style.display = "none";
-    document.getElementById("VTCResults").style.display = "none";
-    document.getElementById("GTResults").style.display = "none";
-    window.location.href = "#Results";
 }
 
 // For ambient velocity and velocity ratio
@@ -782,6 +716,9 @@ function REcalculate() {
     let Te = PPropulsion / (ma * CV);
     let SPC = 1 / Isp;
     let Overalle = (Prope * Te).toFixed(2);
+    choice = "REResults";
+    resultdisplay();
+    window.location.href = "#Results";
     document.getElementById('r-TP').innerHTML = F / 1000 + " KN";
     document.getElementById('r-Sthrust').innerHTML = Sthrust + "  M/S";
     document.getElementById('r-Isp').innerHTML = Isp + "  S";
@@ -792,41 +729,6 @@ function REcalculate() {
     document.getElementById('r-Prope').innerHTML = Prope + " / " + Prope * 100 + " %";
     document.getElementById('r-Te').innerHTML = Te + " / " + Te * 100 + " %";
     document.getElementById('r-Oe').innerHTML = Overalle + " / " + Overalle * 100 + " %";
-    document.getElementById("REResults").style.display = "block";
-    document.getElementById("CFCResults").style.display = "none";
-    document.getElementById("ICResults").style.display = "none";
-    document.getElementById("RESCResults").style.display = "none";
-    document.getElementById("RBCResults").style.display = "none";
-    document.getElementById("VTCResults").style.display = "none";
-    document.getElementById("GTResults").style.display = "none";
-    window.location.href = "#Results";
-}
-
-//  This is for Types of turbines
-function tyt() {
-    let tyt = document.getElementById("T-tyt").value
-    if (tyt == 'steam') {
-        SteamTurbine();
-    } else if (tyt == 'gas') {
-        GasTurbine();
-    }
-}
-
-// For Steam turbine
-function SteamTurbine(){
-    document.getElementById("STE").style.display = "block";
-    document.getElementById("GTE").style.display = "none";
-}
-
-//  For Gas Turbine
-function GasTurbine(){
-    document.getElementById("STE").style.display = "none";
-    document.getElementById("GTE").style.display = "block";
-}
-
-// This Function Calculates The Steam Turbine Parameters
-function STcalculate() {
-    // console.log("Turbine Claculation is On Working Process")
 }
 
 // This Function Calculates The Gas Turbine Parameters
@@ -905,6 +807,9 @@ function GTcalculate() {
     let bwr = (WC/WT).toFixed(2);
     ma = (p*v)/R*T1;
     pow = ma*Wnet;
+    choice = "GTResults";
+    resultdisplay();
+    window.location.href = "#Results";
     document.getElementById('gt-WT').innerHTML = WT + " KJ/Kg";
     document.getElementById('gt-pow').innerHTML = pow + " KW";
     document.getElementById('gt-WC').innerHTML = WC + " KJ/Kg";
@@ -913,12 +818,19 @@ function GTcalculate() {
     document.getElementById('gt-Te').innerHTML = Te + " / " + Te * 100 + " %";
     document.getElementById('gt-Ce').innerHTML = Ce + " / " + Ce * 100 + " %";
     document.getElementById('gt-bwr').innerHTML = bwr + " / " + bwr * 100 + " %";
-    document.getElementById("GTResults").style.display = "block";
-    document.getElementById("REResults").style.display = "none";
-    document.getElementById("CFCResults").style.display = "none";
-    document.getElementById("ICResults").style.display = "none";
-    document.getElementById("RESCResults").style.display = "none";
-    document.getElementById("RBCResults").style.display = "none";
-    document.getElementById("VTCResults").style.display = "none";
-    window.location.href = "#Results";
+}
+
+
+//  result list:
+const resultlist = ["ICResults","RESCResults","RBCResults","VTCResults","CFCResults","REResults","GTResults"];
+
+// result display function:
+function resultdisplay(){
+    for (let i = 0; i < reslist.length; i++) {
+        if(resultlist[i] == choice){
+            document.getElementById(choice).style.display = "block";
+        }else{
+            document.getElementById(resultlist[i]).style.display = "none";
+        }
+    }
 }
