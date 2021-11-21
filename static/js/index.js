@@ -773,7 +773,7 @@ const resultlist = ["ICResults","RESCResults","RBCResults","VTCResults","CFCResu
 
 // result display function:
 function resultdisplay(){
-    for (let i = 0; i < reslist.length; i++) {
+    for (let i = 0; i <= reslist.length; i++) {
         if(resultlist[i] == choice){
             document.getElementById(choice).style.display = "block";
         }else{
