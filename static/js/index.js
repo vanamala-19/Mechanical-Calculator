@@ -125,7 +125,7 @@ function axialcom() {
 const list = ["REngine", "CE-Engine", "ICEngine","TEngine", "RECE", "ROCE","RBCE","VTCE","CFCE","ACE"];
 // function to display and hide the calculation function:
 function display(){
-    for (let i = 0; i < list.length; i++) {
+    for (let i = 0; i <= list.length; i++) {
         if(list[i] == choice){
             document.getElementById(choice).style.display = "block";
         }else{
@@ -135,7 +135,7 @@ function display(){
 }
 function comdisplay(){
     document.getElementById("CE-Engine").style.display = "block";
-    for(let i = 0;i<list.length;i++){
+    for(let i = 0;i<= list.length;i++){
         if(list[i] == choice || list[i] == "CE-Engine"){
             document.getElementById(choice).style.display = "block";
         }else{
@@ -244,11 +244,11 @@ const reslist = ["res-msp","res-msp1","res-msp2","res-mspu","res-mspu1","res-msp
 function stage() {
     let stage = document.getElementById("res-tyos").value
     if (stage == 2) {
-        for(let i = 0; i < reslist.length; i++){
+        for(let i = 0; i <= reslist.length; i++){
         document.getElementById(reslist[i]).style.display = "block";
         }
     } else if (stage == 1) {
-        for(let i = 0; i < reslist.length; i++){
+        for(let i = 0; i <= reslist.length; i++){
         document.getElementById(reslist[i]).style.display = "none";
         }
     }
