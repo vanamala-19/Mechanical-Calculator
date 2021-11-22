@@ -4,7 +4,7 @@ const pi = Math.PI;
 let N;
 let n;
 let L;
-D;
+let D;
 let P;
 let cv;
 let F;
@@ -47,8 +47,6 @@ const CV = 0.716;
 let S, Va, Fpr = 0, take;
 // Gas Turbine
 let T2x,T4x,T3,T4,Kelvin=273.15;
-
-
 // function to assign choice values
 function Ic() {
     choice = 'ICEngine';
@@ -71,7 +69,6 @@ function RE() {
     window.location.href = "#Calculation";
     display();
 }
-
 // this for types of compressors
 function ct() {
     let ct = document.getElementById("ct").value
@@ -81,7 +78,6 @@ function ct() {
         rotcom();
     }
 }
-
 function rescom() {
     choice = 'RECE';
     comdisplay();
@@ -90,7 +86,6 @@ function rotcom() {
     choice = 'ROCE';
     comdisplay();
 }
-
 // this for types of  rotary compressors
 function rct() {
     let rct = document.getElementById("rct").value
@@ -107,7 +102,6 @@ function rct() {
         // axialcom(); // This is because both are looking same
     }
 }
-
 // This is for different types of rotary engine
 function rootblowercom() {
     choice = 'RBCE';
@@ -125,7 +119,6 @@ function axialcom() {
     choice = 'ACE';
     comdisplay();
 }
-
 // this is the list of  section :
 const list = ["REngine", "CE-Engine", "ICEngine","TEngine", "RECE", "ROCE","RBCE","VTCE","CFCE","ACE"];
 // function to display and hide the calculation function:
@@ -150,7 +143,6 @@ function comdisplay(){
         }
     }
 }
-
 function diameter(D,dunit){
     if (dunit == 1) {
         D = D / 100;
@@ -161,7 +153,6 @@ function diameter(D,dunit){
     }
     return D;
 }
-
 function length(L,lunit){
     if (lunit == 1) {
         L = L / 100;
@@ -172,7 +163,6 @@ function length(L,lunit){
     }
     return L;
 }
-
 function pressure(P,punit){
     if (punit == 1) {
         P = P*100;
@@ -201,7 +191,6 @@ function mass(M,munit){
     }
     return M;
 }
-
 // table
 function table(table1,table2){
     let tableBody = document.getElementById("tableBody");
@@ -216,9 +205,6 @@ function table(table1,table2){
     }
     tableBody.innerHTML = str;
 }
-
-
-
 // This Function Calculates The IC Engine Parameters
 function ICcalculate() {
     D = parseFloat(document.getElementById('IC-D').value);
@@ -271,7 +257,6 @@ function ICcalculate() {
             T = (F * (BWD / 2));
         }
     }
-
     BP = ((2 * pi * N * T) / 60000).toFixed(3);
     FP = (IP - BP).toFixed(3);
     BSFC = (mf*3600 / BP).toFixed(4);
@@ -280,7 +265,6 @@ function ICcalculate() {
     ITe = (IP / (mf * cv)).toFixed(2);
     Me = (BP / IP).toFixed(2);
     Ve = (v / vs).toFixed(2);
-
     document.getElementById('Results').style.display = "block";
     let table1 = ['Indicated Power','Brake Power','Frictional Power','Specific Fuel Consumption','Indicated Specific Fuel Consumption','Mechanical Efficiency','Volumetric Efficiency','Indicated Thermal Efficiency','Brake Thermal Efficiency'];
     let table2 =[IP,BP,FP,BSFC,ISFC,Me,Ve,ITe,BTe];
@@ -297,7 +281,6 @@ function ICcalculate() {
     img(image);
     window.location.href = "#Results";
 }
-
 // this is for two stage compressor
 const reslist = ["res-msp","res-msp1","res-msp2","res-mspu","res-mspu1","res-mspu2"]
 function stage() {
@@ -312,7 +295,6 @@ function stage() {
         }
     }
 }
-
 // This Function Calculates The Compresor Parameters
 function RESCcalculate() {
     // this is for Reciprocating compressor
@@ -356,7 +338,6 @@ function RESCcalculate() {
 if(isNaN(ma)){
         ma = ((p1*v)/(R*T1)).toFixed(2);
 }
-
 mf = 1.4;
 T2 = T1*Math.pow((p2/p1),((mf-1)/mf))
 if (n == 0){
@@ -392,7 +373,6 @@ if (n == 0){
     img(image);
     window.location.href = "#Results";
 }
-
 // This is for Rootblower
 function RBCcalculate() {
     p1 = document.getElementById('rb-P1').value;
@@ -432,7 +412,6 @@ function RBCcalculate() {
     img(image);
     window.location.href = "#Results";
 }
-
 //  This is for Vane Type Compressor
 function VTCcalculate() {
     N = document.getElementById("vt-N").value;
@@ -519,7 +498,6 @@ function CFCcalculate() {
     img(image);
     window.location.href = "#Results";
 }
-
 // For ambient velocity and velocity ratio
 function rva() {
     take = parseInt(document.getElementById("r-vr").value);
@@ -529,7 +507,6 @@ function rva() {
         document.getElementById("rva").style.display = "block";
     }
 }
-
 // This Function Calculates The Rocket Engine Parameters
 function REcalculate() {
     p1 = parseFloat(document.getElementById('r-pe').value);
@@ -600,7 +577,6 @@ function REcalculate() {
     img(image);
     window.location.href = "#Results";
 }
-
 // This Function Calculates The Gas Turbine Parameters
 function GTcalculate() {
     p = parseFloat(document.getElementById('gt-P').value);
@@ -655,7 +631,6 @@ function GTcalculate() {
     img(image);
     window.location.href = "#Results";
 }
-
 // image display
 function img(image){
     let img = document.getElementById("img");
