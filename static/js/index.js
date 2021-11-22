@@ -3,9 +3,9 @@ let choice,ch;
 const pi = Math.PI;
 let N;
 let n;
-let L= 0;
-D = 0;
-let p;
+let L;
+D;
+let P;
 let cv;
 let F;
 let v;
@@ -13,7 +13,7 @@ let vs;
 let pmb;
 let IP;
 let BP;
-let T = 0;
+let T;
 let FP;
 let Me;
 let Ve;
@@ -173,16 +173,33 @@ function length(L,lunit){
     return L;
 }
 
-function pressure(p,punit){
-    punit = parseInt(document.getElementById('ic-punit').value);
+function pressure(P,punit){
     if (punit == 1) {
-        p = p * 100;
+        P = P*100;
     } else if (punit == 2) {
-        p = p;
+        P = P;
     } else if (punit == 3) {
-        p = p / 1000;
+        P = P / 1000;
     }
-    return p;
+    return P;
+}
+function tempurature(T,tunit){
+    if(tunit == 1){
+        T= (parseInt(T)+Kelvin);
+    }else if(tunit == 2){
+        T = T + 0.00;
+    }else if(tunit == 3){
+        T = (T-32)*(5/9)+Kelvin;
+    }
+    return T;
+}
+function mass(M,munit){
+    if (munit == 1) {
+        M = M;
+    } else if (munit == 2) {
+        M = M / 60;
+    }
+    return M;
 }
 
 // table
@@ -206,22 +223,10 @@ function table(table1,table2){
 function ICcalculate() {
     D = parseFloat(document.getElementById('IC-D').value);
     let dunit = parseInt(document.getElementById('ic-dunit').value);
-    if (dunit == 1) {
-        D = D / 100;
-    } else if (dunit == 2) {
-        D = D / 1000;
-    } else if (dunit == 3) {
-        D = D;
-    }
+    D = diameter(D,dunit);
     L = parseFloat(document.getElementById('IC-L').value);
     let lunit = parseInt(document.getElementById('ic-Lunit').value);
-    if (lunit == 1) {
-        L = L / 100;
-    } else if (lunit == 2) {
-        L = L / 1000;
-    } else if (lunit == 3) {
-        L = L;
-    }
+    L = length(L,lunit);
     N = parseFloat(document.getElementById('IC-N').value);
     K = parseFloat(document.getElementById('IC-K').value);
     let stroke = parseInt(document.getElementById('ic-Strokes').value);
@@ -230,15 +235,9 @@ function ICcalculate() {
     } else if (stroke == 4) {
         n = N / 2;
     }
-    p = parseFloat(document.getElementById('IC-P').value);
+    P = parseFloat(document.getElementById('IC-P').value);
     let punit = parseInt(document.getElementById('ic-punit').value);
-    if (punit == 1) {
-        p = p * 100;
-    } else if (punit == 2) {
-        p = p;
-    } else if (punit == 3) {
-        p = p / 1000;
-    }
+    P = pressure(P,punit);
     cv = parseFloat(document.getElementById("IC-CV").value);
     r = parseFloat(document.getElementById("ic-a/f").value);
     M = parseFloat(document.getElementById("IC-M").value);
@@ -264,7 +263,7 @@ function ICcalculate() {
     v = parseFloat(document.getElementById("IC-Va").value);
     vs = parseFloat(document.getElementById("IC-Vs").value);
     A = pi * (D * D) / 4;
-    IP = ((p * L * A * n * K) / 60).toFixed(3);
+    IP = ((P * L * A * n * K) / 60).toFixed(3);
     if(T == ""){
         if (BWD == "") {
         T = (F * (D / 2));
@@ -322,91 +321,38 @@ function RESCcalculate() {
     N = parseFloat(document.getElementById('res-N').value);
     D = parseFloat(document.getElementById('res-D').value);
     let dunit = parseFloat(document.getElementById('res-dunit').value);
-    if (dunit == 1) {
-        D = D / 100;
-    } else if (dunit == 2) {
-        D = D / 1000;
-    } else if (dunit == 3) {
-        D = D;
-    }
+    D = diameter(D,dunit);
     L = parseFloat(document.getElementById('res-L').value);
     let lunit = parseFloat(document.getElementById('res-Lunit').value);
-    if (lunit == 1) {
-        L = L / 100;
-    } else if (lunit == 2) {
-        L = L / 1000;
-    } else if (lunit == 3) {
-        L = L;
-    }
+    L = length(L,lunit);
     p1 = parseFloat(document.getElementById('res-P1').value);
     let p1unit = parseFloat(document.getElementById('res-p1unit').value);
-    if (p1unit == 1) {
-        p1 = p1 * 100;
-    } else if (p1unit == 2) {
-        p1 = p1;
-    } else if (p1unit == 3) {
-        p1 = p1 / 1000;
-    }
+    p1 = pressure(p1,p1unit);
     p2 = parseFloat(document.getElementById('res-P2').value);
     let p2unit = parseFloat(document.getElementById('res-p2unit').value);
-    if (p2unit == 1) {
-        p2 = p2 * 100;
-    } else if (p2unit == 2) {
-        p2 = p2;
-    } else if (p2unit == 3) {
-        p2 = p2 / 1000;
-    }
+    p2 = pressure(p2,p2unit);
     p3 = parseFloat(document.getElementById('res-P3').value);
     let p3unit = parseFloat(document.getElementById('res-p3unit').value);
-    if (p3unit == 1) {
-        p3 = p3 * 100;
-    } else if (p3unit == 2) {
-        p3 = p3;
-    } else if (p3unit == 3) {
-        p3 = p3 / 1000;
-    }
+    p3 = pressure(p3,p3unit);
     if(isNaN(p3)){
         p3 = parseFloat(p2);
     }
     p4 = parseFloat(document.getElementById('res-P4').value);
     let p4unit = parseFloat(document.getElementById('res-p4unit').value);
-    if (p4unit == 1) {
-        p4 = p4 * 100;
-    } else if (p4unit == 2) {
-        p4 = p4;
-    } else if (p3unit == 3) {
-        p4 = p4 / 1000;
-    }
+    p4 = pressure(p4,p4unit);
     v = parseFloat(document.getElementById("res-V").value);
     if (isNaN(v)) {
             v = pi / 4 * D * D * L*(N/60)*K;
     } 
     T1 = parseFloat(document.getElementById("res-T1").value);
     let T1unit =  parseFloat(document.getElementById("res-T1unit").value);
-    if(T1unit == 1){
-        T1= (T1+Kelvin);
-    }else if(T1unit == 2){
-        T1 = T1 + 0.00;
-    }else if(T1unit == 3){
-        T1 = ((T1-32)*(5/9)+Kelvin);
-    }
+    T1 = tempurature(T1,T1unit);
     T3 = parseFloat(document.getElementById("res-T3").value);
     let T3unit =  parseFloat(document.getElementById("res-T3unit").value);
-    if(T3unit == 1){
-        T3 = (T3+Kelvin);
-    }else if(T3unit == 2){
-        T3 = T3 + 0.00;
-    }else if(T3unit == 3){
-        T3 = ((T3-32)*(5/9)+Kelvin);
-    }
+    T3 = tempurature(T3,T3unit);
     ma = parseFloat(document.getElementById("res-Ma").value);
     let maunit = parseFloat(document.getElementById("res-maunit").value);
-    if (maunit == 1) {
-        ma = ma;
-    } else if (maunit == 2) {
-        ma = ma / 60;
-    }
-    
+    ma = mass(ma,maunit);
 if(isNaN(ma)){
         ma = ((p1*v)/(R*T1)).toFixed(2);
 }
@@ -431,7 +377,7 @@ if (n == 0){
             IP = IP1+IP2;
     }
     BP = // We need to find
-        FP = (IP - BP).toFixed(3);
+    FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
     Mpow = (BP / Me).toFixed(3);
     result1= ['Motor Power','Indicated Power','Brake Power','Frictional Power']
@@ -451,40 +397,18 @@ if (n == 0){
 function RBCcalculate() {
     p1 = document.getElementById('rb-P1').value;
     let p1unit = document.getElementById('rb-p1unit').value;
-    if (p1unit == 1) {
-        p1 = p1 * 100;
-    } else if (p1unit == 2) {
-        p1 = p1;
-    } else if (p1unit == 3) {
-        p1 = p1 / 1000;
-    }
+    p1 = pressure(p1,p1unit);
     p2 = document.getElementById('rb-P2').value;
     let p2unit = document.getElementById('rb-p2unit').value;
-    if (p2unit == 1) {
-        p2 = p2 * 100;
-    } else if (p2unit == 2) {
-        p2 = p2;
-    } else if (p2unit == 3) {
-        p2 = p2 / 1000;
-    }
+    p2 = pressure(p2,p2unit);
     v = document.getElementById("rb-V").value;
     T = document.getElementById("rb-T").value;
     let Tunit =  document.getElementById("rb-Tunit").value;
-    if(Tunit == 1){
-        T = (T+Kelvin);
-    }else if(Tunit == 2){
-        T = T + 0.00;
-    }else if(Tunit == 3){
-        T = ((T-32)*(5/9)+Kelvin);
-    }
+    T = tempurature(T,Tunit);
     ma = document.getElementById("rb-Ma").value;
     let maunit = document.getElementById("rb-maunit").value;
-    if (maunit == 1) {
-        ma = ma;
-    } else if (maunit == 2) {
-        ma = ma / 60;
-    }
-    if (v == 0) {
+    ma = mass(ma,maunit);
+    if (isNaN(v)) {
         if (ma != 0 && T != 0) {
             v = (ma * R * T) / p1
         }
@@ -514,49 +438,21 @@ function VTCcalculate() {
     N = document.getElementById("vt-N").value;
     p1 = document.getElementById('vt-P1').value;
     let p1unit = document.getElementById('vt-p1unit').value;
-    if (p1unit == 1) {
-        p1 = p1 * 100;
-    } else if (p1unit == 2) {
-        p1 = p1;
-    } else if (p1unit == 3) {
-        p1 = p1 / 1000;
-    }
+    p1 = pressure(p1,p1unit);
     p2 = document.getElementById('vt-P2').value;
     let p2unit = document.getElementById('vt-p2unit').value;
-    if (p2unit == 1) {
-        p2 = p2 * 100;
-    } else if (p2unit == 2) {
-        p2 = p2;
-    } else if (p2unit == 3) {
-        p2 = p2 / 1000;
-    }
+    p2 = pressure(p2,p2unit);
     p3 = document.getElementById('vt-P3').value;
     let p3unit = document.getElementById('vt-p3unit').value;
-    if (p3unit == 1) {
-        p3 = p1 * 100;
-    } else if (p3unit == 2) {
-        p3 = p3;
-    } else if (p3unit == 3) {
-        p3 = p3 / 1000;
-    }
+    p3 = pressure(p3,p3unit);
     v = document.getElementById("vt-V").value;
     T = document.getElementById("vt-T").value;
     let Tunit =  document.getElementById("vt-Tunit").value;
-    if(Tunit == 1){
-        T = (T+Kelvin);
-    }else if(Tunit == 2){
-        T = T + 0.00;
-    }else if(Tunit == 3){
-        T = ((T-32)*(5/9)+Kelvin);
-    }
+    T = tempurature(T,Tunit);
     ma = document.getElementById("vt-Ma").value;
     let maunit = document.getElementById("vt-maunit").value;
-    if (maunit == 1) {
-        ma = ma;
-    } else if (maunit == 2) {
-        ma = ma / 60;
-    }
-    if (v == 0) {
+    ma = mass(ma,maunit);
+    if (isNaN(v)) {
         if (ma != 0 && T != 0) {
             v = (ma * R * T) / p1
         }
@@ -587,48 +483,20 @@ function VTCcalculate() {
 function CFCcalculate() {
     ma = document.getElementById("cf-Ma").value;
     let maunit = document.getElementById("cf-maunit").value;
-    if (maunit == 1) {
-        ma = ma;
-    } else if (maunit == 2) {
-        ma = ma / 60;
-    }
+    ma = mass(ma,maunit);
     p1 = document.getElementById('cf-P1').value;
     let p1unit = document.getElementById('cf-p1unit').value;
-    if (p1unit == 1) {
-        p1 = p1 * 100;
-    } else if (p1unit == 2) {
-        p1 = p1;
-    } else if (p1unit == 3) {
-        p1 = p1 / 1000;
-    }
+    p1 = pressure(p1,p1unit);
     p2 = document.getElementById('cf-P2').value;
     let p2unit = document.getElementById('cf-p2unit').value;
-    if (p2unit == 1) {
-        p2 = p2 * 100;
-    } else if (p2unit == 2) {
-        p2 = p2;
-    } else if (p2unit == 3) {
-        p2 = p2 / 1000;
-    }
+    p2 = pressure(p2,p2unit);
     n = 1.4;
     T1 = document.getElementById("cf-T1").value;
     let T1unit =  document.getElementById("cf-T1unit").value;
-    if(T1unit == 1){
-        T1= (T1+Kelvin);
-    }else if(T1unit == 2){
-        T1 = T1 + 0.00;
-    }else if(T1unit == 3){
-        T1 = ((T1-32)*(5/9)+Kelvin);
-    }
+    T1 = tempurature(T1,T1unit);
     T2 = document.getElementById("cf-T2").value;
     let T2unit =  document.getElementById("cf-T2unit").value;
-    if(T2unit == 1){
-        T2= (T2+Kelvin);
-    }else if(T2unit == 2){
-        T2 = T2 + 0.00;
-    }else if(T2unit == 3){
-        T2 = ((T2-32)*(5/9)+Kelvin);
-    }
+    T2 = tempurature(T2,T2unit);
     T2x = (T1 * Math.pow((p2 / p1), (n - 1) / n)).toFixed(1);
     let isene = ((T2x - T1) / (T2 - T1)).toFixed(2);
     let Pin = (ma * CP * (T2 - T1)).toFixed(3);
@@ -666,29 +534,13 @@ function rva() {
 function REcalculate() {
     p1 = parseFloat(document.getElementById('r-pe').value);
     let p1unit = parseInt(document.getElementById('r-p1unit').value);
-    if (p1unit == 1) {
-        p1 = p1 * 100;
-    } else if (p1unit == 2) {
-        p1 = p1;
-    } else if (p1unit == 3) {
-        p1 = p1 / 1000;
-    }
+    p1 = pressure(p1,p1unit);
     p2 = parseFloat(document.getElementById('r-pa').value);
     let p2unit = parseInt(document.getElementById('r-p2unit').value);
-    if (p2unit == 1) {
-        p2 = p2 * 100;
-    } else if (p2unit == 2) {
-        p2 = p2;
-    } else if (p2unit == 3) {
-        p2 = p2 / 1000;
-    }
+    p2 = pressure(p2,p2unit);
     ma = parseFloat(document.getElementById("r-ma").value);
     let maunit = parseInt(document.getElementById("r-maunit").value);
-    if (maunit == 1) {
-        ma = ma;
-    } else if (maunit == 2) {
-        ma = ma / 60;
-    }
+    ma = mass(ma,maunit);
     let Vjet = parseFloat(document.getElementById("r-Vjet").value);
     let vunit = parseInt(document.getElementById("r-vunit").value);
     if (vunit == 1) {
@@ -717,13 +569,7 @@ function REcalculate() {
     }
     D = parseFloat(document.getElementById('r-D').value);
     let dunit = parseInt(document.getElementById('r-dunit').value);
-    if (dunit == 1) {
-        D = D / 100;
-    } else if (dunit == 2) {
-        D = D / 1000;
-    } else if (dunit == 3) {
-        D = D;
-    }
+    D = diameter(D,dunit);
     let Ae = pi / 4 * D * D;
     let Fmom = ma * Vjet;
     Fpr = Ae * (p1 - p2);
@@ -758,51 +604,21 @@ function REcalculate() {
 // This Function Calculates The Gas Turbine Parameters
 function GTcalculate() {
     p = parseFloat(document.getElementById('gt-P').value);
-    let p2unit = parseInt(document.getElementById('gt-punit').value);
-    if (p2unit == 1) {
-        p2 = p2 * 100;
-    } else if (p2unit == 2) {
-        p2 = p2;
-    } else if (p2unit == 3) {
-        p2 = p2 / 1000;
-    }
+    let p1unit = parseInt(document.getElementById('gt-punit').value);
+    p1 = pressure(p1,p1unit);
     v = parseFloat(document.getElementById('gt-V').value);
     T1 =parseFloat(document.getElementById("gt-T1").value);
     let T1unit =  parseInt(document.getElementById("gt-T1unit").value);
-    if(T1unit == 1){
-        T1= (parseInt(T1)+Kelvin);
-    }else if(T1unit == 2){
-        T1 = T1 + 0.00;
-    }else if(T1unit == 3){
-        T1 = (T1-32)*(5/9)+Kelvin;
-    }
+    T1 = tempurature(T1,T1unit);
     T2 =parseFloat(document.getElementById("gt-T2").value);
     let T2unit =  parseInt(document.getElementById("gt-T2unit").value);
-    if(T2unit == 1){
-        T2= (T2+Kelvin);
-    }else if(T2unit == 2){
-        T2 = T2 + 0.00;
-    }else if(T2unit == 3){
-        T2 = ((T2-32)*(5/9)+Kelvin);
-    }
+    T2 = tempurature(T2,T2unit);
     T3 =parseFloat(document.getElementById("gt-T3").value);
     let T3unit =  parseInt(document.getElementById("gt-T3unit").value);
-    if(T3unit == 1){
-        T3= (T3+Kelvin);
-    }else if(T3unit == 2){
-        T3 = T3 + 0.00;
-    }else if(T3unit == 3){
-        T3 = ((T3-32)*(5/9)+Kelvin);
-    }
+    T3 = tempurature(T3,T3unit);
     T4 =parseFloat(document.getElementById("gt-T4").value);
     let T4unit = parseInt(document.getElementById("gt-T4unit").value);
-    if(T4unit == 1){
-        T4= (T4+Kelvin);
-    }else if(T4unit == 2){
-        T4 = T4 + 0.00;
-    }else if(T4unit == 3){
-        T4 = ((T4-32)*(5/9)+Kelvin);
-    }
+    T4 = tempurature(T4,T4unit);
     r = parseFloat(document.getElementById("gt-Rp").value);
     n = 1.4;
     let WT,WC;
