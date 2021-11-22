@@ -840,7 +840,7 @@ canvas{
     max-width:100%;
   }
   .Results-bg{
-    background:url(/static/img/hero-bg.jpg);
+      background-color: #a1a3a3;
   }
 }
 
