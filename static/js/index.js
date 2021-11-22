@@ -1,4 +1,4 @@
-let choice;
+let choice,ch;
 // ...................................Ic Engines...................
 const pi = Math.PI;
 let N;
@@ -28,6 +28,9 @@ let ITe;
 let K
 let A;
 let BWD = 0;
+let image;
+let i;
+let label;
 // for Reciprocating Compressor
 let p1, p2, p3,IP1,IP2;
 const R = 0.287 // units KJ/Kg K
@@ -96,8 +99,10 @@ function rct() {
     } else if (rct == 'vtc') {
         vanetypecom();
     } else if (rct == 'cenc') {
+        ch = 'CFCE';
         centrifugalcom();
     } else if (rct == 'axialc') {
+        ch = 'ACE';
         centrifugalcom();
         // axialcom(); // This is because both are looking same
     }
@@ -125,7 +130,8 @@ function axialcom() {
 const list = ["REngine", "CE-Engine", "ICEngine","TEngine", "RECE", "ROCE","RBCE","VTCE","CFCE","ACE"];
 // function to display and hide the calculation function:
 function display(){
-    for (let i = 0; i <= list.length; i++) {
+    document.getElementById('Calculation').style.display = "block";
+    for (i = 0; i < list.length; i++) {
         if(list[i] == choice){
             document.getElementById(choice).style.display = "block";
         }else{
@@ -135,7 +141,8 @@ function display(){
 }
 function comdisplay(){
     document.getElementById("CE-Engine").style.display = "block";
-    for(let i = 0;i<= list.length;i++){
+    document.getElementById('Calculation').style.display = "block";
+    for(i = 0;i<list.length;i++){
         if(list[i] == choice || list[i] == "CE-Engine"){
             document.getElementById(choice).style.display = "block";
         }else{
@@ -143,6 +150,57 @@ function comdisplay(){
         }
     }
 }
+
+function diameter(D,dunit){
+    if (dunit == 1) {
+        D = D / 100;
+    } else if (dunit == 2) {
+        D = D / 1000;
+    } else if (dunit == 3) {
+        D = D;
+    }
+    return D;
+}
+
+function length(L,lunit){
+    if (lunit == 1) {
+        L = L / 100;
+    } else if (lunit == 2) {
+        L = L / 1000;
+    } else if (lunit == 3) {
+        L = L;
+    }
+    return L;
+}
+
+function pressure(p,punit){
+    punit = parseInt(document.getElementById('ic-punit').value);
+    if (punit == 1) {
+        p = p * 100;
+    } else if (punit == 2) {
+        p = p;
+    } else if (punit == 3) {
+        p = p / 1000;
+    }
+    return p;
+}
+
+// table
+function table(table1,table2){
+    let tableBody = document.getElementById("tableBody");
+    let str = "";
+    for(i=0;i<table1.length;i++){
+        str += `
+        <tr>
+        <th scope="row">${i + 1}</th>
+        <td>${table1[i]}</td>
+        <td>${table2[i]}</td> 
+        </tr>`; 
+    }
+    tableBody.innerHTML = str;
+}
+
+
 
 // This Function Calculates The IC Engine Parameters
 function ICcalculate() {
@@ -193,8 +251,8 @@ function ICcalculate() {
         ma = mf * r;
     }
     F = parseFloat(document.getElementById("IC-F").value);
-    BWD = document.getElementById('IC-BWD').value;
     T = document.getElementById('IC-T').value;
+    BWD = document.getElementById('IC-BWD').value;
     let bwdunit = parseInt(document.getElementById('ic-bwdunit').value);
     if (bwdunit == 1) {
         BWD = BWD / 100;
@@ -224,31 +282,33 @@ function ICcalculate() {
     Me = (BP / IP).toFixed(2);
     Ve = (v / vs).toFixed(2);
 
-    choice = "ICResults";
-    resultdisplay();
+    document.getElementById('Results').style.display = "block";
+    let table1 = ['Indicated Power','Brake Power','Frictional Power','Specific Fuel Consumption','Indicated Specific Fuel Consumption','Mechanical Efficiency','Volumetric Efficiency','Indicated Thermal Efficiency','Brake Thermal Efficiency'];
+    let table2 =[IP,BP,FP,BSFC,ISFC,Me,Ve,ITe,BTe];
+    table(table1,table2);
+    let result1= ['Mechanical Efficiency', 'Volumetric Efficiency', 'Indicated Thermal Efficiency', 'Brake Thermal Efficiency'];
+    let result2= [Me,Ve,ITe,BTe];
+    label = 'Efficiencies';
+    graph(result1,result2,label);
+    if(stroke == 2){
+        image = '2stroke.gif';
+    }else{
+        image = '4stroke.gif';
+    }
+    img(image);
     window.location.href = "#Results";
-    document.getElementById('IC-IP').innerHTML = IP + " KW";
-    document.getElementById('IC-BP').innerHTML = BP + " KW";
-    document.getElementById('IC-FP').innerHTML = FP + " KW";
-    document.getElementById('IC-BSFC').innerHTML = BSFC + " Kg/KWh";
-    document.getElementById('IC-ISFC').innerHTML = ISFC + " Kg/KWh";
-    document.getElementById('IC-Me').innerHTML = Me + " / " + Me * 100 + " %";
-    document.getElementById('IC-Ve').innerHTML = Ve + " / " + Ve * 100 + " %";
-    document.getElementById('IC-ITe').innerHTML = ITe + " / " + ITe * 100 + " %";
-    document.getElementById('IC-BTe').innerHTML = BTe + " / " + BTe * 100 + " %";
 }
-
 
 // this is for two stage compressor
 const reslist = ["res-msp","res-msp1","res-msp2","res-mspu","res-mspu1","res-mspu2"]
 function stage() {
     let stage = document.getElementById("res-tyos").value
     if (stage == 2) {
-        for(let i = 0; i <= reslist.length; i++){
+        for(i = 0; i < reslist.length; i++){
         document.getElementById(reslist[i]).style.display = "block";
         }
     } else if (stage == 1) {
-        for(let i = 0; i <= reslist.length; i++){
+        for(i = 0; i < reslist.length; i++){
         document.getElementById(reslist[i]).style.display = "none";
         }
     }
@@ -374,14 +434,17 @@ if (n == 0){
         FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
     Mpow = (BP / Me).toFixed(3);
-    choice = "RESCResults";
-    resultdisplay();
+    result1= ['Motor Power','Indicated Power','Brake Power','Frictional Power']
+    result2= [Mpow,IP,BP,FP];
+    label = 'Power';
+    graph(result1,result2,label);
+    document.getElementById('Results').style.display = "block";
+    table1 = ['Indicated Power','Brake Power','Frictional Power','Mechanical Efficiency','Motor Power'];
+    table2 =[IP,BP,FP,Me,Mpow];
+    table(table1,table2);
+    image = 'rescom.jpg';
+    img(image);
     window.location.href = "#Results";
-    document.getElementById('res-IP').innerHTML = IP + " KW";
-    document.getElementById('res-BP').innerHTML = BP + " KW";
-    document.getElementById('res-FP').innerHTML = FP + " KW";
-    document.getElementById('res-Me').innerHTML = Me + " / " + Me * 100 + " %";
-    document.getElementById('res-Mpow').innerHTML = Mpow + " KW";
 }
 
 // This is for Rootblower
@@ -433,15 +496,17 @@ function RBCcalculate() {
     BP = // We need to find
         FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
-    choice = "RBCResults";
-    resultdisplay();
+    result1= ['Actual Work done','Indicated Power','Brake Power','Frictional Power']
+    result2= [Wact,IP,BP,FP];
+    label = 'Power';
+    graph(result1,result2,label);
+    document.getElementById('Results').style.display = "block";
+    table1 = ['Actual Work done','Indicated Power','Brake Power','Frictional Power','Root Blower Efficiency','Mechanical Efficiency'];
+    table2 =[Wact,IP,BP,FP,Roote,Me];
+    table(table1,table2);
+    image = 'rbcom.jpg';
+    img(image);
     window.location.href = "#Results";
-    document.getElementById('rb-Wact').innerHTML = Wact + " KW";
-    document.getElementById('rb-IP').innerHTML = IP + " KW";
-    document.getElementById('rb-BP').innerHTML = BP + " KW";
-    document.getElementById('rb-FP').innerHTML = FP + " KW";
-    document.getElementById('rb-Roote').innerHTML = Roote + " / " + Roote * 100 + " %";
-    document.getElementById('rb-Me').innerHTML = Me + " / " + Me * 100 + " %";
 }
 
 //  This is for Vane Type Compressor
@@ -506,15 +571,17 @@ function VTCcalculate() {
     BP = // We need to find
     FP = (IP - BP).toFixed(3);
     Me = (IP / BP).toFixed(2);
-    choice = "VTCResults";
-    resultdisplay();
+    result1= ['Work done by Vane','Indicated Power','Brake Power','Frictional Power']
+    result2= [Wvane,IP,BP,FP];
+    label = 'Power';
+    graph(result1,result2,label);
+    document.getElementById('Results').style.display = "block";
+    table1 = ['Work Done by Vane Compressor','Indicated Power','Brake Power','Frictional Power','Vane Type Compressor Efficiency','Mechanical Efficiency'];
+    table2 =[Wvane,IP,BP,FP,Vanee,Me];
+    table(table1,table2);
+    image = 'vtcom.jpg';
+    img(image);
     window.location.href = "#Results";
-    document.getElementById('vt-Wvane').innerHTML = Wvane + " KW";
-    document.getElementById('vt-IP').innerHTML = IP + " KW";
-    document.getElementById('vt-BP').innerHTML = BP + " KW";
-    document.getElementById('vt-FP').innerHTML = FP + " KW";
-    document.getElementById('vt-Vanee').innerHTML = Vanee + " / " + Vanee * 100 + " %";
-    document.getElementById('vt-Me').innerHTML = Me + " / " + Me * 100 + " %";
 }
 //  This for centifugal compressor
 function CFCcalculate() {
@@ -567,13 +634,22 @@ function CFCcalculate() {
     let Pin = (ma * CP * (T2 - T1)).toFixed(3);
     Win = (CP * (T2 - T1)).toFixed(3);
     let Ds = (ma * (CP * Math.log(T2 / T1) - R * Math.log(p2 / p1))).toFixed(3); // change in entropy
-    choice = "CFCResults";
-    resultdisplay();
+    result1= ['Work Input','Power Required','Change In Entropy']
+    result2= [Win,Pin,Ds];
+    label = 'Power';
+    graph(result1,result2,label);
+    document.getElementById('Results').style.display = "block";
+    table1 = ['Work Input','Power Required','Isentropic Efficiency','Change In Entropy'];
+    table2 =[Win,Pin,isene,Ds];
+    table(table1,table2);
+    console.log(choice);
+    if(ch == 'CFCE'){
+        image = 'cfcom.jpg';
+    }else{
+        image = 'afcom.jpg';
+    }
+    img(image);
     window.location.href = "#Results";
-    document.getElementById('cf-win').innerHTML = Win + " KW";
-    document.getElementById('cf-pin').innerHTML = Pin + " KW";
-    document.getElementById('cf-isene').innerHTML = isene + " / " + isene * 100 + " %";
-    document.getElementById('cf-ds').innerHTML = Ds + " KW";
 }
 
 // For ambient velocity and velocity ratio
@@ -666,19 +742,17 @@ function REcalculate() {
     let Te = PPropulsion / (ma * CV);
     let SPC = 1 / Isp;
     let Overalle = (Prope * Te).toFixed(2);
-    choice = "REResults";
-    resultdisplay();
+    result1= ['Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
+    result2= [Prope,Te,Overalle];
+    label = 'Efficiencies';
+    graph(result1,result2,label);
+    document.getElementById('Results').style.display = "block";
+    table1 = ['Thrust Produced','Specific Thrust','Specific Impulse','Specific Propullent Consumption','Thrust Power','Power Loss','Propulsive Power','Propulsive Efficiency','Thermal Efficiency','Overall Efficiency'];
+    table2 =[F/100,Sthrust,Isp,SPC,Pthrust,Ploss,PPropulsion,Prope,Te,Overalle];
+    table(table1,table2);
+    image = 'rocket.jpg';
+    img(image);
     window.location.href = "#Results";
-    document.getElementById('r-TP').innerHTML = F / 1000 + " KN";
-    document.getElementById('r-Sthrust').innerHTML = Sthrust + "  M/S";
-    document.getElementById('r-Isp').innerHTML = Isp + "  S";
-    document.getElementById('r-SPC').innerHTML = SPC + " per Sec";
-    document.getElementById('r-Pthrust').innerHTML = Pthrust / 1000 + "  KW";
-    document.getElementById('r-Ploss').innerHTML = Ploss / 1000 + "  KW";
-    document.getElementById('r-PProp').innerHTML = PPropulsion / 1000 + "  KW";
-    document.getElementById('r-Prope').innerHTML = Prope + " / " + Prope * 100 + " %";
-    document.getElementById('r-Te').innerHTML = Te + " / " + Te * 100 + " %";
-    document.getElementById('r-Oe').innerHTML = Overalle + " / " + Overalle * 100 + " %";
 }
 
 // This Function Calculates The Gas Turbine Parameters
@@ -733,7 +807,6 @@ function GTcalculate() {
     n = 1.4;
     let WT,WC;
     if(isNaN(T2)){
-    console.log(T2+" called")
         WC= (CP*(T2x-T1)).toFixed(3);
     }else{
         WC= (CP*(T2-T1)).toFixed(3);
@@ -754,30 +827,62 @@ function GTcalculate() {
     let bwr = (WC/WT).toFixed(2);
     ma = (p*v)/R*T1;
     pow = ma*Wnet;
-    choice = "GTResults";
-    resultdisplay();
+    result1= ['Thermal Efficiency','Turbuine Efficency','Compressor Effecicency', 'Back Work Ratio'];
+    result2= [THe,Te,Ce,bwr];
+    label = 'Efficiencies';
+    graph(result1,result2,label);
+    document.getElementById('Results').style.display = "block";
+    table1 = ['Work Done by Turbine','Work Done by Compressor','Total Net Work','Thermal Efficiency','Turbine Efficiency','Compressor Efficiency','Back Work Ratio','Power Output'];
+    table2 =[WT,WC,Wnet,THe,Te,Ce,bwr,pow];
+    table(table1,table2);
+    image = 'turbine.jpg';
+    img(image);
     window.location.href = "#Results";
-    document.getElementById('gt-WT').innerHTML = WT + " KJ/Kg";
-    document.getElementById('gt-pow').innerHTML = pow + " KW";
-    document.getElementById('gt-WC').innerHTML = WC + " KJ/Kg";
-    document.getElementById('gt-Wnet').innerHTML = Wnet + " KJ/Kg";
-    document.getElementById('gt-THe').innerHTML = THe + " / " + THe * 100 + " %";
-    document.getElementById('gt-Te').innerHTML = Te + " / " + Te * 100 + " %";
-    document.getElementById('gt-Ce').innerHTML = Ce + " / " + Ce * 100 + " %";
-    document.getElementById('gt-bwr').innerHTML = bwr + " / " + bwr * 100 + " %";
 }
 
-
-//  result list:
-const resultlist = ["ICResults","RESCResults","RBCResults","VTCResults","CFCResults","REResults","GTResults"];
-
-// result display function:
-function resultdisplay(){
-    for (let i = 0; i <= reslist.length; i++) {
-        if(resultlist[i] == choice){
-            document.getElementById(choice).style.display = "block";
-        }else{
-            document.getElementById(resultlist[i]).style.display = "none";
-        }
+// image display
+function img(image){
+    let img = document.getElementById("img");
+    let strg = "";
+    for(i=0;i<1;i++){
+        strg += `<img  width="450px" height="450px" src="/static/img/${image}" alt="">`; 
     }
+    img.innerHTML = strg;
 }
+//  graphs
+var index = 0;//this is to say that graph is used for first time:
+function graph(result1,result2,label){
+    if(index>0){
+        myChart.destroy();
+    }
+    if (myChart == "undefined"){
+        myChart.destroy();
+    }
+    const ctx = document.getElementById('myChart').getContext('2d');
+    myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels:result1,
+            datasets: [{
+                label: label,
+                data:result2,
+                backgroundColor: ['red','green','blue','yellow'],
+                borderColor: ['black'],
+                borderWidth: 2
+            }]
+        },
+    
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            tooltips: {
+                mode: 'nearest',
+                axis: 'y'
+            }
+        }
+    });
+    index =1;//this is to say that graph is already used for first time:
+    }
