@@ -457,8 +457,6 @@ section {
 
 .section-bg {
   background:url(/assets/img/calc-bg.jpg);
-  background-size: cover;
-  
 }
 
 .section-title {
@@ -793,10 +791,10 @@ section {
 # Results
 --------------------------------------------------------------*/
 .Results-bg{
-  background: url(/static/img/result-bg.jpg);
+  /* background: url(/static/img/result-bg.jpg); */
+  background-color: #a1a3a3;
   background-size: cover;
 }
-
 
 /*--------------------------------------------------------------
 # About
@@ -810,13 +808,20 @@ section {
 # Table
 --------------------------------------------------------------*/
 table{
+  background-color: white;
   max-width:max-content;
+}
+
+/* graphs */
+canvas{
+  background-color: white;
+  
 }
 
 /*--------------------------------------------------------------
 # display content for engine
 --------------------------------------------------------------*/
-#ICEngine, #ICResults,#CE-Engine,#res-msp,#res-msp1,#msp2,#res-mspu,#mspu1,#res-mspu2,#TEngine,#STE,#GTE,#GTResults,#REngine,#rva,#REResults,#RECE,#RESCResults,#RBCResults,#VTCResults,#CFCResults,#ROCE,#msp,#mspu,#RBTE,#VTCE,#ACE,#CFCE,#RBCE{
+#ICEngine,#Calculation,#CE-Engine,#res-msp,#res-msp1,#msp2,#res-mspu,#mspu1,#res-mspu2,#TEngine,#STE,#GTE,#REngine,#rva,#RECE,#ROCE,#msp,#mspu,#VTCE,#ACE,#CFCE,#RBCE{
   display: none;
 }
 
@@ -826,9 +831,13 @@ table{
 # Mobile
 --------------------------------------------------------------*/
 @media(max-width: 480px) {
+  section div img{
+    width: 358px;
+    height: 300px;
+  }
   table{
     background-color: white;
-    max-width:max-content;
+    max-width:100%;
   }
   .Results-bg{
     background:url(/static/img/hero-bg.jpg);
