@@ -792,7 +792,7 @@ section {
 --------------------------------------------------------------*/
 .Results-bg{
   /* background: url(/static/img/result-bg.jpg); */
-  background-color: #a1a3a3;
+  background-color: #C7d0d4;
   background-size: cover;
 }
 
@@ -840,7 +840,7 @@ canvas{
     max-width:100%;
   }
   .Results-bg{
-      background-color: #a1a3a3;
+      background-color: #C7d0d4;
   }
 }
 
