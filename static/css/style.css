@@ -881,7 +881,7 @@ canvas{
   }
   .about-bg{
     background: url(/static/img/about.png);
-    background-size:100vw;
+    background-size:cover;
   }
   #desktop{
     display: none;
