@@ -482,8 +482,8 @@ section {
 --------------------------------------------------------------*/
 #desktop{
   display: block;
-  padding-left: 310px;
-  padding-right: 210px;
+  padding-left: 20vw;
+  padding-right: 15vw;
 }
 #mobile{
   display: none;
