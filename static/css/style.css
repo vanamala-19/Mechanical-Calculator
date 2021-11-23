@@ -896,6 +896,9 @@ canvas{
   .contact p,h2{
     color: white;
   }
+    #contact .form-group{
+    padding: 10px;
+  }
 }
 
 /*--------------------------------------------------------------
