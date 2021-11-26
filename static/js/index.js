@@ -31,6 +31,7 @@ let BWD = 0;
 let image;
 let i;
 let label;
+let stg;
 // for Reciprocating Compressor
 let p1, p2, p3,IP1,IP2;
 const R = 0.287 // units KJ/Kg K
@@ -284,12 +285,12 @@ function ICcalculate() {
 // this is for two stage compressor
 const reslist = ["res-msp","res-msp1","res-msp2","res-mspu","res-mspu1","res-mspu2"]
 function stage() {
-    let stage = document.getElementById("res-tyos").value
-    if (stage == 2) {
+    stg = document.getElementById("res-tyos").value
+    if (stg == 2) {
         for(i = 0; i < reslist.length; i++){
         document.getElementById(reslist[i]).style.display = "block";
         }
-    } else if (stage == 1) {
+    } else if (stg == 1) {
         for(i = 0; i < reslist.length; i++){
         document.getElementById(reslist[i]).style.display = "none";
         }
@@ -300,7 +301,7 @@ function RESCcalculate() {
     // this is for Reciprocating compressor
     n = parseFloat(document.getElementById("res-tyop").value);
     K = parseFloat(document.getElementById("res-tyoc").value);
-    N = parseFloat(document.getElementById('res-N').value);
+    N = parseFloat(document.getElementById('res-N').value); 
     D = parseFloat(document.getElementById('res-D').value);
     let dunit = parseFloat(document.getElementById('res-dunit').value);
     D = diameter(D,dunit);
@@ -346,7 +347,7 @@ if (n == 0){
         Win = (n / (n - 1) * (p1 * v) * (Math.pow((p2 / p1), (n - 1) / n) - 1)).toFixed(3);
     }
     T4 = T3*Math.pow((p4/p3),(n-1)/n)
-    if(isNaN(p3) && isNaN(p4) && isNaN(T3)){
+    if(stg == 1){
         IP = (Win * N * K / 60).toFixed(3);
     }else{
         if(isNaN(ma)){
