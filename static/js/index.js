@@ -210,7 +210,8 @@ function table(table1, table2, table3) {
         <tr>
         <th scope="row">${i + 1}</th>
         <td>${table1[i]}</td>
-        <td>${table2[i]} ${table3[i]}</td> 
+        <td>${table2[i]}</td> 
+        <td>${table3[i]}</td> 
         </tr>`;
     }
     tableBody.innerHTML = str;
