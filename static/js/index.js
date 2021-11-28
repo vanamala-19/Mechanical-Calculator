@@ -681,12 +681,25 @@ function graph(result1, result2, label) {
             datasets: [{
                 label:label,
                 data: result2,
-                backgroundColor: ['red', 'green', 'blue', 'yellow'],
-                borderColor: ['black'],
-                borderWidth: 2
+                backgroundColor: ['rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)'],
+                borderWidth: 1
             }]
         },
         options:{
+            responsive: false,
+            scales: {
+              xAxes: [{
+                ticks: {
+                  maxRotation: 90,
+                  minRotation: 80
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            },
             plugins: {
                 legend: {
                     display: false,
@@ -697,9 +710,24 @@ function graph(result1, result2, label) {
                 title: {
                     display: true,
                     text: label,
-                    fontSize:25
-                }
-    
+                },
+                  tooltip: {
+                    usePointStyle: true,
+                    backgroundColor:'black',
+
+                  },
+                  animation: {
+                    onmouseenter: () => {
+                      delayed = true;
+                    },
+                    delay: (context) => {
+                      let delay = 0;
+                      if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                      }
+                      return delay;
+                    },
+                }              
             }
         }
     });
