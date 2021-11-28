@@ -387,7 +387,8 @@ function RESCcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Indicated Power', 'Brake Power', 'Frictional Power', 'Mechanical Efficiency', 'Motor Power'];
     table2 = [IP, BP, FP, Me, Mpow];
-    table(table1, table2);
+    let table3 = ['KW', 'KW', 'KW', '%','KW']
+    table(table1, table2, table3);
     image = 'rescom.jpg';
     img(image);
     window.location.href = "#Results";
@@ -426,7 +427,8 @@ function RBCcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Actual Work done', 'Indicated Power', 'Brake Power', 'Frictional Power', 'Root Blower Efficiency', 'Mechanical Efficiency'];
     table2 = [Wact, IP, BP, FP, Roote, Me];
-    table(table1, table2);
+    let table3 = ['KW', 'KW', 'KW', 'KW', '%','%']
+    table(table1, table2, table3);
     image = 'rbcom.jpg';
     img(image);
     window.location.href = "#Results";
@@ -472,7 +474,8 @@ function VTCcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Work Done by Vane Compressor', 'Indicated Power', 'Brake Power', 'Frictional Power', 'Vane Type Compressor Efficiency', 'Mechanical Efficiency'];
     table2 = [Wvane, IP, BP, FP, Vanee, Me];
-    table(table1, table2);
+    let table3 = ['KW', 'KW', 'KW', 'KW', '%']
+    table(table1, table2, table3);
     image = 'vtcom.jpg';
     img(image);
     window.location.href = "#Results";
@@ -507,7 +510,8 @@ function CFCcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Work Input', 'Power Required', 'Isentropic Efficiency', 'Change In Entropy'];
     table2 = [Win, Pin, isene, Ds];
-    table(table1, table2);
+    let table3 = ['KW', 'KW', '%', 'KW']
+    table(table1, table2, table3);
     console.log(choice);
     if (ch == 'CFCE') {
         image = 'cfcom.jpg';
@@ -571,9 +575,9 @@ function REcalculate() {
     Fpr = Ae * (p1 - p2);
     // F = Fmom;
     if (p1 = !"NaN" && p2 != "NaN") {
-        F = Fmom + Fpr
+        F = (Fmom + Fpr)/1000;
     } else {
-        F = Fmom;
+        F = (Fmom)/1000;
     }
     let Sthrust = F / ma;
     let Isp = (F / (ma * 9.81)).toFixed(2);
@@ -590,8 +594,9 @@ function REcalculate() {
     graph(result1, result2, label);
     document.getElementById('Results').style.display = "block";
     table1 = ['Thrust Produced', 'Specific Thrust', 'Specific Impulse', 'Specific Propullent Consumption', 'Thrust Power', 'Power Loss', 'Propulsive Power', 'Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
-    table2 = [F / 100, Sthrust, Isp, SPC, Pthrust, Ploss, PPropulsion, Prope, Te, Overalle];
-    table(table1, table2);
+    table2 = [F, Sthrust, Isp, SPC, Pthrust, Ploss, PPropulsion, Prope, Te, Overalle];
+    let table3 = ['KN', 'KW','sec', ' /sec', 'KW','KW','KW','%','%','%']
+    table(table1, table2, table3);
     image = 'rocket.jpg';
     img(image);
     window.location.href = "#Results";
@@ -645,7 +650,8 @@ function GTcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Work Done by Turbine', 'Work Done by Compressor', 'Total Net Work', 'Thermal Efficiency', 'Turbine Efficiency', 'Compressor Efficiency', 'Back Work Ratio', 'Power Output'];
     table2 = [WT, WC, Wnet, THe, Te, Ce, bwr, pow];
-    table(table1, table2);
+    let table3 = ['KW','KW','KW','%','%','%','%','KW']
+    table(table1, table2, table3);
     image = 'turbine.jpg';
     img(image);
     window.location.href = "#Results";
