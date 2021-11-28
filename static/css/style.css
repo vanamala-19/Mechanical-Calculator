@@ -137,14 +137,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*--------------------------------------------------------------
-# Disable aos animation delay on mobile devices
---------------------------------------------------------------*/
-@media screen and (max-width: 768px) {
-  [data-aos-delay] {
-    transition-delay: 0 !important;
-  }
-}
-/*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
 #header {
@@ -513,17 +505,6 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
-#desktop{
-  display: block;
-  padding-left: 20vw;
-  padding-right: 15vw;
-  font-size: 16px;
-  color: white;
-  Font-family: Courrier, 'VT323';
-}
-#mobile{
-  display: none;
-}
 .about .content h3 {
   font-weight: 600;
   font-size: 26px;
@@ -737,11 +718,6 @@ section {
   filter: none;
   transform: scale(1.15);
 }
-@media (max-width: 768px) {
-  .clients img {
-    max-width: 40%;
-  }
-}
 
 /*--------------------------------------------------------------
 # Testimonials
@@ -900,6 +876,129 @@ canvas{
 
 
 
+/*--------------------------------------------------------------
+# tablet
+--------------------------------------------------------------*/
+@media (min-width: 481px) and (max-width: 767px) {
+  #desktop{
+    display: none;
+  }
+  #mobile{
+    display: block;
+    padding: 20px;
+    font-size: 16px;
+    color: white;
+    Font-family: Courrier, 'VT323';
+  }
+  section div img{
+    width: 100vw;
+    height: 80vh;
+  }
+  table{
+    background-color: white;
+    max-width:100vw;
+  }
+  .about-bg{
+    background: url(/static/img/about.jpg);
+    /* background-color: #124265; */
+    background-size:cover;
+  }
+  .breadcrumbs .d-flex {
+    display: block !important;
+  }
+  .breadcrumbs ol {
+    display: block;
+  }
+  .breadcrumbs ol li {
+    display: inline-block;
+  }
+  .clients img {
+    max-width: 40%;
+  }
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+  #mobile div{
+    text-align: center;
+  }
+  #myChart{
+    height:400px;
+  }
+  .row{
+    display: grid;
+  }
+}
+
+
+
+@media (min-width: 768px) and (max-width: 1023px){
+  section div img{
+    width: 100vw;
+    height: 80vh;
+  }
+  table{
+    background-color: white;
+    max-width:100vw;
+  }
+  .about-bg{
+    /* background-color: #111; */
+    background: url(/static/img/about.jpg);
+    background-size:cover;
+  }
+  #desktop{
+    display: none;
+  }
+  #mobile{
+    display: block;
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    Font-family: Courrier, 'VT323';
+  }
+  #mobile div{
+    text-align: center;
+  }
+}
+
+
+
+
+/*--------------------------------------------------------------
+# laptop
+--------------------------------------------------------------*/
+@media (min-width: 1024px) and (max-width: 1439px){
+  .about-bg{
+    /* background-color: #111; */
+    background: url(/static/img/about2.jpg);
+    background-size:cover;
+  }
+  #desktop{
+    display: block;
+    padding-left: 15vw;
+    padding-right: 10vw;
+    font-size: 16px;
+    color: white;
+    Font-family: Courrier, 'VT323';
+  }
+  #mobile{
+    display: none;
+  }
+}
+
+
+@media (min-width: 1440px) {
+  #desktop{
+    display: block;
+    padding-left: 22vw;
+    padding-right: 10vw;
+    font-size: 16px;
+    color: white;
+    Font-family: Courrier, 'VT323';
+  }
+  #mobile{
+    display: none;
+  }
+}
 /*--------------------------------------------------------------
 # Mobile
 --------------------------------------------------------------*/
@@ -1553,17 +1652,6 @@ canvas{
   padding-right: 10px;
   color: #1a5e90;
   content: "/";
-}
-@media (max-width: 768px) {
-  .breadcrumbs .d-flex {
-    display: block !important;
-  }
-  .breadcrumbs ol {
-    display: block;
-  }
-  .breadcrumbs ol li {
-    display: inline-block;
-  }
 }
 
 /*--------------------------------------------------------------
