@@ -687,18 +687,20 @@ function graph(result1, result2, label) {
             }]
         },
         options:{
-            title:{
-                display:1,
-                text:label,
-                fontSize:25,
-            },
-            legend:{
-                display:0,
-                color:'green',
-                label:{
-                    display:0,
+            plugins: {
+                legend: {
+                    display: false,
+                    labels: {
+                        color: 'rgb(255, 99, 132)'
+                    }
+                },
+                title: {
+                    display: true,
+                    text: label,
+                    fontSize:25
                 }
-            },
+    
+            }
         }
     });
     index = 1;//this is to say that graph is already used for first time:
