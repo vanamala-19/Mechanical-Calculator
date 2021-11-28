@@ -275,14 +275,14 @@ function ICcalculate() {
     FP = (IP - BP).toFixed(3);
     BSFC = (mf / BP).toFixed(3);
     ISFC = (mf / IP).toFixed(3);
-    BTe = (BP / (mf / 3600 * cv)).toFixed(2) * 100;
-    ITe = (IP / (mf / 3600 * cv)).toFixed(2) * 100;
-    Me = (BP / IP).toFixed(2) * 100;
+    BTe = ((BP / (mf / 3600 * cv))*100).toFixed(2) ;
+    ITe = ((IP / (mf / 3600 * cv))*100).toFixed(2);
+    Me = ((BP / IP)*100).toFixed(2) ;
     if (isNaN(v) || isNaN(vs)) {
         ra = A * L * n * K;
-        Ve = (ma / 3600) / (A * L * ra * (n / 60));
+        Ve = ((ma / 3600) / (A * L * ra * (n / 60))*100).toFixed(2);
     }else {
-        Ve = (v / vs).toFixed(2) * 100;
+        Ve = ((v / vs)*100).toFixed(2);
     }
     document.getElementById('Results').style.display = "block";
     let table1 = ['Indicated Power', 'Brake Power', 'Frictional Power', 'Specific Fuel Consumption', 'Indicated Specific Fuel Consumption', 'Mechanical Efficiency', 'Volumetric Efficiency', 'Indicated Thermal Efficiency', 'Brake Thermal Efficiency'];
@@ -379,8 +379,9 @@ function RESCcalculate() {
     }
     BP = // We need to find
         FP = (IP - BP).toFixed(3);
-    Me = (IP / BP).toFixed(2);
+    Me = (IP / BP);
     Mpow = (BP / Me).toFixed(3);
+    Me = (Me*100).toFixed(2);
     result1 = ['Motor Power', 'Indicated Power', 'Brake Power', 'Frictional Power']
     result2 = [Mpow, IP, BP, FP];
     label = 'Power';
@@ -420,7 +421,7 @@ function RBCcalculate() {
     let Roote = (IP / Wact).toFixed(2);
     BP = // We need to find
         FP = (IP - BP).toFixed(3);
-    Me = (IP / BP).toFixed(2);
+    Me = ((IP / BP)*100).toFixed(2);
     result1 = ['Actual Work done', 'Indicated Power', 'Brake Power', 'Frictional Power']
     result2 = [Wact, IP, BP, FP];
     label = 'Power';
@@ -466,8 +467,8 @@ function VTCcalculate() {
     IP = (W1 + W2);
     Vanee = ((W2) / IP).toFixed(3);
     BP = // We need to find
-        FP = (IP - BP).toFixed(3);
-    Me = (IP / BP).toFixed(2);
+     FP = (IP - BP).toFixed(3);
+     Me = ((IP / BP)*100).toFixed(2);
     result1 = ['Work done by Vane', 'Indicated Power', 'Brake Power', 'Frictional Power']
     result2 = [Wvane, IP, BP, FP];
     label = 'Power';
@@ -500,7 +501,7 @@ function CFCcalculate() {
     let T2unit = document.getElementById("cf-T2unit").value;
     T2 = tempurature(T2, T2unit);
     T2x = (T1 * Math.pow((p2 / p1), (n - 1) / n)).toFixed(1);
-    let isene = ((T2x - T1) / (T2 - T1)).toFixed(2);
+    let isene = (((T2x - T1) / (T2 - T1))*100).toFixed(2);
     let Pin = (ma * CP * (T2 - T1)).toFixed(3);
     Win = (CP * (T2 - T1)).toFixed(3);
     let Ds = (ma * (CP * Math.log(T2 / T1) - R * Math.log(p2 / p1))).toFixed(3); // change in entropy
@@ -585,10 +586,10 @@ function REcalculate() {
     let Pthrust = F * Va;
     let Ploss = 0.5 * ma * (Vjet - Va) * (Vjet - Va);
     PPropulsion = Pthrust + Ploss;
-    let Prope = (2 * S / (1 + (S * S))).toFixed(2);
-    let Te = PPropulsion / (ma * CV);
+    let Prope = ((2 * S / (1 + (S * S)))*100).toFixed(2);
+    let Te = (PPropulsion / (ma * CV)*100).toFixed(2);
     let SPC = 1 / Isp;
-    let Overalle = (Prope * Te).toFixed(2);
+    let Overalle = ((Prope * Te)*100).toFixed(2);
     result1 = ['Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
     result2 = [Prope, Te, Overalle];
     label = 'Efficiencies';
@@ -636,12 +637,12 @@ function GTcalculate() {
     let Wnet = (WT - WC).toFixed(3);
     let qin = CP * (T3 - T2);
     let qout = CP * (T4 - T1);
-    let THe = (Wnet / qin).toFixed(2);
+    let THe = ((Wnet / qin)*100).toFixed(2);
     T2x = T1 * Math.pow(r, (n - 1) / n);
     T4x = T3 / (Math.pow(r, (n - 1) / n));
-    let Te = ((T3 - T4) / (T3 - T4x)).toFixed(2);
-    let Ce = ((T2x - T1) / (T2 - T1)).toFixed(2);
-    let bwr = (WC / WT).toFixed(2);
+    let Te = (((T3 - T4) / (T3 - T4x))*100).toFixed(2);
+    let Ce = (((T2x - T1) / (T2 - T1))*100).toFixed(2);
+    let bwr = ((WC / WT)*100).toFixed(2);
     ma = (p * v) / R * T1;
     pow = ma * Wnet;
     result1 = ['Thermal Efficiency', 'Turbuine Efficency', 'Compressor Effecicency', 'Back Work Ratio'];
@@ -672,33 +673,32 @@ function graph(result1, result2, label) {
     if (index > 0) {
         myChart.destroy();
     }
-    if (myChart == "undefined") {
-        myChart.destroy();
-    }
     const ctx = document.getElementById('myChart').getContext('2d');
     myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: result1,
             datasets: [{
-                label: label,
+                label:label,
                 data: result2,
                 backgroundColor: ['red', 'green', 'blue', 'yellow'],
                 borderColor: ['black'],
                 borderWidth: 2
             }]
         },
-
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        options:{
+            title:{
+                display:1,
+                text:label,
+                fontSize:25,
+            },
+            legend:{
+                display:0,
+                color:'green',
+                label:{
+                    display:0,
                 }
             },
-            tooltips: {
-                mode: 'nearest',
-                axis: 'y'
-            }
         }
     });
     index = 1;//this is to say that graph is already used for first time:
