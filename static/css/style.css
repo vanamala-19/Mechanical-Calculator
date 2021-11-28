@@ -517,6 +517,9 @@ section {
   display: block;
   padding-left: 20vw;
   padding-right: 15vw;
+  font-size: 16px;
+  color: white;
+  Font-family: Courrier, 'VT323';
 }
 #mobile{
   display: none;
@@ -848,7 +851,7 @@ section {
 --------------------------------------------------------------*/
 .Results-bg{
   /* background: url(/static/img/result-bg.jpg); */
-  background-color: #e2e2e2;
+  background-color: #a3d5d3;
   background-size: cover;
 }
 
@@ -910,7 +913,7 @@ canvas{
     max-width:100%;
   }
   .Results-bg{
-      background-color: #C7d0d4;
+      background-color: #a3d5d3;
   }
   .about-bg{
     background: url(/static/img/about.png);
@@ -922,6 +925,9 @@ canvas{
   #mobile{
     display: block;
     padding: 12px;
+    font-size: 16px;
+    color: white;
+    Font-family: Courrier, 'VT323';
   }
   #mobile div{
     text-align: center;
