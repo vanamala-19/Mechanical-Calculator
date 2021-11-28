@@ -808,96 +808,87 @@
       </div>
       <p class="text-load">Loading</p>
     </div>
-  </div>
-  <div class="book">
-    <div class="book__pg-shadow"></div>
-    <div class="book__pg"></div>
-    <div class="book__pg book__pg--2"></div>
-    <div class="book__pg book__pg--3"></div>
-    <div class="book__pg book__pg--4"></div>
-    <div class="book__pg book__pg--5"></div>
-  </div>
-  </div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-  <!-- Vendor JS Files -->
-  <script src="static/vendor/aos/aos.js"></script>
-  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="static/vendor/php-email-form/validate.js"></script>
-  <script src="static/vendor/purecounter/purecounter.js"></script>
-  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script type="text/javascript" src="/static/js/chart.js"></script>
-  <script type="text/javascript">
-    (function () {
-      emailjs.init("user_3yOIBuLymX5GB0CBO9kpN");
-    })();
-  </script>
-  <script>
-  </script>
-  <!-- Template Main JS File -->
-  <script src="/static/js/main.js"></script>
-  <script src="/static/js/index.js"></script>
-  <script src="/static/js/smtp.js"></script>
-  <!-- for sweetalert -->
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script>
-    function validate() {
-      let username = document.querySelector(".user-name");
-      let useremail = document.querySelector(".user-email");
-      let usermsg = document.querySelector(".user-msg");
-      let submit = document.querySelector(".user-submit");
+    </div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="static/vendor/aos/aos.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="static/vendor/php-email-form/validate.js"></script>
+    <script src="static/vendor/purecounter/purecounter.js"></script>
+    <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript" src="/static/js/chart.js"></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("user_3yOIBuLymX5GB0CBO9kpN");
+      })();
+    </script>
+    <script>
+    </script>
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/index.js"></script>
+    <script src="/static/js/smtp.js"></script>
+    <!-- for sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      function validate() {
+        let username = document.querySelector(".user-name");
+        let useremail = document.querySelector(".user-email");
+        let usermsg = document.querySelector(".user-msg");
+        let submit = document.querySelector(".user-submit");
 
-      submit.addEventListener("click", (e) => {
-        e.preventDefault()
-        if (username.value == "" || useremail.value == "" || usermsg.value == "") {
-          inputempty();
-        } else {
-          sendemail(username.value, useremail.value, usermsg.value);
-          sucess()
-          setTimeout(() => {
-            window.location.href = "#hero";
-          }, 2000);
-          setTimeout(() => {
-            location.reload();
-          }, 2000);
-        }
-      })
-    }
-    function sendemail(name, email, msg) {
-      emailjs.send("service_94vid38", "template_dkqcavp", {
-        from_name: name,
-        to_name: email,
-        message: msg,
-      });
-    }
-    function sucess() {
-      swal({
-        title: "Sucess",
-        text: "Sucessfully sent Message",
-        icon: "success",
-        button: "Ok",
-      });
-    }
-    function error() {
-      swal({
-        title: "Sorry",
-        text: "Something Went Wrong, Message could not be sent",
-        icon: "error",
-        button: "Ok",
-      });
-    }
-    function inputempty() {
-      swal({
-        title: "Opps!!",
-        text: "Inputs Field are required",
-        icon: "error",
-        button: "Ok",
-      });
-    }
-  </script>
+        submit.addEventListener("click", (e) => {
+          e.preventDefault()
+          if (username.value == "" || useremail.value == "" || usermsg.value == "") {
+            inputempty();
+          } else {
+            sendemail(username.value, useremail.value, usermsg.value);
+            sucess()
+            setTimeout(() => {
+              window.location.href = "#hero";
+            }, 2000);
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
+          }
+        })
+      }
+      function sendemail(name, email, msg) {
+        emailjs.send("service_94vid38", "template_dkqcavp", {
+          from_name: name,
+          to_name: email,
+          message: msg,
+        });
+      }
+      function sucess() {
+        swal({
+          title: "Sucess",
+          text: "Sucessfully sent Message",
+          icon: "success",
+          button: "Ok",
+        });
+      }
+      function error() {
+        swal({
+          title: "Sorry",
+          text: "Something Went Wrong, Message could not be sent",
+          icon: "error",
+          button: "Ok",
+        });
+      }
+      function inputempty() {
+        swal({
+          title: "Opps!!",
+          text: "Inputs Field are required",
+          icon: "error",
+          button: "Ok",
+        });
+      }
+    </script>
 </body>
 
 </html>
