@@ -905,8 +905,8 @@ canvas{
 --------------------------------------------------------------*/
 @media(max-width: 480px) {
   section div img{
-    width: 358px;
-    height: 300px;
+    width: 100vw;
+    height: 80vh;
   }
   table{
     background-color: white;
