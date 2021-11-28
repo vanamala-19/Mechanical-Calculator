@@ -686,20 +686,7 @@ function graph(result1, result2, label) {
             }]
         },
         options:{
-            responsive: false,
-            scales: {
-              xAxes: [{
-                ticks: {
-                  maxRotation: 90,
-                  minRotation: 80
-                }
-              }],
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            },
+            responsive: true,
             plugins: {
                 legend: {
                     display: false,
