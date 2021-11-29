@@ -663,7 +663,7 @@ function img(image) {
     let img = document.getElementById("img");
     let strg = "";
     for (i = 0; i < 1; i++) {
-        strg += `<img  width="450px" height="450px" src="/static/img/${image}" alt="">`;
+        strg += `<img  width="450px" height="450px" src="/static/img/${image}" alt="result image">`;
     }
     img.innerHTML = strg;
 }
