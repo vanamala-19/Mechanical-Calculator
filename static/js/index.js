@@ -46,7 +46,7 @@ let T1, T2;
 const CP = 1.005;
 const CV = 0.716;
 //  for Rocket engine
-let S, Va, Fpr = 0, take;
+let S, Va, Fpr = 0, take,taker,taked;
 // Gas Turbine
 let T2x, T4x, T3, T4, Kelvin = 273.15;
 // function to assign choice values
@@ -68,6 +68,11 @@ function CE() {
 }
 function RE() {
     choice = 'REngine';
+    window.location.href = "#Calculation";
+    display();
+}
+function JE() {
+    choice = 'JETEngine';
     window.location.href = "#Calculation";
     display();
 }
@@ -122,9 +127,10 @@ function axialcom() {
     comdisplay();
 }
 // this is the list of  section :
-const list = ["REngine", "CE-Engine", "ICEngine", "TEngine", "RECE", "ROCE", "RBCE", "VTCE", "CFCE", "ACE"];
+const list = ["REngine","JETEngine", "CE-Engine", "ICEngine", "TEngine", "RECE", "ROCE", "RBCE", "VTCE", "CFCE", "ACE"];
 // function to display and hide the calculation function:
 function display() {
+    document.getElementById('Results').style.display = "none";
     document.getElementById('Calculation').style.display = "block";
     for (i = 0; i < list.length; i++) {
         if (list[i] == choice) {
@@ -135,6 +141,7 @@ function display() {
     }
 }
 function comdisplay() {
+    document.getElementById('Results').style.display = "none";
     document.getElementById("CE-Engine").style.display = "block";
     document.getElementById('Calculation').style.display = "block";
     for (i = 0; i < list.length; i++) {
@@ -514,7 +521,6 @@ function CFCcalculate() {
     table2 = [Win, Pin, isene, Ds];
     let table3 = ['KW', 'KW', '%', 'KW']
     table(table1, table2, table3);
-    console.log(choice);
     if (ch == 'CFCE') {
         image = 'cfcom.jpg';
     } else {
@@ -530,6 +536,22 @@ function rva() {
         document.getElementById("rva").style.display = "none";
     } else if (take == 2) {
         document.getElementById("rva").style.display = "block";
+    }
+}
+function jva() {
+    taker = parseInt(document.getElementById("j-vr").value);
+    if (taker == 1) {
+        document.getElementById("jva").style.display = "none";
+    } else if (taker == 2) {
+        document.getElementById("jva").style.display = "block";
+    }
+}
+function mava() {
+    taked = parseInt(document.getElementById("j-mava").value);
+    if (taked == 1) {
+        document.getElementById("mava").style.display = "block";
+    } else if (taked == 2) {
+        document.getElementById("mava").style.display = "none";
     }
 }
 // This Function Calculates The Rocket Engine Parameters
@@ -554,11 +576,9 @@ function REcalculate() {
     }
     if (take == 1) {
         S = parseFloat(document.getElementById("r-va").value);
-        document.getElementById("rva").style.display = "none";
         Va = S * Vjet;
     } else if (take == 2) {
         Va = parseFloat(document.getElementById("r-va").value);
-        document.getElementById("rva").style.display = "block";
         let vaunit = parseInt(document.getElementById("r-vaunit").value);
         if (vaunit == 1) {
             Va = Va;
@@ -581,15 +601,15 @@ function REcalculate() {
     } else {
         F = (Fmom)/1000;
     }
-    let Sthrust = F / ma;
-    let Isp = (F / (ma * 9.81)).toFixed(2);
-    let Pthrust = F * Va;
+    let Sthrust = ((F *1000)/(ma)).toFixed(2);
+    let Isp = ((F*1000 )/ (ma * 9.81)).toFixed(2);
+    let Pthrust = (F * Va).toFixed(2);
     let Ploss = 0.5 * ma * (Vjet - Va) * (Vjet - Va);
     PPropulsion = Pthrust + Ploss;
     let Prope = ((2 * S / (1 + (S * S)))*100).toFixed(2);
     let Te = (PPropulsion / (ma * CV)*100).toFixed(2);
     let SPC = 1 / Isp;
-    let Overalle = ((Prope * Te)*100).toFixed(2);
+    let Overalle = ((Prope * Te)/100).toFixed(2);
     result1 = ['Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
     result2 = [Prope, Te, Overalle];
     label = 'Efficiencies';
@@ -597,9 +617,67 @@ function REcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Thrust Produced', 'Specific Thrust', 'Specific Impulse', 'Specific Propullent Consumption', 'Thrust Power', 'Power Loss', 'Propulsive Power', 'Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
     table2 = [F, Sthrust, Isp, SPC, Pthrust, Ploss, PPropulsion, Prope, Te, Overalle];
-    let table3 = ['KN', 'KW','sec', ' /sec', 'KW','KW','KW','%','%','%']
+    let table3 = ['KN', 'N/Kg','sec', ' /sec', 'KW','KW','KW','%','%','%']
     table(table1, table2, table3);
     image = 'rocket.jpg';
+    img(image);
+    window.location.href = "#Results";
+}
+// This Function Calculates The Rocket Engine Parameters
+function JETcalculate() {
+    let Vjet = parseFloat(document.getElementById("j-Vjet").value);
+    let vunit = parseInt(document.getElementById("j-vunit").value);
+    if (vunit == 1) {
+        Vjet = Vjet;
+    } else if (vunit == 2) {
+        Vjet = Vjet * (5 / 18);
+    } else if (vunit == 3) {
+        Vjet = Vjet / 2.237;
+    }
+    if (taker == 1) {
+        S = parseFloat(document.getElementById("j-va").value);
+        Va = S * Vjet;
+    } else if (taker == 2) {
+        Va = parseFloat(document.getElementById("j-va").value);
+        let vaunit = parseInt(document.getElementById("j-vaunit").value);
+        if (vaunit == 1) {
+            Va = Va;
+        } else if (vaunit == 2) {
+            Va = Va * (5 / 18);
+        } else if (vaunit == 3) {
+            Va = Va / 2.237;
+        }
+        S = Va / Vjet;
+    } 
+    D = parseFloat(document.getElementById('j-D').value);
+    let dunit = parseInt(document.getElementById('j-dunit').value);
+    D = diameter(D, dunit);
+    Ae = pi / 4 * (D * D);
+    ma = parseFloat(document.getElementById("j-ma").value);
+    let maunit = parseInt(document.getElementById("j-maunit").value);
+    if(taked == 1){
+        ma = mass(ma, maunit);
+    }else{
+        ma = ma*Va*Ae;
+    }
+   F = (ma*(Vjet-Va)/1000).toFixed(2); 
+    let Sthrust = ((F*1000) /( ma)).toFixed(2);
+    let Isp = ((F*1000) / (ma * 9.81)).toFixed(2);
+    let Pthrust = (F * Va).toFixed(2);
+    PPropulsion = ((ma*(((Vjet*Vjet)-(Va*Va))/2))/1000).toFixed(2);
+    let Prope = ((Pthrust/PPropulsion)*100).toFixed(2);
+    let Te = (PPropulsion / (ma * CV)*100).toFixed(2);
+    let Overalle = ((Prope * Te)/100).toFixed(2);
+    result1 = ['Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
+    result2 = [Prope, Te, Overalle];
+    label = 'Efficiencies';
+    graph(result1, result2, label);
+    document.getElementById('Results').style.display = "block";
+    table1 = ['Thrust Produced', 'Specific Thrust', 'Specific Impulse', 'Thrust Power', 'Propulsive Power', 'Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
+    table2 = [F, Sthrust, Isp, Pthrust,PPropulsion, Prope, Te, Overalle];
+    let table3 = ['KN', 'N/Kg','sec','KW','KW','%','%','%']
+    table(table1, table2, table3);
+    image = 'jet.gif';
     img(image);
     window.location.href = "#Results";
 }
@@ -663,7 +741,7 @@ function img(image) {
     let img = document.getElementById("img");
     let strg = "";
     for (i = 0; i < 1; i++) {
-        strg += `<img  width="450px" height="450px" src="/static/img/${image}" alt="result image">`;
+        strg += `<img  width="450px" height="450px" src="/static/img/${image}" alt="">`;
     }
     img.innerHTML = strg;
 }
