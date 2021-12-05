@@ -869,7 +869,7 @@ canvas{
 /*--------------------------------------------------------------
 # display content for engine
 --------------------------------------------------------------*/
-#ICEngine,#Calculation,#CE-Engine,#res-msp,#res-msp1,#msp2,#res-mspu,#Results,#mspu1,#res-mspu2,#TEngine,#GTE,#REngine,#rva,#RECE,#ROCE,#msp,#mspu,#VTCE,#ACE,#CFCE,#RBCE{
+#ICEngine,#Calculation,#JETEngine,#CE-Engine,#res-msp,#res-msp1,#msp2,#res-mspu,#Results,#mspu1,#res-mspu2,#TEngine,#GTE,#REngine,#jva,#mava,#rva,#RECE,#ROCE,#msp,#mspu,#VTCE,#ACE,#CFCE,#RBCE{
   display: none;
 }
 
@@ -882,6 +882,9 @@ canvas{
 @media (min-width: 481px) and (max-width: 767px) {
   #desktop{
     display: none;
+  }
+  .debha1{
+    margin-top: 25px;
   }
   #mobile{
     display: block;
@@ -958,6 +961,9 @@ canvas{
   #mobile div{
     text-align: center;
   }
+  .debha1{
+    margin-top: 25px;
+  }
 }
 
 
@@ -983,6 +989,10 @@ canvas{
   #mobile{
     display: none;
   }
+
+  .debha{
+    margin-top: 25px;
+  }
 }
 
 
@@ -998,6 +1008,9 @@ canvas{
   #mobile{
     display: none;
   }
+  .debha{
+    margin-top: 25px;
+  }
 }
 /*--------------------------------------------------------------
 # Mobile
@@ -1005,7 +1018,7 @@ canvas{
 @media(max-width: 480px) {
   section div img{
     width: 100vw;
-    height: 80vh;
+    height: 60vh;
   }
   table{
     background-color: white;
@@ -1036,6 +1049,9 @@ canvas{
   }
   #contact .form-group{
     padding: 10px;
+  }
+  .debha1{
+    margin-top: 25px;
   }
 }
 
