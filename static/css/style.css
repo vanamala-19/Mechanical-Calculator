@@ -124,8 +124,8 @@ h1, h2, h3, h4, h5, h6 {
 .loader .path > div:nth-child(6){ left: -240px; }
 .loader .path > div:nth-child(7){ left: -280px; }
 @keyframes motion{
-    50%{ transform: rotate(-90deg); }
-    100%{ transform: rotate(-180deg); }
+    50%{ transform: rotate(-180deg); }
+    100%{ transform: rotate(-360deg); }
 }
 @keyframes dynamic{
     0%{ transform: translateX(40px); }
