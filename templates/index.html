@@ -709,7 +709,7 @@
             <div class="col-md-2">
               <select onchange="mava()" id="j-mava" class="form-select" aria-label="Default select example">
                 <option selected>Select</option>
-                <option value="1">Mass Flow Rate</option>
+                <option value="1">Mass Flow Rate of Air</option>
                 <option value="2">density of Air</option>
               </select>
             </div>
@@ -722,6 +722,19 @@
                 <option value="1">Kg/S</option>
                 <option value="2">Kg/Min</option>
               </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="mass flow rate of Fuel" name="Ma" id="j-mf">
+            </div>
+            <div class="col-md-2">
+              <select id="j-mfunit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">Kg/S</option>
+                <option value="2">Kg/Min</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Calorific Value" name="CV" id="j-CV">
             </div>
             <div class="col-md-2">
               <input type="text" class="form-control" required placeholder="Nozzle Diameter" name="D" id="j-D">
