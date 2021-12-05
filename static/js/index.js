@@ -20,7 +20,7 @@ let Ve;
 let r;
 let M;
 let ma;
-let mf;
+let mf = parseInt(0);
 let BSFC;
 let ISFC;
 let BTe;
@@ -660,13 +660,17 @@ function JETcalculate() {
     }else{
         ma = ma*Va*Ae;
     }
-   F = (ma*(Vjet-Va)/1000).toFixed(2); 
-    let Sthrust = ((F*1000) /( ma)).toFixed(2);
-    let Isp = ((F*1000) / (ma * 9.81)).toFixed(2);
+    mf= parseFloat(document.getElementById("j-mf").value);
+    let mfunit = parseInt(document.getElementById("j-mfunit").value);
+    mf = mass(mf, mfunit);
+    cv = parseFloat(document.getElementById("j-CV").value);
+   F = ((ma+mf)*(Vjet-Va)/1000).toFixed(2); 
+    let Sthrust = ((F*1000) /( ma+mf)).toFixed(2);
+    let Isp = ((F*1000) / ((ma+mf) * 9.81)).toFixed(2);
     let Pthrust = (F * Va).toFixed(2);
     PPropulsion = ((ma*(((Vjet*Vjet)-(Va*Va))/2))/1000).toFixed(2);
     let Prope = ((Pthrust/PPropulsion)*100).toFixed(2);
-    let Te = (PPropulsion / (ma * CV)*100).toFixed(2);
+    let Te = (PPropulsion / (mf * cv)*100).toFixed(2);
     let Overalle = ((Prope * Te)/100).toFixed(2);
     result1 = ['Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
     result2 = [Prope, Te, Overalle];
