@@ -27,7 +27,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
-      <h1 class="logo"><a href="/"> <img src="/static/img/logo.png" alt=""> Mechanical Calculator</a></h1>
+      <h1 class="logo"><a href="/"> <img src="/static/img/logo.jpg" alt=""> Mechanical Calculator</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="static/img/logo.png" alt="" class="img-fluid"></a>-->
       <nav id="navbar" class="navbar">
@@ -80,6 +80,38 @@
               <h4 class="title"><a href="">Compressors</a></h4>
               <p class="description">Press the select button to calculate the Compressors Parameters</p>
               <button onclick="CE()" type="button" class="btn btn-primary btn-lg">select</button>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 debha" data-aos="zoom-in"
+            data-aos-delay="600">
+            <div class="icon-box">
+              <h4 class="title"><a href="">Jet Engine</a></h4>
+              <p class="description">Press the select button to calculate the Jet Engine Parameters</p>
+              <button onclick="JE()" type="button" class="btn btn-primary btn-lg">select</button>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 debha" data-aos="zoom-in"
+            data-aos-delay="700">
+            <div class="icon-box">
+              <h4 class="title"><a href="">dummy</a></h4>
+              <p class="description">Press the select button to calculate the  dummy Parameters</p>
+              <button onclick="dummy()" type="button" class="btn btn-primary btn-lg">select</button>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 debha" data-aos="zoom-in"
+            data-aos-delay="800">
+            <div class="icon-box">
+              <h4 class="title"><a href="">Finite Element Method</a></h4>
+              <p class="description">Press the select button to calculate the Finite Element Method</p>
+              <button onclick="FEM()" type="button" class="btn btn-primary btn-lg">select</button>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 debha" data-aos="zoom-in"
+            data-aos-delay="900">
+            <div class="icon-box">
+              <h4 class="title"><a href="">Convertor</a></h4>
+              <p class="description">Press the select button to convert the units of the Parameters</p>
+              <button onclick="CON()" type="button" class="btn btn-primary btn-lg">select</button>
             </div>
           </div>
         </div>
@@ -637,6 +669,77 @@
           </div>
         </div>
         <!-- End of Rocket Engine  -->
+        <!-- Begin of JET Engine  -->
+        <div id="JETEngine" class="text-center"> 
+          <div class="row g-3 my-2">
+            <div class="section-title">
+              <h2>JET Engine Calculation</h2> <!--  title  changes with option -->
+              <h3> Enter the values to calculate the Paramaters </h3>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Jet Velocity" name="Vjet" id="j-Vjet">
+            </div>
+            <div class="col-md-2">
+              <select id="j-vunit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">m/s</option>
+                <option value="2">KM/Hr</option>
+                <option value="3">Miles/Hr</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <select onchange="jva()" id="j-vr" class="form-select" aria-label="Default select example">
+                <option selected>Select</option>
+                <option value="1">Velocity Ratio(s)</option>
+                <option value="2">Aircraft velocity / forward Velocity(Va)</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" required placeholder="Enter the selected value" name="va"
+              id="j-va">
+            </div>
+            <div id="jva" class="col-md-2">
+              <select id="j-vaunit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">m/s</option>
+                <option value="2">KM/Hr</option>
+                <option value="3">Miles/Hr</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <select onchange="mava()" id="j-mava" class="form-select" aria-label="Default select example">
+                <option selected>Select</option>
+                <option value="1">Mass Flow Rate</option>
+                <option value="2">density of Air</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" placeholder="Enter the selected value" name="Ma" id="j-ma">
+            </div>
+            <div id="mava" class="col-md-2">
+              <select id="j-maunit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">Kg/S</option>
+                <option value="2">Kg/Min</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" required placeholder="Nozzle Diameter" name="D" id="j-D">
+            </div>
+            <div class="col-md-2">
+              <select id="j-dunit" class="form-select" aria-label="Default select example">
+                <option selected>units</option>
+                <option value="1">cm</option>
+                <option value="2">mm</option>
+                <option value="3">m</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <button onclick="JETcalculate()" class="btn btn-primary">Calculate</button>
+            </div>
+          </div>
+        </div>
+        <!-- End of JET Engine  -->
         <!-- Begin of Turbine Engines -->
         <div class="container" data-aos="fade-up">
           <div id="TEngine">
@@ -722,10 +825,10 @@
     <!-- <div class="section-title"> -->
     <h2 class="text-center">Results</h2>
     </div>
-    <div class="row my-3">
+    <div class="row">
       <div id="img" height="450px" width="450px" class="col">
       </div>
-      <div class="col my-3">
+      <div class="col debha1">
         <table class="table table-bordered border-dark  table-responsive-sm">
           <thead>
             <tr>
@@ -739,7 +842,7 @@
           </tbody>
         </table>
       </div>
-      <div  class="col my-3" >
+      <div  class="col" >
         <canvas  id="myChart" height="450px" width="450px"></canvas>
       </div>
   </section>
