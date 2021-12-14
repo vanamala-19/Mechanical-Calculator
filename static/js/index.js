@@ -56,43 +56,43 @@ var property = new Array();
 var unit = new Array();
 var factor = new Array();
 
-function select(){
+function select() {
     value = parseInt(document.getElementById('con-p').value);
-    unit[0] = ["sq.cm","sq.m","sq.km","sq.inches"];
-    factor[0] = [1,0.0001,0.0000000001,0.15];
+    unit[0] = ["sq.cm", "sq.m", "sq.km", "sq.inches"];
+    factor[0] = [1, 0.0001, 0.0000000001, 0.15];
 
-    unit[1] = ["Joule","KiloWatt hour","kP m","K cal","BTU"];
-    factor[1]= [1,0.2778,0.1019,0.0002388,0.0009478];
+    unit[1] = ["Joule", "Kilo Watt hour", "kP m", "K cal", "BTU"];
+    factor[1] = [1, 0.2778, 0.1019, 0.0002388, 0.0009478];
 
-    unit[2] = ["N","Kp","P","Oz","Ibf'"];
-    factor[2]= [1,0.1019,101.972,3.59694,0.2248];
+    unit[2] = ["N", "Kp", "P", "Oz", "Ibf'"];
+    factor[2] = [1, 0.1019, 101.972, 3.59694, 0.2248];
 
-    unit[3] = ["mm", "cm","m","inch", "foot","km","mile"];
-    factor[3]= [1,0.1,0.001,0.03937,0.003280,0.000001,0.0000006213];
-    
-    unit[4] = ["gram", "Kg","Lb","Ton"];
-    factor[4]= [1,0.001,0.002204,0.000001102];
-    
-    unit[5] = ["Kilo Watt", "PS","Horse power","Kp m/s","K cal/s"];
-    factor[5]= [1,1.35962,1.34102,101972,0.2388];
-    
-    unit[6] = ["bar", "Pa","atm","PSI","Kg/cm^2"];
-    factor[6]= [1,100000,0.9869,14.504,1.0197];
-    
-    unit[7] = ["cm/s", "m/s","Km/hr","mile/hr"];
-    factor[7]= [1,0.01,0.036,0.02237];
-    
-    unit[8] = ["celsius", "Kelvin","Farenheit"];
-    factor[8]= [1,273.15,1.8+32];
-       
-    unit[9] = ["N cm", "N m","N mm","dyn m","Kgf m","gf m"];
-    factor[9]= [1,0.01,10,1000,0.001019716,1.019716213];
-       
-    unit[10] = ["mili liter","liter","cubic meter","cubic inch","cubic feet"];
-    factor[10]= [1,0.001,0.000001,0.061023744094732,0.000035314666721489];
+    unit[3] = ["mm", "cm", "m", "inch", "foot", "km", "mile"];
+    factor[3] = [1, 0.1, 0.001, 0.03937, 0.003280, 0.000001, 0.0000006213];
+
+    unit[4] = ["gram", "Kg", "Lb", "Ton"];
+    factor[4] = [1, 0.001, 0.002204, 0.000001102];
+
+    unit[5] = ["Kilo Watt", "PS", "Horse power", "Kp m/s", "K cal/s"];
+    factor[5] = [1, 1.35962, 1.34102, 101972, 0.2388];
+
+    unit[6] = ["bar", "Pa", "atm", "PSI", "Kg/cm^2"];
+    factor[6] = [1, 100000, 0.9869, 14.504, 1.0197];
+
+    unit[7] = ["cm/s", "m/s", "Km/hr", "mile/hr"];
+    factor[7] = [1, 0.01, 0.036, 0.02237];
+
+    unit[8] = ["celsius", "Kelvin", "Farenheit"];
+    factor[8] = [1, 273.15, 1.8 + 32];
+
+    unit[9] = ["N cm", "N m", "N mm", "dyn m", "Kgf m", "gf m"];
+    factor[9] = [1, 0.01, 10, 1000, 0.001019716, 1.019716213];
+
+    unit[10] = ["mili liter", "liter", "cubic meter", "cubic inch", "cubic feet"];
+    factor[10] = [1, 0.001, 0.000001, 0.061023744094732, 0.000035314666721489];
 
     let unitBody = document.getElementById("con-unit");
-    let stru =`<div class="col-md-3" >
+    let stru = `<div class="col-md-3" >
     <select onchange="convert()" id="con-u" class="form-select  text-center" aria-label="Default select example">
       <option selected>Select The Units</option>`;
     for (i = 0; i < unit[value].length; i++) {
@@ -106,28 +106,48 @@ function select(){
 
 }
 
-function convert(){
+function convert() {
     let unitvalue = parseInt(document.getElementById('con-u').value);
     let Result = parseInt(document.getElementById('con-v').value);
-    Result = Result/factor[value][unitvalue];
     let ResultBody = document.getElementById("con-unit");
-    let strR =`<table class="table">
+    let conResult =[];
+    let strR = `<table class="table">
     <thead>
-      <tr>
-        <th scope="col">Sno</th>
-        <th scope="col">Value</th>
-        <th scope="col">Unit</th>
-      </tr>
+    <tr>
+    <th scope="col">Sno</th>
+    <th scope="col">Value</th>
+    <th scope="col">Unit</th>
+    </tr>
     </thead>
     <tbody>`;
-    for (i = 0; i < unit[value].length; i++) {
-        strR += ` 
-        <tr>
-        <th scope="row">${i+1}</th>
-        <td>${Result*factor[value][i]}</td>
-        <td>${unit[value][i]}</td>
-      </tr>
-        `;
+    if(value == 8){
+        if(unitvalue == 1){
+            Result = Result-273.15;
+        }
+        if(unitvalue == 2){
+            Result = (Result-32)/1.8
+        }
+        conResult = [Result,Result+273.15,(Result*1.8)+32];
+        for (i = 0; i < unit[value].length; i++) {
+            strR += ` 
+                <tr>
+                <th scope="row">${i + 1}</th>
+                <td>${(conResult[i]).toFixed(2)}</td>
+                <td>${unit[value][i]}</td>
+              </tr>
+                `;
+        }
+    }else{
+        Result = Result / factor[value][unitvalue];
+        for (i = 0; i < unit[value].length; i++) {
+            strR += ` 
+                <tr>
+                <th scope="row">${i + 1}</th>
+                <td>${(Result * factor[value][i]).toFixed(2)}</td>
+                <td>${unit[value][i]}</td>
+              </tr>
+                `;
+        }
     }
     strR += `    </tbody>
     </table>`;
@@ -220,7 +240,7 @@ function axialcom() {
 }
 
 // this is the list of  section :
-const list = ["REngine", "convertor","JETEngine", "CE-Engine", "ICEngine", "TEngine", "RECE", "ROCE", "RBCE", "VTCE", "CFCE", "ACE"];
+const list = ["REngine", "convertor", "JETEngine", "CE-Engine", "ICEngine", "TEngine", "RECE", "ROCE", "RBCE", "VTCE", "CFCE", "ACE"];
 // function to display and hide the calculation function:
 function display() {
     document.getElementById('Results').style.display = "none";
@@ -899,24 +919,24 @@ function graph(result1, result2, label) {
 
 //  for equation solve matrix
 
-function solve2(a,u){
-    for(i=1,k=0;i>=0;i--,k++)
-    for( j=2;j>=0;j--)
-        a[i][j]=a[i][j]-a[k][j]*(a[i][0]/a[k][k]);
-u[1]=a[0][2]/a[0][0];
-u[2]=a[1][2]/a[1][1];
+function solve2(a, u) {
+    for (i = 1, k = 0; i >= 0; i--, k++)
+        for (j = 2; j >= 0; j--)
+            a[i][j] = a[i][j] - a[k][j] * (a[i][0] / a[k][k]);
+    u[1] = a[0][2] / a[0][0];
+    u[2] = a[1][2] / a[1][1];
 }
 
-function solve3(a,u){
-    for( i=1;i<3;i++)
-    for(j=3;j>=0;j--)
-         a[i][j]=a[i][j]-a[0][j]*(a[i][0]/a[0][0]);
-for( i=0;i<3;i+=2)
-    for(j=3;j>=0;j--)
-        a[i][j]=a[i][j]-a[1][j]*(a[i][1]/a[1][1]);
-for( i=0;i<2;i++)
-    for(j=3;j>=0;j--)
-        a[i][j]=a[i][j]-a[2][j]*(a[i][2]/a[2][2]);
-for( i=1;i<=3;i++)
-u[i]=a[i-1][3]/a[i-1][i-1];
+function solve3(a, u) {
+    for (i = 1; i < 3; i++)
+        for (j = 3; j >= 0; j--)
+            a[i][j] = a[i][j] - a[0][j] * (a[i][0] / a[0][0]);
+    for (i = 0; i < 3; i += 2)
+        for (j = 3; j >= 0; j--)
+            a[i][j] = a[i][j] - a[1][j] * (a[i][1] / a[1][1]);
+    for (i = 0; i < 2; i++)
+        for (j = 3; j >= 0; j--)
+            a[i][j] = a[i][j] - a[2][j] * (a[i][2] / a[2][2]);
+    for (i = 1; i <= 3; i++)
+        u[i] = a[i - 1][3] / a[i - 1][i - 1];
 }
