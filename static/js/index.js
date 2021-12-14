@@ -33,6 +33,7 @@ let i;
 let label;
 let stg;
 let ra;
+let value;
 // for Reciprocating Compressor
 let p1, p2, p3, IP1, IP2;
 const R = 0.287 // units KJ/Kg K
@@ -46,12 +47,103 @@ let T1, T2;
 const CP = 1.005;
 const CV = 0.716;
 //  for Rocket engine
-let S, Va, Fpr = 0, take,taker,taked;
+let S, Va, Fpr = 0, take, taker, taked;
 // Gas Turbine
 let T2x, T4x, T3, T4, Kelvin = 273.15;
+
+// Arrays for convertors
+var property = new Array();
+var unit = new Array();
+var factor = new Array();
+
+function select(){
+    value = parseInt(document.getElementById('con-p').value);
+    unit[0] = ["sq.cm","sq.m","sq.km","sq.inches"];
+    factor[0] = [1,0.0001,0.0000000001,0.15];
+
+    unit[1] = ["Joule","Watt hour","kP m","K cal","BTU"];
+    factor[1]= [1,0.2778,0.1019,0.0002388,0.0009478];
+
+    unit[2] = ["N","Kp","P","Oz","Ibf'"];
+    factor[2]= [1,0.1019,101.972,3.59694,0.2248];
+
+    unit[3] = ["mm", "cm","m","inch", "foot","km","mile"];
+    factor[3]= [1,0.1,0.001,0.03937,0.003280,0.000001,0.0000006213];
+    
+    unit[4] = ["gram", "Kg","Lb","Ton"];
+    factor[4]= [1,0.001,0.002204,0.000001102];
+    
+    unit[5] = ["Kilo Watt", "PS","Horse power","Kp m/s","K cal/s"];
+    factor[5]= [1,1.35962,1.34102,101972,0.2388];
+    
+    unit[6] = ["bar", "Pa","atm","PSI","Kg/cm^2"];
+    factor[6]= [1,100000,0.9869,14.504,1.0197];
+    
+    unit[7] = ["cm/s", "m/s","Km/hr","mile/hr"];
+    factor[7]= [1,0.01,0.036,0.02237];
+    
+    unit[8] = ["celsius", "Kelvin","Farenheit"];
+    factor[8]= [1,273.15,1.8+32];
+       
+    unit[9] = ["N cm", "N m","N mm","dyn m","Kgf m","gf m"];
+    factor[9]= [1,0.01,10,1000,0.001019716,1.019716213];
+       
+    unit[10] = ["mili liter","liter","cubic meter","cubic inch","cubic feet"];
+    factor[10]= [1,0.001,0.000001,0.061023744094732,0.000035314666721489];
+
+    let unitBody = document.getElementById("con-unit");
+    let stru =`<div class="col-md-3" >
+    <select onchange="convert()" id="con-u" class="form-select  text-center" aria-label="Default select example">
+      <option selected>Select The Units</option>`;
+    for (i = 0; i < unit[value].length; i++) {
+        stru += ` 
+        <option value="${i}">${unit[value][i]}</option>
+        `;
+    }
+    stru += `    </select>
+  </div>`;
+    unitBody.innerHTML = stru;
+
+}
+
+function convert(){
+    let unitvalue = parseInt(document.getElementById('con-u').value);
+    let Result = parseInt(document.getElementById('con-v').value);
+    Result = Result/factor[value][unitvalue];
+    let ResultBody = document.getElementById("con-unit");
+    let strR =`<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">Value</th>
+        <th scope="col">Unit</th>
+      </tr>
+    </thead>
+    <tbody>`;
+    for (i = 0; i < unit[value].length; i++) {
+        strR += ` 
+        <tr>
+        <th scope="row">${i+1}</th>
+        <td>${Result*factor[value][i]}</td>
+        <td>${unit[value][i]}</td>
+      </tr>
+        `;
+    }
+    strR += `    </tbody>
+    </table>`;
+    ResultBody.innerHTML = strR;
+}
+
+
 // function to assign choice values
 function Ic() {
     choice = 'ICEngine';
+    window.location.href = "#Calculation";
+    display();
+}
+
+function CON() {
+    choice = 'convertor';
     window.location.href = "#Calculation";
     display();
 }
@@ -126,8 +218,9 @@ function axialcom() {
     choice = 'ACE';
     comdisplay();
 }
+
 // this is the list of  section :
-const list = ["REngine","JETEngine", "CE-Engine", "ICEngine", "TEngine", "RECE", "ROCE", "RBCE", "VTCE", "CFCE", "ACE"];
+const list = ["REngine", "convertor","JETEngine", "CE-Engine", "ICEngine", "TEngine", "RECE", "ROCE", "RBCE", "VTCE", "CFCE", "ACE"];
 // function to display and hide the calculation function:
 function display() {
     document.getElementById('Results').style.display = "none";
@@ -282,14 +375,14 @@ function ICcalculate() {
     FP = (IP - BP).toFixed(3);
     BSFC = (mf / BP).toFixed(3);
     ISFC = (mf / IP).toFixed(3);
-    BTe = ((BP / (mf / 3600 * cv))*100).toFixed(2) ;
-    ITe = ((IP / (mf / 3600 * cv))*100).toFixed(2);
-    Me = ((BP / IP)*100).toFixed(2) ;
+    BTe = ((BP / (mf / 3600 * cv)) * 100).toFixed(2);
+    ITe = ((IP / (mf / 3600 * cv)) * 100).toFixed(2);
+    Me = ((BP / IP) * 100).toFixed(2);
     if (isNaN(v) || isNaN(vs)) {
         ra = A * L * n * K;
-        Ve = ((ma / 3600) / (A * L * ra * (n / 60))*100).toFixed(2);
-    }else {
-        Ve = ((v / vs)*100).toFixed(2);
+        Ve = ((ma / 3600) / (A * L * ra * (n / 60)) * 100).toFixed(2);
+    } else {
+        Ve = ((v / vs) * 100).toFixed(2);
     }
     document.getElementById('Results').style.display = "block";
     let table1 = ['Indicated Power', 'Brake Power', 'Frictional Power', 'Specific Fuel Consumption', 'Indicated Specific Fuel Consumption', 'Mechanical Efficiency', 'Volumetric Efficiency', 'Indicated Thermal Efficiency', 'Brake Thermal Efficiency'];
@@ -388,7 +481,7 @@ function RESCcalculate() {
         FP = (IP - BP).toFixed(3);
     Me = (IP / BP);
     Mpow = (BP / Me).toFixed(3);
-    Me = (Me*100).toFixed(2);
+    Me = (Me * 100).toFixed(2);
     result1 = ['Motor Power', 'Indicated Power', 'Brake Power', 'Frictional Power']
     result2 = [Mpow, IP, BP, FP];
     label = 'Power';
@@ -396,7 +489,7 @@ function RESCcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Indicated Power', 'Brake Power', 'Frictional Power', 'Mechanical Efficiency', 'Motor Power'];
     table2 = [IP, BP, FP, Me, Mpow];
-    let table3 = ['KW', 'KW', 'KW', '%','KW']
+    let table3 = ['KW', 'KW', 'KW', '%', 'KW']
     table(table1, table2, table3);
     image = 'rescom.jpg';
     img(image);
@@ -428,7 +521,7 @@ function RBCcalculate() {
     let Roote = (IP / Wact).toFixed(2);
     BP = // We need to find
         FP = (IP - BP).toFixed(3);
-    Me = ((IP / BP)*100).toFixed(2);
+    Me = ((IP / BP) * 100).toFixed(2);
     result1 = ['Actual Work done', 'Indicated Power', 'Brake Power', 'Frictional Power']
     result2 = [Wact, IP, BP, FP];
     label = 'Power';
@@ -436,7 +529,7 @@ function RBCcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Actual Work done', 'Indicated Power', 'Brake Power', 'Frictional Power', 'Root Blower Efficiency', 'Mechanical Efficiency'];
     table2 = [Wact, IP, BP, FP, Roote, Me];
-    let table3 = ['KW', 'KW', 'KW', 'KW', '%','%']
+    let table3 = ['KW', 'KW', 'KW', 'KW', '%', '%']
     table(table1, table2, table3);
     image = 'rbcom.jpg';
     img(image);
@@ -474,8 +567,8 @@ function VTCcalculate() {
     IP = (W1 + W2);
     Vanee = ((W2) / IP).toFixed(3);
     BP = // We need to find
-     FP = (IP - BP).toFixed(3);
-     Me = ((IP / BP)*100).toFixed(2);
+        FP = (IP - BP).toFixed(3);
+    Me = ((IP / BP) * 100).toFixed(2);
     result1 = ['Work done by Vane', 'Indicated Power', 'Brake Power', 'Frictional Power']
     result2 = [Wvane, IP, BP, FP];
     label = 'Power';
@@ -508,7 +601,7 @@ function CFCcalculate() {
     let T2unit = document.getElementById("cf-T2unit").value;
     T2 = tempurature(T2, T2unit);
     T2x = (T1 * Math.pow((p2 / p1), (n - 1) / n)).toFixed(1);
-    let isene = (((T2x - T1) / (T2 - T1))*100).toFixed(2);
+    let isene = (((T2x - T1) / (T2 - T1)) * 100).toFixed(2);
     let Pin = (ma * CP * (T2 - T1)).toFixed(3);
     Win = (CP * (T2 - T1)).toFixed(3);
     let Ds = (ma * (CP * Math.log(T2 / T1) - R * Math.log(p2 / p1))).toFixed(3); // change in entropy
@@ -597,19 +690,19 @@ function REcalculate() {
     Fpr = Ae * (p1 - p2);
     // F = Fmom;
     if (p1 = !"NaN" && p2 != "NaN") {
-        F = (Fmom + Fpr)/1000;
+        F = (Fmom + Fpr) / 1000;
     } else {
-        F = (Fmom)/1000;
+        F = (Fmom) / 1000;
     }
-    let Sthrust = ((F *1000)/(ma)).toFixed(2);
-    let Isp = ((F*1000 )/ (ma * 9.81)).toFixed(2);
+    let Sthrust = ((F * 1000) / (ma)).toFixed(2);
+    let Isp = ((F * 1000) / (ma * 9.81)).toFixed(2);
     let Pthrust = (F * Va).toFixed(2);
     let Ploss = 0.5 * ma * (Vjet - Va) * (Vjet - Va);
     PPropulsion = Pthrust + Ploss;
-    let Prope = ((2 * S / (1 + (S * S)))*100).toFixed(2);
-    let Te = (PPropulsion / (ma * CV)*100).toFixed(2);
+    let Prope = ((2 * S / (1 + (S * S))) * 100).toFixed(2);
+    let Te = (PPropulsion / (ma * CV) * 100).toFixed(2);
     let SPC = 1 / Isp;
-    let Overalle = ((Prope * Te)/100).toFixed(2);
+    let Overalle = ((Prope * Te) / 100).toFixed(2);
     result1 = ['Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
     result2 = [Prope, Te, Overalle];
     label = 'Efficiencies';
@@ -617,7 +710,7 @@ function REcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Thrust Produced', 'Specific Thrust', 'Specific Impulse', 'Specific Propullent Consumption', 'Thrust Power', 'Power Loss', 'Propulsive Power', 'Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
     table2 = [F, Sthrust, Isp, SPC, Pthrust, Ploss, PPropulsion, Prope, Te, Overalle];
-    let table3 = ['KN', 'N/Kg','sec', ' /sec', 'KW','KW','KW','%','%','%']
+    let table3 = ['KN', 'N/Kg', 'sec', ' /sec', 'KW', 'KW', 'KW', '%', '%', '%']
     table(table1, table2, table3);
     image = 'rocket.jpg';
     img(image);
@@ -648,38 +741,38 @@ function JETcalculate() {
             Va = Va / 2.237;
         }
         S = Va / Vjet;
-    } 
+    }
     D = parseFloat(document.getElementById('j-D').value);
     let dunit = parseInt(document.getElementById('j-dunit').value);
     D = diameter(D, dunit);
     Ae = pi / 4 * (D * D);
     ma = parseFloat(document.getElementById("j-ma").value);
     let maunit = parseInt(document.getElementById("j-maunit").value);
-    if(taked == 1){
+    if (taked == 1) {
         ma = mass(ma, maunit);
-    }else{
-        ma = ma*Va*Ae;
+    } else {
+        ma = ma * Va * Ae;
     }
-    mf= parseFloat(document.getElementById("j-mf").value);
+    mf = parseFloat(document.getElementById("j-mf").value);
     let mfunit = parseInt(document.getElementById("j-mfunit").value);
     mf = mass(mf, mfunit);
     cv = parseFloat(document.getElementById("j-CV").value);
-   F = ((ma+mf)*(Vjet-Va)/1000).toFixed(2); 
-    let Sthrust = ((F*1000) /( ma+mf)).toFixed(2);
-    let Isp = ((F*1000) / ((ma+mf) * 9.81)).toFixed(2);
+    F = ((ma + mf) * (Vjet - Va) / 1000).toFixed(2);
+    let Sthrust = ((F * 1000) / (ma + mf)).toFixed(2);
+    let Isp = ((F * 1000) / ((ma + mf) * 9.81)).toFixed(2);
     let Pthrust = (F * Va).toFixed(2);
-    PPropulsion = ((ma*(((Vjet*Vjet)-(Va*Va))/2))/1000).toFixed(2);
-    let Prope = ((Pthrust/PPropulsion)*100).toFixed(2);
-    let Te = (PPropulsion / (mf * cv)*100).toFixed(2);
-    let Overalle = ((Prope * Te)/100).toFixed(2);
+    PPropulsion = ((ma * (((Vjet * Vjet) - (Va * Va)) / 2)) / 1000).toFixed(2);
+    let Prope = ((Pthrust / PPropulsion) * 100).toFixed(2);
+    let Te = (PPropulsion / (mf * cv) * 100).toFixed(2);
+    let Overalle = ((Prope * Te) / 100).toFixed(2);
     result1 = ['Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
     result2 = [Prope, Te, Overalle];
     label = 'Efficiencies';
     graph(result1, result2, label);
     document.getElementById('Results').style.display = "block";
     table1 = ['Thrust Produced', 'Specific Thrust', 'Specific Impulse', 'Thrust Power', 'Propulsive Power', 'Propulsive Efficiency', 'Thermal Efficiency', 'Overall Efficiency'];
-    table2 = [F, Sthrust, Isp, Pthrust,PPropulsion, Prope, Te, Overalle];
-    let table3 = ['KN', 'N/Kg','sec','KW','KW','%','%','%']
+    table2 = [F, Sthrust, Isp, Pthrust, PPropulsion, Prope, Te, Overalle];
+    let table3 = ['KN', 'N/Kg', 'sec', 'KW', 'KW', '%', '%', '%']
     table(table1, table2, table3);
     image = 'jet.gif';
     img(image);
@@ -719,12 +812,12 @@ function GTcalculate() {
     let Wnet = (WT - WC).toFixed(3);
     let qin = CP * (T3 - T2);
     let qout = CP * (T4 - T1);
-    let THe = ((Wnet / qin)*100).toFixed(2);
+    let THe = ((Wnet / qin) * 100).toFixed(2);
     T2x = T1 * Math.pow(r, (n - 1) / n);
     T4x = T3 / (Math.pow(r, (n - 1) / n));
-    let Te = (((T3 - T4) / (T3 - T4x))*100).toFixed(2);
-    let Ce = (((T2x - T1) / (T2 - T1))*100).toFixed(2);
-    let bwr = ((WC / WT)*100).toFixed(2);
+    let Te = (((T3 - T4) / (T3 - T4x)) * 100).toFixed(2);
+    let Ce = (((T2x - T1) / (T2 - T1)) * 100).toFixed(2);
+    let bwr = ((WC / WT) * 100).toFixed(2);
     ma = (p * v) / R * T1;
     pow = ma * Wnet;
     result1 = ['Thermal Efficiency', 'Turbuine Efficency', 'Compressor Effecicency', 'Back Work Ratio'];
@@ -734,12 +827,13 @@ function GTcalculate() {
     document.getElementById('Results').style.display = "block";
     table1 = ['Work Done by Turbine', 'Work Done by Compressor', 'Total Net Work', 'Thermal Efficiency', 'Turbine Efficiency', 'Compressor Efficiency', 'Back Work Ratio', 'Power Output'];
     table2 = [WT, WC, Wnet, THe, Te, Ce, bwr, pow];
-    let table3 = ['KW','KW','KW','%','%','%','%','KW']
+    let table3 = ['KW', 'KW', 'KW', '%', '%', '%', '%', 'KW']
     table(table1, table2, table3);
     image = 'turbine.jpg';
     img(image);
     window.location.href = "#Results";
 }
+
 // image display
 function img(image) {
     let img = document.getElementById("img");
@@ -761,13 +855,13 @@ function graph(result1, result2, label) {
         data: {
             labels: result1,
             datasets: [{
-                label:label,
+                label: label,
                 data: result2,
-                backgroundColor: ['rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)'],
+                backgroundColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
                 borderWidth: 1
             }]
         },
-        options:{
+        options: {
             responsive: true,
             plugins: {
                 legend: {
@@ -780,25 +874,49 @@ function graph(result1, result2, label) {
                     display: true,
                     text: label,
                 },
-                  tooltip: {
+                tooltip: {
                     usePointStyle: true,
-                    backgroundColor:'black',
+                    backgroundColor: 'black',
 
-                  },
-                  animation: {
+                },
+                animation: {
                     onmouseenter: () => {
-                      delayed = true;
+                        delayed = true;
                     },
                     delay: (context) => {
-                      let delay = 0;
-                      if (context.type === 'data' && context.mode === 'default' && !delayed) {
-                        delay = context.dataIndex * 300 + context.datasetIndex * 100;
-                      }
-                      return delay;
+                        let delay = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay;
                     },
-                }              
+                }
             }
         }
     });
     index = 1;//this is to say that graph is already used for first time:
+}
+
+//  for equation solve matrix
+
+function solve2(a,u){
+    for(i=1,k=0;i>=0;i--,k++)
+    for( j=2;j>=0;j--)
+        a[i][j]=a[i][j]-a[k][j]*(a[i][0]/a[k][k]);
+u[1]=a[0][2]/a[0][0];
+u[2]=a[1][2]/a[1][1];
+}
+
+function solve3(a,u){
+    for( i=1;i<3;i++)
+    for(j=3;j>=0;j--)
+         a[i][j]=a[i][j]-a[0][j]*(a[i][0]/a[0][0]);
+for( i=0;i<3;i+=2)
+    for(j=3;j>=0;j--)
+        a[i][j]=a[i][j]-a[1][j]*(a[i][1]/a[1][1]);
+for( i=0;i<2;i++)
+    for(j=3;j>=0;j--)
+        a[i][j]=a[i][j]-a[2][j]*(a[i][2]/a[2][2]);
+for( i=1;i<=3;i++)
+u[i]=a[i-1][3]/a[i-1][i-1];
 }
