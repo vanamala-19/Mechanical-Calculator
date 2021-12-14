@@ -61,7 +61,7 @@ function select(){
     unit[0] = ["sq.cm","sq.m","sq.km","sq.inches"];
     factor[0] = [1,0.0001,0.0000000001,0.15];
 
-    unit[1] = ["Joule","Watt hour","kP m","K cal","BTU"];
+    unit[1] = ["Joule","KiloWatt hour","kP m","K cal","BTU"];
     factor[1]= [1,0.2778,0.1019,0.0002388,0.0009478];
 
     unit[2] = ["N","Kp","P","Oz","Ibf'"];
