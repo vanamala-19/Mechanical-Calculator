@@ -869,7 +869,7 @@ canvas{
 /*--------------------------------------------------------------
 # display content for engine
 --------------------------------------------------------------*/
-#ICEngine,#Calculation,#JETEngine,#CE-Engine,#res-msp,#res-msp1,#msp2,#res-mspu,#Results,#mspu1,#res-mspu2,#TEngine,#GTE,#REngine,#jva,#mava,#rva,#RECE,#ROCE,#msp,#mspu,#VTCE,#ACE,#CFCE,#RBCE{
+#ICEngine,#Calculation,#JETEngine,#convertor,#CE-Engine,#res-msp,#res-msp1,#msp2,#res-mspu,#Results,#mspu1,#res-mspu2,#TEngine,#GTE,#REngine,#jva,#mava,#rva,#RECE,#ROCE,#msp,#mspu,#VTCE,#ACE,#CFCE,#RBCE{
   display: none;
 }
 
