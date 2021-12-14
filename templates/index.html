@@ -51,7 +51,7 @@
       <div class="text-center">
         <div class="row icon-boxes">
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
-            data-aos-delay="200">
+            data-aos-delay="100">
             <div class="icon-box">
               <h4 class="title"><a href="">I C Engines</a></h4>
               <p class="description">Press the select button to calculate the IC Engine Parameters</p>
@@ -59,7 +59,7 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
-            data-aos-delay="300">
+            data-aos-delay="200">
             <div class="icon-box">
               <h4 class="title"><a href="">Rocket Engines</a></h4>
               <p class="description">Press the select button to calculate the Rocket Engine Parameters</p>
@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
-            data-aos-delay="400">
+            data-aos-delay="300">
             <div class="icon-box">
               <h4 class="title"><a href="">Turbines</a></h4>
               <p class="description">Press the select button to calculate the Turbines Parameters</p>
@@ -75,7 +75,7 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
-            data-aos-delay="500">
+            data-aos-delay="400">
             <div class="icon-box">
               <h4 class="title"><a href="">Compressors</a></h4>
               <p class="description">Press the select button to calculate the Compressors Parameters</p>
@@ -83,7 +83,7 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 debha" data-aos="zoom-in"
-            data-aos-delay="600">
+            data-aos-delay="500">
             <div class="icon-box">
               <h4 class="title"><a href="">Jet Engine</a></h4>
               <p class="description">Press the select button to calculate the Jet Engine Parameters</p>
@@ -91,28 +91,13 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 debha" data-aos="zoom-in"
-            data-aos-delay="700">
-            <div class="icon-box">
-              <h4 class="title"><a href="">dummy</a></h4>
-              <p class="description">Press the select button to calculate the  dummy Parameters</p>
-              <button onclick="dummy()" type="button" class="btn btn-primary btn-lg">select</button>
-            </div>
+          data-aos-delay="600">
+          <div class="icon-box">
+            <h4 class="title"><a href="">Convertor</a></h4>
+            <p class="description">Press the select button to convert the units of the Parameters</p>
+            <button onclick="CON()" type="button" class="btn btn-primary btn-lg">select</button>
           </div>
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 debha" data-aos="zoom-in"
-            data-aos-delay="800">
-            <div class="icon-box">
-              <h4 class="title"><a href="">Finite Element Method</a></h4>
-              <p class="description">Press the select button to calculate the Finite Element Method</p>
-              <button onclick="FEM()" type="button" class="btn btn-primary btn-lg">select</button>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 debha" data-aos="zoom-in"
-            data-aos-delay="900">
-            <div class="icon-box">
-              <h4 class="title"><a href="">Convertor</a></h4>
-              <p class="description">Press the select button to convert the units of the Parameters</p>
-              <button onclick="CON()" type="button" class="btn btn-primary btn-lg">select</button>
-            </div>
+        </div>
           </div>
         </div>
       </div>
@@ -670,7 +655,7 @@
         </div>
         <!-- End of Rocket Engine  -->
         <!-- Begin of JET Engine  -->
-        <div id="JETEngine" class="text-center"> 
+        <div id="JETEngine" class="text-center">
           <div class="row g-3 my-2">
             <div class="section-title">
               <h2>JET Engine Calculation</h2> <!--  title  changes with option -->
@@ -696,7 +681,7 @@
             </div>
             <div class="col-md-3">
               <input type="text" class="form-control" required placeholder="Enter the selected value" name="va"
-              id="j-va">
+                id="j-va">
             </div>
             <div id="jva" class="col-md-2">
               <select id="j-vaunit" class="form-select" aria-label="Default select example">
@@ -753,85 +738,117 @@
           </div>
         </div>
         <!-- End of JET Engine  -->
-        <!-- Begin of Turbine Engines -->
-        <div class="container" data-aos="fade-up">
-          <div id="TEngine">
-            <div class="section-title">
-              <h2>Turbine Engine Calculation</h2> <!--  title  changes with option -->
-            </div>
-            <div class="col-md-12 text-center">
-              <!-- Begin of  Gas Turbine -->
-              <div id="TE" class="text-center">
-                <div class="row g-3 my-2">
-                  <h1>Gas Turbine</h1>
-                  <div class="col-md-3">
-                    <input type="text" class="form-control" required placeholder="Pressure (P1)" name="p1" id="gt-P">
-                  </div>
-                  <div class="col-md-2">
-                    <select id="gt-punit" class="form-select" aria-label="Default select example">
-                      <option selected>units</option>
-                      <option value="1">bars</option>
-                      <option value="2">KN/m^2</option>
-                      <option value="3">Pascls</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3">
-                    <input type="text" class="form-control" required placeholder="Volume (V)" name="V" id="gt-V">
-                  </div>
-                  <div class="col-md-3 text-center">
-                    <input type="text" class="form-control" required placeholder="Tempurature T1" name="T1" id="gt-T1">
-                  </div>
-                  <div class="col-md-2">
-                    <select id="gt-T1unit" class="form-select" aria-label="Default select example">
-                      <option selected>units</option>
-                      <option value="1">Celsius</option>
-                      <option value="2">Kelvin</option>
-                      <option value="3">Fahrenheit</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3 text-center">
-                    <input type="text" class="form-control" required placeholder="Tempurature T2" name="T2" id="gt-T2">
-                  </div>
-                  <div class="col-md-2">
-                    <select id="gt-T2unit" class="form-select" aria-label="Default select example">
-                      <option selected>units</option>
-                      <option value="1">Celsius</option>
-                      <option value="2">Kelvin</option>
-                      <option value="3">Fahrenheit</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3 text-center">
-                    <input type="text" class="form-control" required placeholder="Tempurature T3" name="T3" id="gt-T3">
-                  </div>
-                  <div class="col-md-2">
-                    <select id="gt-T3unit" class="form-select" aria-label="Default select example">
-                      <option selected>units</option>
-                      <option value="1">Celsius</option>
-                      <option value="2">Kelvin</option>
-                      <option value="3">Fahrenheit</option>
-                    </select>
-                  </div>
-                  <div class="col-md-3 text-center">
-                    <input type="text" class="form-control" required placeholder="Tempurature T4" name="T4" id="gt-T4">
-                  </div>
-                  <div class="col-md-2">
-                    <select id="gt-T4unit" class="form-select" aria-label="Default select example">
-                      <option selected>units</option>
-                      <option value="1">Celsius</option>
-                      <option value="2">Kelvin</option>
-                      <option value="3">Fahrenheit</option>
-                    </select>
-                  </div>
-                  <div class="col-md-2">
-                    <input type="text" class="form-control" required placeholder="Pressure Ratio" name="Rp" id="gt-Rp">
-                  </div>
-                  <div class="col-12">
-                    <button onclick="GTcalculate()" class="btn btn-primary">Calculate</button>
-                  </div>
+        <!-- Begin of Turbine Engines -->>
+        <div id="TEngine">
+          <div class="section-title">
+            <h2>Turbine Engine Calculation</h2> <!--  title  changes with option -->
+          </div>
+          <div class="col-md-12 text-center">
+            <!-- Begin of  Gas Turbine -->
+            <div id="TE" class="text-center">
+              <div class="row g-3 my-2">
+                <h1>Gas Turbine</h1>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" required placeholder="Pressure (P1)" name="p1" id="gt-P">
+                </div>
+                <div class="col-md-2">
+                  <select id="gt-punit" class="form-select" aria-label="Default select example">
+                    <option selected>units</option>
+                    <option value="1">bars</option>
+                    <option value="2">KN/m^2</option>
+                    <option value="3">Pascls</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <input type="text" class="form-control" required placeholder="Volume (V)" name="V" id="gt-V">
+                </div>
+                <div class="col-md-3 text-center">
+                  <input type="text" class="form-control" required placeholder="Tempurature T1" name="T1" id="gt-T1">
+                </div>
+                <div class="col-md-2">
+                  <select id="gt-T1unit" class="form-select" aria-label="Default select example">
+                    <option selected>units</option>
+                    <option value="1">Celsius</option>
+                    <option value="2">Kelvin</option>
+                    <option value="3">Fahrenheit</option>
+                  </select>
+                </div>
+                <div class="col-md-3 text-center">
+                  <input type="text" class="form-control" required placeholder="Tempurature T2" name="T2" id="gt-T2">
+                </div>
+                <div class="col-md-2">
+                  <select id="gt-T2unit" class="form-select" aria-label="Default select example">
+                    <option selected>units</option>
+                    <option value="1">Celsius</option>
+                    <option value="2">Kelvin</option>
+                    <option value="3">Fahrenheit</option>
+                  </select>
+                </div>
+                <div class="col-md-3 text-center">
+                  <input type="text" class="form-control" required placeholder="Tempurature T3" name="T3" id="gt-T3">
+                </div>
+                <div class="col-md-2">
+                  <select id="gt-T3unit" class="form-select" aria-label="Default select example">
+                    <option selected>units</option>
+                    <option value="1">Celsius</option>
+                    <option value="2">Kelvin</option>
+                    <option value="3">Fahrenheit</option>
+                  </select>
+                </div>
+                <div class="col-md-3 text-center">
+                  <input type="text" class="form-control" required placeholder="Tempurature T4" name="T4" id="gt-T4">
+                </div>
+                <div class="col-md-2">
+                  <select id="gt-T4unit" class="form-select" aria-label="Default select example">
+                    <option selected>units</option>
+                    <option value="1">Celsius</option>
+                    <option value="2">Kelvin</option>
+                    <option value="3">Fahrenheit</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <input type="text" class="form-control" required placeholder="Pressure Ratio" name="Rp" id="gt-Rp">
+                </div>
+                <div class="col-12">
+                  <button onclick="GTcalculate()" class="btn btn-primary">Calculate</button>
                 </div>
               </div>
-              <!-- End of  Gas Turbine -->
-              <!-- End of Turbine Engines -->
+            </div>
+            <!-- End of  Gas Turbine -->
+          </div>
+        </div>
+        <!-- End of Turbine Engines -->
+        <!-- beginof  Convertor-->
+        <div id="convertor" class="text-center">
+          <div class="row g-3 my-2">
+            <div class="section-title">
+              <h2>Unit Convertor</h2> <!--  title  changes with option -->
+            </div>
+            <div class="col-md-6">
+              <select onchange="select()" id="con-p" class="form-select  text-center" aria-label="Default select example">
+                <option selected>Select The Parameter</option>
+                <option value="0">Area</option>
+                <option value="1">Energy</option>
+                <option value="2">Force</option>
+                <option value="3">Length</option>
+                <option value="4">Mass</option>
+                <option value="5">Power</option>
+                <option value="6">Pressure</option>
+                <option value="7">Speed/Velocity</option>
+                <option value="8">Tempurature</option>
+                <option value="9">Torque</option>
+                <option value="10">Volume</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" required placeholder="Value" name="value" id="con-v">
+            </div>
+            <div id="con-unit">
+            </div>
+            <div id="con-Results" >
+            </div>
+          </div>
+        </div>
   </section><!-- End Calculation Section -->
   <!-- ======= Results Section ======= -->
   <section id="Results" class="Results Results-bg">
@@ -855,8 +872,8 @@
           </tbody>
         </table>
       </div>
-      <div  class="col" >
-        <canvas  id="myChart" height="450px" width="450px"></canvas>
+      <div class="col">
+        <canvas id="myChart" height="450px" width="450px"></canvas>
       </div>
   </section>
   <!-- End Results Section -->
@@ -910,7 +927,6 @@
     </div>
     </div>
   </section><!-- End Contact Section -->
-<div class="elfsight-app-9434c94c-ca5e-4c44-a177-bd89e21ad302"></div>
   </main><!-- End #main -->
   <div id="preloader">
     <div class="loader">
@@ -926,88 +942,90 @@
       </div>
       <p class="text-load">Loading</p>
     </div>
-    </div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
-    <!-- Vendor JS Files -->
-    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-    <script src="static/vendor/aos/aos.js"></script>
-    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="static/vendor/php-email-form/validate.js"></script>
-    <script src="static/vendor/purecounter/purecounter.js"></script>
-    <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script type="text/javascript" src="/static/js/chart.js"></script>
-    <script type="text/javascript">
-      (function () {
-        emailjs.init("user_3yOIBuLymX5GB0CBO9kpN");
-      })();
-    </script>
-    <script>
-    </script>
-    <!-- Template Main JS File -->
-    <script src="/static/js/main.js"></script>
-    <script src="/static/js/index.js"></script>
-    <script src="/static/js/smtp.js"></script>
-    <!-- for sweetalert -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-      function validate() {
-        let username = document.querySelector(".user-name");
-        let useremail = document.querySelector(".user-email");
-        let usermsg = document.querySelector(".user-msg");
-        let submit = document.querySelector(".user-submit");
+  </div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  <!-- Vendor JS Files -->
+  <script src="static/vendor/aos/aos.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="static/vendor/php-email-form/validate.js"></script>
+  <script src="static/vendor/purecounter/purecounter.js"></script>
+  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script type="text/javascript" src="/static/js/chart.js"></script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init("user_3yOIBuLymX5GB0CBO9kpN");
+    })();
+  </script>
+  <script>
+  </script>
+  <!--  for matrix -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.3.2/math.js"></script>
 
-        submit.addEventListener("click", (e) => {
-          e.preventDefault()
-          if (username.value == "" || useremail.value == "" || usermsg.value == "") {
-            inputempty();
-          } else {
-            sendemail(username.value, useremail.value, usermsg.value);
-            sucess()
-            setTimeout(() => {
-              window.location.href = "#hero";
-            }, 2000);
-            setTimeout(() => {
-              location.reload();
-            }, 2000);
-          }
-        })
-      }
-      function sendemail(name, email, msg) {
-        emailjs.send("service_94vid38", "template_dkqcavp", {
-          from_name: name,
-          to_name: email,
-          message: msg,
-        });
-      }
-      function sucess() {
-        swal({
-          title: "Sucess",
-          text: "Sucessfully sent Message",
-          icon: "success",
-          button: "Ok",
-        });
-      }
-      function error() {
-        swal({
-          title: "Sorry",
-          text: "Something Went Wrong, Message could not be sent",
-          icon: "error",
-          button: "Ok",
-        });
-      }
-      function inputempty() {
-        swal({
-          title: "Opps!!",
-          text: "Inputs Field are required",
-          icon: "error",
-          button: "Ok",
-        });
-      }
-    </script>
+  <!-- Template Main JS File -->
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/index.js"></script>
+  <script src="/static/js/smtp.js"></script>
+  <!-- for sweetalert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    function validate() {
+      let username = document.querySelector(".user-name");
+      let useremail = document.querySelector(".user-email");
+      let usermsg = document.querySelector(".user-msg");
+      let submit = document.querySelector(".user-submit");
+
+      submit.addEventListener("click", (e) => {
+        e.preventDefault()
+        if (username.value == "" || useremail.value == "" || usermsg.value == "") {
+          inputempty();
+        } else {
+          sendemail(username.value, useremail.value, usermsg.value);
+          sucess()
+          setTimeout(() => {
+            window.location.href = "#hero";
+          }, 2000);
+          setTimeout(() => {
+            location.reload();
+          }, 2000);
+        }
+      })
+    }
+    function sendemail(name, email, msg) {
+      emailjs.send("service_94vid38", "template_dkqcavp", {
+        from_name: name,
+        to_name: email,
+        message: msg,
+      });
+    }
+    function sucess() {
+      swal({
+        title: "Sucess",
+        text: "Sucessfully sent Message",
+        icon: "success",
+        button: "Ok",
+      });
+    }
+    function error() {
+      swal({
+        title: "Sorry",
+        text: "Something Went Wrong, Message could not be sent",
+        icon: "error",
+        button: "Ok",
+      });
+    }
+    function inputempty() {
+      swal({
+        title: "Opps!!",
+        text: "Inputs Field are required",
+        icon: "error",
+        button: "Ok",
+      });
+    }
+  </script>
 </body>
 
 </html>
