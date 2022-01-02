@@ -136,7 +136,7 @@ function convert() {
             strR += ` 
                 <tr>
                 <th scope="row">${i + 1}</th>
-                <td>${(conResult[i]).toFixed(2)}</td>
+                <td>${(conResult[i])}</td>
                 <td>${unit[value][i]}</td>
               </tr>
                 `;
@@ -147,7 +147,7 @@ function convert() {
             strR += ` 
                 <tr>
                 <th scope="row">${i + 1}</th>
-                <td>${(Result * factor[value][i]).toFixed(2)}</td>
+                <td>${(Result * factor[value][i])}</td>
                 <td>${unit[value][i]}</td>
               </tr>
                 `;
