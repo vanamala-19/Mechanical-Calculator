@@ -106,9 +106,13 @@ function select() {
 
 }
 
+
 function convert() {
     let unitvalue = parseInt(document.getElementById('con-u').value);
-    let Result = parseInt(document.getElementById('con-v').value);
+    let Result = parseFloat(document.getElementById('con-v').value);
+  if(isNaN(Result)){
+    inputempty();
+  }else{
     let ResultBody = document.getElementById("con-unit");
     let conResult =[];
     let strR = `<table class="table">
@@ -152,6 +156,7 @@ function convert() {
     strR += `    </tbody>
     </table>`;
     ResultBody.innerHTML = strR;
+  }
 }
 
 
