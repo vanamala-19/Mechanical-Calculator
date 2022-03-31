@@ -364,6 +364,8 @@ function ICcalculate() {
     r = parseFloat(document.getElementById("ic-a/f").value);
     M = parseFloat(document.getElementById("IC-M").value);
     let munit = parseInt(document.getElementById('ic-munit').value);
+    let maunit = parseFloat(document.getElementById("ic-maunit").value);
+    ma = hmass(ma, maunit);
     if (munit == 1) {
         ma = M;
         mf = ma / r;
@@ -371,9 +373,6 @@ function ICcalculate() {
         mf = M;
         ma = mf * r;
     }
-    let maunit = parseFloat(document.getElementById("ic-maunit").value);
-    mf = hmass(mf, maunit);
-    ma = hmass(ma, maunit);
     F = parseFloat(document.getElementById("IC-F").value);
     T = document.getElementById('IC-T').value;
     BWD = document.getElementById('IC-BWD').value;
